@@ -2259,7 +2259,11 @@ footer.foot{max-width:1180px;margin:0 auto;padding:50px 70px 0;color:var(--muted
     btn.addEventListener('click', function(){
       var sec = btn.closest('.script');
       var title = sec.dataset.title || '';
-      var text = title + String.fromCharCode(10,10) + sec.querySelector('.s-body').innerText;
+      var lines = [];
+      sec.querySelector('.s-body').querySelectorAll('p,h3.s-sub,li').forEach(function(el){
+        lines.push(el.textContent.trim());
+      });
+      var text = title + '\n\n' + lines.join('\n');
       var span = btn.querySelector('span');
       var done = function(){
         span.textContent = '已复制 ✓';
