@@ -1,0 +1,2334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>口播逐字稿 · 文案合集</title>
+<style>
+/* ============================================================
+   口播逐字稿合集 · Cinematic Luxury Redesign
+   ============================================================ */
+:root{
+  --bg:#0B0A08;
+  --bg-2:#14120D;
+  --bg-3:#1C1913;
+  --card:rgba(255,255,255,.025);
+  --card-hi:rgba(255,255,255,.045);
+  --ink:#EFE8D8;
+  --ink-2:#BFB6A2;
+  --ink-3:#7A7363;
+  --muted:#5A5447;
+  --gold:#C9A961;
+  --gold-2:#E6D29A;
+  --gold-dim:#8A7340;
+  --gold-wash:rgba(201,169,97,.10);
+  --gold-line:rgba(201,169,97,.22);
+  --gold-line-soft:rgba(201,169,97,.08);
+  --side:#070705;
+  --side-2:#0E0C08;
+  --side-tx:#C9C0AD;
+  --side-mut:#6F6857;
+  --serif:"Noto Serif SC","Source Han Serif SC","Songti SC","STSong","SimSun",Georgia,serif;
+  --sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+  --side-w:300px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--serif);-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ---------- 噪点 / 胶片颗粒 ---------- */
+.grain{
+  position:fixed;inset:0;z-index:70;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.9'/></svg>");
+}
+.vignette{
+  position:fixed;inset:0;z-index:69;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55) 100%);
+}
+
+/* ---------- 开场幕布 ---------- */
+#curtain{
+  position:fixed;inset:0;z-index:100;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 1.1s var(--ease),opacity .6s ease;
+}
+#curtain::before,#curtain::after{
+  content:"";position:absolute;left:0;right:0;height:50%;background:var(--bg);
+  transition:transform 1.1s var(--ease);
+}
+#curtain::before{top:0;}
+#curtain::after{bottom:0;}
+#curtain .clogo{
+  position:relative;z-index:2;font-family:var(--serif);color:var(--gold);
+  font-size:14px;letter-spacing:8px;opacity:0;
+  animation:logoIn .9s var(--ease) .25s forwards;
+}
+#curtain .cline{
+  position:absolute;z-index:2;left:50%;top:50%;width:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  transform:translate(-50%,-50%);
+  animation:lineGrow 1s var(--ease) .5s forwards;
+}
+#curtain.up::before{transform:translateY(-100%);}
+#curtain.up::after{transform:translateY(100%);}
+#curtain.up{opacity:0;pointer-events:none;}
+@keyframes logoIn{0%{opacity:0;letter-spacing:2px;}100%{opacity:.9;letter-spacing:8px;}}
+@keyframes lineGrow{0%{width:0;}100%{width:240px;}}
+
+/* ---------- 进度条 ---------- */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:80;
+  background:linear-gradient(90deg,var(--gold-dim),var(--gold),var(--gold-2));
+  box-shadow:0 0 12px rgba(201,169,97,.6);transition:width .1s linear;}
+
+/* ---------- 侧栏 ---------- */
+#side{
+  position:fixed;left:0;top:0;bottom:0;width:var(--side-w);z-index:50;
+  background:var(--side);color:var(--side-tx);overflow-y:auto;
+  border-right:1px solid rgba(201,169,97,.1);
+  display:flex;flex-direction:column;
+  backdrop-filter:blur(10px);
+}
+#side::-webkit-scrollbar{width:6px;}
+#side::-webkit-scrollbar-thumb{background:rgba(201,169,97,.18);border-radius:8px;}
+#side::-webkit-scrollbar-track{background:transparent;}
+.brand{padding:30px 26px 22px;border-bottom:1px solid rgba(201,169,97,.1);position:relative;}
+.brand .seal{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border:1px solid var(--gold);color:var(--gold-2);
+  font-size:12px;line-height:1.05;text-align:center;
+  letter-spacing:1px;margin-bottom:14px;font-family:var(--serif);
+  position:relative;
+}
+.brand .seal::after{
+  content:"";position:absolute;inset:-4px;border:1px solid rgba(201,169,97,.3);
+}
+.brand h1{font-size:19px;margin:0 0 5px;letter-spacing:3px;color:#EDE4D0;font-weight:600;}
+.brand p{margin:0;font-size:11px;color:var(--side-mut);letter-spacing:2px;font-family:var(--sans);}
+.searchwrap{padding:16px 22px 10px;}
+#search{
+  width:100%;padding:10px 13px;border-radius:2px;border:1px solid rgba(201,169,97,.18);
+  background:rgba(255,255,255,.02);color:var(--side-tx);font-family:var(--sans);font-size:12.5px;outline:none;
+  transition:border-color .3s,box-shadow .3s;
+}
+#search::placeholder{color:var(--side-mut);}
+#search:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-wash);}
+nav{padding:8px 14px 50px;flex:1;}
+.nav-group{margin-bottom:6px;}
+.nav-group-title{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 12px 8px;font-size:10.5px;letter-spacing:3px;color:#9A9078;
+  font-family:var(--sans);border-top:1px solid rgba(201,169,97,.07);margin-top:8px;
+  text-transform:uppercase;
+}
+.nav-group:first-child .nav-group-title{border-top:none;}
+.nav-group-title em{font-style:normal;color:var(--side-mut);font-size:10px;}
+.nav-item{
+  position:relative;display:flex;gap:11px;align-items:flex-start;text-decoration:none;
+  padding:9px 12px;border-radius:3px;color:#A89F8B;font-size:13px;line-height:1.55;
+  border-left:2px solid transparent;transition:color .25s,background .25s,border-color .25s,transform .25s;
+}
+.nav-item i{font-style:normal;font-family:var(--sans);font-size:10.5px;color:#6B6353;padding-top:3px;min-width:19px;transition:color .25s;}
+.nav-item .nt{font-family:var(--sans);transition:color .25s;}
+.nav-item:hover{color:#E8DFCA;background:rgba(201,169,97,.05);}
+.nav-item:hover i{color:var(--gold);}
+.nav-item.active{
+  background:linear-gradient(90deg,var(--gold-wash),transparent);
+  color:#F2E9D4;border-left-color:var(--gold);
+}
+.nav-item.active i{color:var(--gold-2);}
+.nav-item.hide{display:none;}
+.nav-group.hide{display:none;}
+
+/* ---------- 主区 ---------- */
+#main{margin-left:var(--side-w);padding:0 0 140px;position:relative;}
+.topbar{
+  position:sticky;top:0;z-index:40;display:none;align-items:center;gap:12px;
+  padding:13px 18px;background:rgba(7,7,5,.92);color:#EFE7D8;backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(201,169,97,.1);
+}
+.topbar button{background:none;border:1px solid rgba(201,169,97,.25);color:#EFE7D8;border-radius:2px;
+  width:40px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.bars{position:relative;display:block;width:18px;height:12px;}
+.bars::before,.bars::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#EFE7D8;border-radius:2px;}
+.bars::before{top:0;box-shadow:0 5px 0 #EFE7D8;}
+.bars::after{top:10px;}
+.topbar span{font-size:13px;letter-spacing:2px;font-family:var(--sans);}
+#scrim{position:fixed;inset:0;z-index:45;background:rgba(0,0,0,.6);
+  opacity:0;pointer-events:none;transition:opacity .35s;}
+#scrim.show{opacity:1;pointer-events:auto;}
+
+/* ---------- Hero ---------- */
+.hero{padding:110px 70px 60px;max-width:1180px;margin:0 auto;position:relative;min-height:78vh;display:flex;flex-direction:column;justify-content:center;}
+.hero .eyebrow{
+  font-family:var(--sans);font-size:11.5px;letter-spacing:7px;color:var(--gold);margin-bottom:28px;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.1s forwards;
+}
+.hero h1{
+  font-size:clamp(40px,6.4vw,78px);line-height:1.15;margin:0 0 28px;font-weight:700;
+  letter-spacing:2px;color:var(--ink);
+}
+.hero h1 .line{display:block;overflow:hidden;}
+.hero h1 .line span{
+  display:inline-block;transform:translateY(110%);
+  animation:rise .9s var(--ease) forwards;
+}
+.hero h1 .line:nth-child(1) span{animation-delay:1.2s;}
+.hero h1 .line:nth-child(2) span{animation-delay:1.32s;}
+.hero .lead{
+  font-size:16.5px;color:var(--ink-2);line-height:2.05;max-width:660px;margin:0 0 44px;
+  font-family:var(--sans);font-weight:300;letter-spacing:.3px;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.5s forwards;
+}
+.stats{
+  display:flex;flex-wrap:wrap;gap:0;margin-bottom:56px;
+  border-top:1px solid var(--gold-line-soft);border-bottom:1px solid var(--gold-line-soft);
+  opacity:0;animation:fadeUp .8s var(--ease) 1.65s forwards;
+}
+.stats div{flex:1;min-width:140px;padding:24px 10px 24px 0;}
+.stats b{display:block;font-size:34px;color:var(--gold-2);letter-spacing:1px;font-weight:300;
+  font-family:var(--serif);}
+.stats span{font-family:var(--sans);font-size:11.5px;color:var(--ink-3);letter-spacing:2.5px;}
+.overview{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.8s forwards;}
+.ov-card{
+  display:flex;flex-direction:column;gap:10px;text-decoration:none;
+  padding:26px 22px;background:var(--card);border:1px solid var(--gold-line-soft);
+  border-radius:3px;transition:transform .4s var(--ease),border-color .4s,background .4s;
+  position:relative;overflow:hidden;
+}
+.ov-card::before{
+  content:"";position:absolute;top:0;left:0;width:0;height:100%;
+  background:linear-gradient(90deg,var(--gold-wash),transparent);
+  transition:width .5s var(--ease);
+}
+.ov-card:hover{transform:translateY(-4px);border-color:var(--gold-line);background:var(--card-hi);}
+.ov-card:hover::before{width:100%;}
+.ov-card b{font-size:30px;color:var(--ink);line-height:1;font-weight:300;position:relative;}
+.ov-card span{font-family:var(--sans);font-size:12.5px;color:var(--ink-2);letter-spacing:1.2px;position:relative;}
+.ov-card em{font-style:normal;font-family:var(--sans);font-size:10.5px;color:var(--muted);letter-spacing:1px;position:relative;}
+.hero::after{
+  content:"SCRIPT LIBRARY";position:absolute;right:-30px;top:50%;transform:translateY(-50%) rotate(90deg);
+  font-family:var(--sans);font-size:11px;letter-spacing:12px;color:rgba(201,169,97,.12);
+  pointer-events:none;white-space:nowrap;
+}
+
+@keyframes rise{to{transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- 文案分节 ---------- */
+.scripts{max-width:1180px;margin:0 auto;padding:0 70px;}
+.script{
+  padding:80px 0 90px;border-top:1px solid var(--gold-line-soft);
+  opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease);
+  position:relative;
+}
+.script.in{opacity:1;transform:none;}
+.script.hide{display:none;}
+.s-head{display:flex;align-items:flex-start;gap:28px;margin-bottom:38px;position:relative;}
+.s-num{
+  font-family:var(--serif);font-size:52px;line-height:.9;font-weight:200;
+  color:rgba(201,169,97,.22);letter-spacing:-1px;min-width:74px;padding-top:2px;
+  transition:color .5s;text-shadow:0 0 30px rgba(201,169,97,.0);
+}
+.script.in .s-num{color:rgba(201,169,97,.4);text-shadow:0 0 40px rgba(201,169,97,.15);}
+.s-headmain{flex:1;min-width:0;}
+.s-kicker{
+  font-family:var(--sans);font-size:11px;letter-spacing:3.5px;color:var(--gold);margin-bottom:12px;
+  text-transform:uppercase;
+}
+.s-title{
+  font-size:clamp(25px,3vw,38px);line-height:1.38;margin:0 0 18px;font-weight:700;letter-spacing:1px;
+  background:linear-gradient(180deg,#F5EEDC,#C9C0A8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.s-meta{display:flex;flex-wrap:wrap;gap:8px;}
+.s-meta span{
+  font-family:var(--sans);font-size:11px;color:var(--ink-3);
+  background:rgba(255,255,255,.025);border:1px solid var(--gold-line-soft);border-radius:20px;
+  padding:4px 12px;letter-spacing:.5px;transition:border-color .3s,color .3s;
+}
+.s-meta span.core{color:var(--gold-2);border-color:rgba(201,169,97,.3);background:var(--gold-wash);}
+.s-meta span.fname{color:var(--muted);}
+.copy{
+  flex-shrink:0;font-family:var(--sans);font-size:11.5px;letter-spacing:1.5px;
+  background:transparent;border:1px solid var(--gold-line);color:var(--ink-2);
+  padding:10px 18px;border-radius:2px;cursor:pointer;transition:all .3s var(--ease);position:relative;overflow:hidden;
+}
+.copy::after{
+  content:"";position:absolute;inset:0;background:var(--gold-wash);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.copy:hover{border-color:var(--gold);color:var(--gold-2);}
+.copy:hover::after{transform:scaleX(1);}
+.copy span{position:relative;z-index:1;}
+.copy.done{border-color:var(--gold);color:var(--gold-2);}
+
+.s-body{max-width:780px;}
+.s-body p{margin:0 0 22px;font-size:17.5px;line-height:2.12;color:var(--ink-2);letter-spacing:.4px;}
+.s-body p.num{margin:0 0 16px;}
+.s-body ul{margin:0 0 22px;padding-left:22px;}
+.s-body li{font-size:17.5px;line-height:2.06;color:var(--ink-2);margin-bottom:10px;letter-spacing:.4px;}
+.s-body li::marker{color:var(--gold);}
+.s-body strong{font-weight:700;color:var(--ink);}
+.s-body h3.s-sub{
+  margin:46px 0 22px;font-family:var(--sans);font-size:15px;font-weight:600;
+  letter-spacing:2px;color:var(--gold-2);text-transform:none;
+  padding-left:14px;border-left:2px solid var(--gold);line-height:1.6;
+}
+.s-body mark{
+  background:linear-gradient(180deg,transparent 60%,rgba(201,169,97,.35) 60%);
+  color:var(--gold-2);padding:0 2px;border-radius:1px;
+}
+
+/* ---------- 回到顶部 ---------- */
+#top{
+  position:fixed;right:30px;bottom:30px;z-index:55;width:48px;height:48px;border-radius:50%;
+  border:1px solid var(--gold-line);background:rgba(20,18,13,.8);color:var(--gold);cursor:pointer;
+  font-size:18px;backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s,border-color .3s;
+}
+#top.show{opacity:1;pointer-events:auto;}
+#top:hover{color:var(--gold-2);transform:translateY(-3px);border-color:var(--gold);}
+
+footer.foot{max-width:1180px;margin:0 auto;padding:50px 70px 0;color:var(--muted);
+  font-family:var(--sans);font-size:12px;letter-spacing:1.5px;border-top:1px solid var(--gold-line-soft);text-align:center;}
+
+/* ---------- 自定义光标 ---------- */
+.cursor-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s;mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:34px;height:34px;border-radius:50%;border:1px solid var(--gold);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s;opacity:.5;}
+.cursor-ring.hover{width:54px;height:54px;opacity:.9;border-color:var(--gold-2);}
+
+@media (max-width:1080px){
+  .overview{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:900px){
+  #side{transform:translateX(-100%);transition:transform .35s var(--ease);z-index:50;padding-top:54px;}
+  #side.open{transform:none;}
+  #main{margin-left:0;}
+  .topbar{display:flex;z-index:62;}
+  .hero{padding:50px 26px 40px;min-height:auto;}
+  .scripts{padding:0 26px;}
+  .s-num{font-size:36px;min-width:50px;}
+  .s-head{flex-wrap:wrap;gap:16px;}
+  .copy{order:3;}
+  footer.foot{padding:40px 26px 0;}
+  .cursor-dot,.cursor-ring{display:none;}
+}
+@media print{
+  #side,#top,.topbar,.copy,#progress,.grain,.vignette,#curtain{display:none!important;}
+  #main{margin:0;}
+  .script{opacity:1!important;transform:none!important;page-break-after:always;}
+  body{background:#fff;color:#000;}
+}
+
+
+
+</style>
+</head>
+<body>
+<div id="curtain"><div class="cline"></div><div class="clogo">SCRIPT · LIBRARY</div></div>
+<div class="grain"></div>
+<div class="vignette"></div>
+<div id="progress"></div>
+
+<aside id="side">
+  <div class="brand">
+    <div class="seal">逐字稿</div>
+    <h1>口播文案合集</h1>
+    <p>感悟系列 · 27 篇</p>
+  </div>
+  <div class="searchwrap">
+    <input id="search" type="text" placeholder="搜索标题…">
+  </div>
+  <nav id="nav">
+<div class="nav-group">
+<div class="nav-group-title"><span>哲思 · 认知</span><em>9</em></div>
+<a class="nav-item" href="#s1" data-target="s1" data-title="中国到底有没有哲学"><i>01</i><span class="nt">中国到底有没有哲学</span></a>
+<a class="nav-item" href="#s2" data-target="s2" data-title="反者道之动，弱者道之用"><i>02</i><span class="nt">反者道之动，弱者道之用</span></a>
+<a class="nav-item" href="#s3" data-target="s3" data-title="弱时慕强，强时慕真，真时慕觉，觉时慕空"><i>03</i><span class="nt">弱时慕强，强时慕真，真时慕觉，觉时慕空</span></a>
+<a class="nav-item" href="#s4" data-target="s4" data-title="命，到底能不能改"><i>04</i><span class="nt">命，到底能不能改</span></a>
+<a class="nav-item" href="#s5" data-target="s5" data-title="你不是内耗，你是在背叛自己"><i>05</i><span class="nt">你不是内耗，你是在背叛自己</span></a>
+<a class="nav-item" href="#s6" data-target="s6" data-title="庄子：把你凿没的，是爱你的人"><i>06</i><span class="nt">庄子：把你凿没的，是爱你的人</span></a>
+<a class="nav-item" href="#s7" data-target="s7" data-title="王阳明：龙场悟道"><i>07</i><span class="nt">王阳明：龙场悟道</span></a>
+<a class="nav-item" href="#s8" data-target="s8" data-title="曾国藩：一个笨人如何靠“打呆仗”打赢半个中国"><i>08</i><span class="nt">曾国藩：一个笨人如何靠“打呆仗”打赢半个中国</span></a>
+<a class="nav-item" href="#s25" data-target="s25" data-title="失败人生指南"><i>25</i><span class="nt">失败人生指南</span></a>
+</div>
+<div class="nav-group">
+<div class="nav-group-title"><span>心理 · 成长</span><em>9</em></div>
+<a class="nav-item" href="#s9" data-target="s9" data-title="为什么好人做一件坏事，就什么都不是了"><i>09</i><span class="nt">为什么好人做一件坏事，就什么都不是了</span></a>
+<a class="nav-item" href="#s10" data-target="s10" data-title="你不是不够自律，你是一直在硬扛"><i>10</i><span class="nt">你不是不够自律，你是一直在硬扛</span></a>
+<a class="nav-item" href="#s11" data-target="s11" data-title="你不是在反思，你是在反刍"><i>11</i><span class="nt">你不是在反思，你是在反刍</span></a>
+<a class="nav-item" href="#s12" data-target="s12" data-title="塑造直觉"><i>12</i><span class="nt">塑造直觉</span></a>
+<a class="nav-item" href="#s13" data-target="s13" data-title="成功最大的敌人，是恐惧"><i>13</i><span class="nt">成功最大的敌人，是恐惧</span></a>
+<a class="nav-item" href="#s14" data-target="s14" data-title="你不是在思考，你是在站队"><i>14</i><span class="nt">你不是在思考，你是在站队</span></a>
+<a class="nav-item" href="#s15" data-target="s15" data-title="让人对你相见恨晚的五个方法"><i>15</i><span class="nt">让人对你相见恨晚的五个方法</span></a>
+<a class="nav-item" href="#s16" data-target="s16" data-title="放过自己（沉没成本）"><i>16</i><span class="nt">放过自己（沉没成本）</span></a>
+<a class="nav-item" href="#s17" data-target="s17" data-title="治愈心理创伤的五个方法"><i>17</i><span class="nt">治愈心理创伤的五个方法</span></a>
+</div>
+<div class="nav-group">
+<div class="nav-group-title"><span>方法 · 短稿</span><em>4</em></div>
+<a class="nav-item" href="#s18" data-target="s18" data-title="如何克服拖延症（同题仿写）"><i>18</i><span class="nt">如何克服拖延症（同题仿写）</span></a>
+<a class="nav-item" href="#s19" data-target="s19" data-title="如何摆脱精神内耗"><i>19</i><span class="nt">如何摆脱精神内耗</span></a>
+<a class="nav-item" href="#s20" data-target="s20" data-title="读心术的十个方法"><i>20</i><span class="nt">读心术的十个方法</span></a>
+<a class="nav-item" href="#s21" data-target="s21" data-title="吸引力法则"><i>21</i><span class="nt">吸引力法则</span></a>
+</div>
+<div class="nav-group">
+<div class="nav-group-title"><span>语录 · 合集</span><em>3</em></div>
+<a class="nav-item" href="#s22" data-target="s22" data-title="醍醐灌顶语录（一）"><i>22</i><span class="nt">醍醐灌顶语录（一）</span></a>
+<a class="nav-item" href="#s23" data-target="s23" data-title="醍醐灌顶语录（二）"><i>23</i><span class="nt">醍醐灌顶语录（二）</span></a>
+<a class="nav-item" href="#s24" data-target="s24" data-title="醍醐灌顶语录（三）"><i>24</i><span class="nt">醍醐灌顶语录（三）</span></a>
+</div>
+<div class="nav-group">
+<div class="nav-group-title"><span>自由发挥</span><em>2</em></div>
+<a class="nav-item" href="#s26" data-target="s26" data-title="讨厌一个人最好的办法不是翻脸"><i>26</i><span class="nt">讨厌一个人最好的办法不是翻脸</span></a>
+<a class="nav-item" href="#s27" data-target="s27" data-title="想要过好人生，除了要对每件小事付出真心，还要有收回真心的勇气"><i>27</i><span class="nt">想要过好人生，除了要对每件小事付出真心，还要有收回真心的勇气</span></a>
+</div>
+  </nav>
+</aside>
+
+<div class="topbar">
+  <button id="menubtn" type="button" aria-label="目录"><span class="bars"></span></button>
+  <span>口播文案合集 · 27 篇</span>
+</div>
+<div id="scrim"></div>
+
+<main id="main">
+  <header class="hero">
+    <div class="eyebrow">感 悟 系 列</div>
+    <h1><span class="line"><span>口播逐字稿</span></span><span class="line"><span>文案合集</span></span></h1>
+    <p class="lead">全部文案逐字提取自原始文件，正文内容未作任何删改；仅剔除文件里标注为「工作备注 / 附录 / 成稿不含」的制作说明，并按主题整理成分组目录。</p>
+    <div class="stats">
+      <div><b>27</b><span>篇 逐字稿</span></div>
+      <div><b>60,683</b><span>字 总字数</span></div>
+      <div><b>5</b><span>大 主题分类</span></div>
+      <div><b>100%</b><span>原文 原样</span></div>
+    </div>
+    <div class="overview">
+<a class="ov-card" href="#s1"><b>8</b><span>哲思 · 认知</span><em>01 — 08</em></a>
+<a class="ov-card" href="#s9"><b>9</b><span>心理 · 成长</span><em>09 — 17</em></a>
+<a class="ov-card" href="#s18"><b>4</b><span>方法 · 短稿</span><em>18 — 21</em></a>
+<a class="ov-card" href="#s22"><b>3</b><span>语录 · 合集</span><em>22 — 24</em></a>
+<a class="ov-card" href="#s26"><b>2</b><span>自由发挥</span><em>26 — 27</em></a>
+    </div>
+  </header>
+
+  <div class="scripts">
+<section class="script" id="s1" data-title="中国到底有没有哲学">
+  <div class="s-head">
+    <div class="s-num">01</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">中国到底有没有哲学</h2>
+      <div class="s-meta"><span>3,211 字</span><span class="core">核心 · 哲学不是一堆答案，是拿逻辑不断追问、能被质疑的一种思考方式；中国有的是智慧，少的是那套追问的过程</span><span class="fname">原文件 · 仿写_中国到底有没有哲学_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你两个问题啊。</p>
+<p>第一个问题，黑格尔说过一句话，说中国没有哲学。你同意吗？</p>
+<p>OK，大家是怎么想的，可以把想法打在公屏上。</p>
+<p>那我的第二个问题是，既然你不同意他，那你知不知道，哲学的定义到底是什么？</p>
+<p>今天我们就来讲这件事。讲完哲学的定义，你再回头看他那句话，会有不一样的感觉。</p>
+<p>他说的是，中国没有西方意义上那种哲学。他没说，中国没有智慧。</p>
+<p>我们打个比方你就懂了。</p>
+<p>京剧是中国的，里面有唱念做打。现在西方冒出来一种戏剧，里面也有唱念做打。那你能说，西方就有京剧吗？</p>
+<p>大致会讲三个部分。第一部分，哲学是怎么出现的。第二个部分，哲学分成哪几类。第三个部分，中国古代到底有没有哲学。</p>
+<p>哲学这个词，出现在古希腊。两千六百多年前。</p>
+<p>那会儿更早，大家知道《荷马史诗》。荷马是靠讲故事，告诉大家他理解的世界是怎么运行的。</p>
+<p>差不多同一个时期，有一帮希腊人，他们换了种方式。他们不用故事，他们用分析，用理性，去解释这个世界。</p>
+<p>这帮人干的这件事，就被叫作philosophia。</p>
+<p>费洛是爱，sophia是智慧。所以哲学这个词，翻译过来就是，对智慧的爱。</p>
+<p>后来这条线，走到苏格拉底、柏拉图、亚里士多德。</p>
+<p>那哲学和智慧，到底差在哪。</p>
+<p>差在一个地方。在哲学家眼里，问题比答案大。</p>
+<p>你为什么常常得不到答案。因为真理这东西，你往往抓不住。</p>
+<p>两千多年前，没望远镜，没显微镜，你手里什么工具都没有。你想光靠逻辑硬推，推不到最后那一步。</p>
+<p>所以他们就退一步。把提的问题，看得比得出的结论重要。</p>
+<p>也因为这样，哲学是可以被质疑的。一个东西，能反思，能被挑刺，才配叫哲学。</p>
+<p>我给你举个最简单的。</p>
+<p>《论语》里有句话，己所不欲，勿施于人。大部分人一听，觉得这话对。</p>
+<p>可你问自己一句，你为什么觉得它对。多半是因为，大家都这么说。</p>
+<p>我现在就能给它找个反例。</p>
+<p>我不喜欢被打。那能不能推出来，所有人都不喜欢被打。</p>
+<p>不能。我不喜欢的东西，别人可能喜欢。我的砒霜，说不定是人家的蜜糖。</p>
+<p>所以"己所不欲，勿施于人"，它对着的是大多数人。可大多数人觉得对的事，就对吗。</p>
+<p>鲁迅早问过这个问题，从来如此，便对吗。</p>
+<p>你看，这就是哲学和智慧的区别。智慧是直接把结论递给你。哲学是先问你一句，凭什么。</p>
+<p>这里头有个坑。</p>
+<p>你要是从小听的都是"从来如此"的答案，你就会把它当成真理。别人给你什么，你就接什么。你这一辈子，都在拿别人的答案过日子，自己一次都没问过为什么。</p>
+<p>那哲学都研究些什么。</p>
+<p>大概分四类。</p>
+<p>第一类，形而上学。</p>
+<p>它管的是，物理世界之上那些东西。这个词，其实是从《易经》里来的。形而上者谓之道，形而下者谓之器。</p>
+<p>我举个大家都碰过的例子。</p>
+<p>你在山里看见一朵花。你会说，这花真香。</p>
+<p>那反过来问一句。要是这世上没有任何一个人看见过它，这朵花，它还存在吗。</p>
+<p>它没有意识。没人看见它。你也拿不出证据，证明它一直都在。</p>
+<p>这种问题，你没法称，没法量，更没法验。这就叫形而上学。</p>
+<p>它还会问，你信因果律吗。</p>
+<p>我打你一下，你疼。这就是因果。</p>
+<p>那要是宇宙里每一件事都有因果。银河、太阳、地球、你爸妈、你，还有你的环境、你的基因，你脑子里每一刻分泌出来的化学成分，全是一环扣一环推出来的。</p>
+<p>那你还有自由意志吗。</p>
+<p>这也是形而上学。你没法在实验室里把它验出来。</p>
+<p>所以判断一个问题是不是形而上的，有一把现成的尺子。看它能不能测量，能不能检验。测不了，验不了的，就是。</p>
+<p>第二类，认识论。</p>
+<p>它管的是，你知道的那些东西，到底靠不靠谱。</p>
+<p>你看见我，我就是真的吗。会不会我压根不存在，是你的一场幻觉。</p>
+<p>庄周梦蝶，你听过吧。他不知道，是自己做梦梦见了蝴蝶，还是蝴蝶做梦变成了他。</p>
+<p>那会不会，我们现在这整个世界，都只是某个人的一场大梦。</p>
+<p>你别说不可能。</p>
+<p>你说真的东西，是科学告诉你的。那科学就一定是真的吗。两百年前，很多地方还靠巫术给人看病。现在你都得去医院做CT。</p>
+<p>科学自己也在变。</p>
+<p>认识论里最漂亮的一个，是笛卡尔说的，我思故我在。</p>
+<p>我什么都能怀疑。凡是能看到、听到、摸到的，我都可以当它是假的。</p>
+<p>可有一件事我怀疑不掉。我在怀疑。我在怀疑这件事，本身是真的。</p>
+<p>那在怀疑的是谁。是我。</p>
+<p>所以我存在。</p>
+<p>你看这一步多干净。把一切都怀疑掉之后，只剩下怀疑本身，还站得住。</p>
+<p>第三类，伦理学。</p>
+<p>它管的是，人应该怎么活。</p>
+<p>人真的比动物高级吗。要是我们并不比猪牛高级，那我们凭什么吃肉，凭什么杀它们。</p>
+<p>人和人为什么非得团结，非得友爱。</p>
+<p>它还会问，你信不信上帝。</p>
+<p>不信。</p>
+<p>那有个特别有名的说法。上帝要是真存在，你信他，你拿的是无限大的好处。你不信，你亏的是无限大。上帝要是不存在，你信了他，也就损失一点点。你不信，也就省那一点点。</p>
+<p>两边一样大的可能。那信，就比不信划算。</p>
+<p>用咱们的老话说，宁可信其有，不可信其无。</p>
+<p>这还是拿逻辑推出来的。</p>
+<p>第四类，美学。</p>
+<p>它问的是，美到底存不存在。</p>
+<p>两三百年前，清朝人留辫子。那会儿所有人都觉得辫子好看，谁都不肯剪。后来要剪，还有人当场哭了。</p>
+<p>唐朝以胖为美。现在呢，又反过来了。</p>
+<p>那美到底是什么。如果美真的存在，那种扛得住时间的、永恒的美，长什么样。</p>
+<p>这四类，看着各管各的。</p>
+<p>可你有没有发现，它们手里都攥着同一件家伙。</p>
+<p>逻辑。</p>
+<p>大前提，人都会死。小前提，你也是人。所以，你也会死。</p>
+<p>你想反驳，说有人没死。那他就不是人。你反不了。</p>
+<p>哲学要是没了逻辑，它那个"对智慧的爱"，就只是你一个人的感觉。不是推出来的，是猜出来的。</p>
+<p>那回到开头。中国到底有没有哲学。</p>
+<p>我的看法是，一半一半。</p>
+<p>一方面，黑格尔那会儿，他能看到的中国文献，本来就不多。</p>
+<p>另一方面，按哲学那个定义来看，中国很多有智慧的话，确实少了后面那一步。就是严谨地往下推。</p>
+<p>你比方说《道德经》里，反者道之动。</p>
+<p>这句话高级不高级。高级。</p>
+<p>可它是直接给你结论的。</p>
+<p>那过程呢。怎么推出来的。凭什么。</p>
+<p>哲学要的，恰恰就是这个过程。</p>
+<p>再看《论语》。</p>
+<p>朝闻道，夕死可矣。凭什么。我早上听到真理，晚上死了都行，凭什么。</p>
+<p>唯女子与小人为难养也。这话放到今天，还对吗。</p>
+<p>这就得再推敲。</p>
+<p>中国有个特别擅长的事，叫合理化。</p>
+<p>君君臣臣，父父子子。你看这个化得多漂亮。君要有君的样子，臣才有臣的样子。父要有父的样子，子才有子的样子。君不贤，臣就不忠。父不慈，子就不孝。</p>
+<p>说得真好听。</p>
+<p>可它字面的意思，就是一套等级。</p>
+<p>一个哲学家看到这句话，第一反应是先打个问号。为什么得是这样。道理在哪。你得把中间那个推的过程，摆出来给我看。</p>
+<p>还有禅宗那句，菩提本无树，明镜亦非台，本来无一物，何处惹尘埃。</p>
+<p>漂亮吧。听着特别高级。</p>
+<p>现在网上就特别流行这个。谁把这句一背出来，好像谁的层次就比别人高了一层。</p>
+<p>可哲学不接这个。哲学问的是，什么叫菩提本无树。你怎么推出来的。你真感悟到了，就代表你真明白了吗。</p>
+<p>还有，你要是拼了命去追那个"空"，这个拼命本身，是不是又变成了一种新的执着。</p>
+<p>我不是说哲学就比禅宗高。</p>
+<p>我只是说，哲学身上有一个东西，它一直在。就是追问。</p>
+<p>一个问题问完，还有下一个。答案是能一直往下迭代的。</p>
+<p>这种凡事多问一句凭什么，然后一步步追下去的习惯，我觉得对咱们过日子，特别有用。</p>
+<p>外人递给你一个答案，你别急着接。你先问一句，凭什么。</p>
+<p>当然，说这些，不耽误咱们老祖宗留下了很多好东西。</p>
+<p>我读中国的古书，读的常常不是里头那点信息，是那儿的一口气。</p>
+<p>你今天要是垂头丧气，你去读读李白的诗，读读苏轼的词。读完，人就有劲了。</p>
+<p>那是另一种智慧。</p>
+<p>只不过，你要是把它翻成外文，那口气就丢了一半。里头那份妙处，get不到。</p>
+<p>所以黑格尔对着中国的东西觉得失望，也正常。他也有他的局限。</p>
+<p>那到底什么叫哲学。</p>
+<p>有一句话我觉得说得挺好。哲学，是用理性和逻辑，去对存在、知识、价值这些最根本的问题，持续地探索。</p>
+<p>这里头最要紧的一个词，是"持续"。</p>
+<p>它不是给你一个终点。它是一个一直在走的过程。</p>
+<p>也正因为它一直在走，它才被叫成科学之父。</p>
+<p>你想，要是啥都有了答案，那还要科学干什么。老祖宗早把话说完了，咱们只要把答案合理化一下就行。</p>
+<p>那你回想一下，你脑子里那些"本来就是这样的"，有多少，是你自己问过凭什么。又有多少，是别人直接塞给你的。</p>
+<p>打在公屏上，我看看。</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s2" data-title="反者道之动，弱者道之用">
+  <div class="s-head">
+    <div class="s-num">02</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">反者道之动，弱者道之用</h2>
+      <div class="s-meta"><span>1,861 字</span><span class="core">核心 · 这个世界是反的（反者道之动）；真正的强不是变强，是守弱（弱者道之用）</span><span class="fname">原文件 · 仿写_反者道之动弱者道之用_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你一个问题啊。</p>
+<p>当你被人当众冤枉了一句，你是当场解释清楚，还是干脆懒得解释。</p>
+<p>OK，大家是怎么想的，可以把想法打在公屏上。</p>
+<p>那我的第二个问题是，一个人越爱在人前证明自己，是因为他真的厉害，还是因为他心里本身就是缺</p>
+<p>今天我们就来讲这件事。依据的，是老子那本《道德经》。</p>
+<p>老子在里头留下过八个字。反者道之动，弱者道之用。</p>
+<p>翻成大白话就是，这个世界，是反着来的。你以为想变强，就得一直往前冲。可他说的正好相反。冲得最猛的，往往掉得最快。真正站得住的人，反倒都懂得守弱。</p>
+<p>你有没有觉得，你这辈子大部分的累，其实不是因为你还不够强。恰恰是因为，你太想强了。</p>
+<p>大致会讲三个部分。第一部分，为什么说这个世界是反的。第二个部分，为什么"弱"，才是最高级的力量。第三个部分，我们怎么把"守弱"用在自己身上。</p>
+<p>先说第一部分。</p>
+<p>你看这个世上的东西都是一种循环，它走到最满的地方，就要往反的方向掉头。</p>
+<p>白天走到头，是黑夜。春夏走到头，是秋冬。</p>
+<p>一个朝代起来了，走到最盛，接下来就是往下走。</p>
+<p>大家斗知道红楼梦里的贾府吧</p>
+<p>元妃省亲那一回，整个贾府灯火连天，钟鸣鼎食。那个排场，看着好像富贵永远没有头。</p>
+<p>可你越看这种繁华，越能看出来，衰败已经开始了。</p>
+<p>一个家族</p>
+<p>外面越显赫，里头越空。到最后，就剩一句，白茫茫大地真干净。</p>
+<p>这就是"反"。</p>
+<p>你看，回到开头那个问题。</p>
+<p>那一府子人，他们是不是拼了命往上冲的。排场要最大的，面子要最足的，架子要最高的。结果呢，冲得最猛的，掉得最快。</p>
+<p>这放到你自己身上，也一样。</p>
+<p>你越想赢，越容易输。</p>
+<p>你越想抓住一个人，他跑得越快。</p>
+<p>你越想在人前证明自己，越没人真把你当回事。</p>
+<p>很多人不懂这个，所以一辈子都在拼命追那个"最强"。要更多的钱，要更高的位置，在关系里要占上风。</p>
+<p>这些想法本身没错。可你一旦太执着于赢、执着于掌控、执着于证明，事情往往就往反的那边去了。</p>
+<p>太刚的东西，容易断。太尖的东西，容易折。</p>
+<p>所以老子说，飘风不终朝，骤雨不终日。</p>
+<p>能长久的东西，从来不是最猛的那股劲。是最稳的那个，最柔的那个，最不起眼的那个。</p>
+<p>那接下来就是后半句了，弱者道之用。</p>
+<p>很多人一听"弱"，第一反应是抗拒。</p>
+<p>因为在我们平常的想法里，弱，就是失败，就是吃亏，就是没本事。</p>
+<p>可老子偏偏说，弱，才是最高级的力量。</p>
+<p>其实真正厉害的东西，从来不是靠硬碰硬赢的。</p>
+<p>老子最推崇的就是水。他说水几乎就是道本身。水身上有三个东西，你能受用一辈子。</p>
+<p>第一个，不争。</p>
+<p>水永远往低处流。它不争高下，不抢风头，不跟谁硬顶。</p>
+<p>可最后，江海能成为百谷之王，恰恰是因为它愿意待在最低的地方。</p>
+<p>真正厉害的人，看着都挺"低"。姿态低，期待低，也不主动去攻击谁。</p>
+<p>他知道，真正的强，不需要靠踩别人来证明。</p>
+<p>你看，一辈子活得累的人，都是太想争的。</p>
+<p>吃顿饭要争谁买单，群里聊两句要争谁对谁错，一件小事也要争到底谁先低头。</p>
+<p>越争，心里越空。</p>
+<p>反而是那些格局大的人，看着特别松。他能让，能忍，能退。</p>
+<p>因为他知道，退一步不一定是输。很多时候，是自己给自己留了地方在或者是为了达到自身目的去铺垫</p>
+<p>第二个，无形。</p>
+<p>这个世上最强的东西，往往都没有固定的形状。</p>
+<p>风没有形状，能把树吹倒。水没有形状，能把石头穿开。</p>
+<p>很多人的痛苦，说到底都来自自己的执着</p>
+<p>执着自己是谁，执着一段关系，执着心里认定的那套道理。</p>
+<p>外面只要冒出来一个变量，人当场就塌了。</p>
+<p>那真正强的人呢，他像水，方圆随器。</p>
+<p>倒进杯子，就是杯子的样。流进河里，就是河的样。</p>
+<p>不被形式困死。能屈能伸，能进能退。</p>
+<p>第三个，恒久。</p>
+<p>水滴石穿，靠的不是砸下去那一下。靠的是时间。</p>
+<p>大多数人的失败，都因为太想要结果。</p>
+<p>那问题就来了。这个"弱"，我自己怎么用。</p>
+<p>老子还讲了一个词，虚怀若谷。</p>
+<p>真正厉害的人，像一个山谷。</p>
+<p>山谷低，所以水都往它那儿流。山谷空，所以它能装下万物。</p>
+<p>那些半瓶水晃荡的人，反而最爱争辩，最爱反驳，最急着证明自己。</p>
+<p>有山谷思维的人，身上都有一个东西，叫钝感力。</p>
+<p>他不轻易跟人陷进情绪里。他也不急着跟所有人解释自己。</p>
+<p>《天道》里丁元英去吃早饭。他明明已经付过钱，老板当着面说他没结账。</p>
+<p>换一般人，第一反应就是急，就是争，就是赶紧证明我付过了，恨不得把事闹大。</p>
+<p>但他一句都没解释。他平静地又掏了一次钱，付了，转身走了。</p>
+<p>很多人看到这儿，觉得他窝囊。</p>
+<p>但他心里很清楚，有些误会，不值得解释。有些人跟你不在一个层面上，你说服不了。不必浪费自己的shi'jian</p>
+<p>要是为了争一口气，当场跟着吵起来。看着是赢回了面子，其实你的力气，全耗在那场没意义的纠缠里了。。</p>
+<p>看透因果的人，眼里没有对错，只有规律。</p>
+<p>所以你看，"反"是规律，"弱"是顺着这个规律走的办法。</p>
+<p>好啦</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s3" data-title="弱时慕强，强时慕真，真时慕觉，觉时慕空">
+  <div class="s-head">
+    <div class="s-num">03</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">弱时慕强，强时慕真，真时慕觉，觉时慕空</h2>
+      <div class="s-meta"><span>1,419 字</span><span class="core">核心 · 人往上走，不是越要越多，是越要越轻——一生只是在换&quot;我最想要的东西&quot;</span><span class="fname">原文件 · 仿写_人生四层_弱时慕强到觉时慕空_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你个问题啊。你觉得，是一个人穷的时候，天天为钱发愁更难受；还是什么都有了，却还是觉得没意思，更难受？</p>
+<p>那肯定是穷的时候吧。</p>
+<p>OK，大家怎么想的可以打在公屏上，</p>
+<p>可古人说——弱时慕强，强时慕真，真时慕觉，觉时慕空。<br>大家都以为这是在说四种人，其实都是在shuo一个人</p>
+<p>今天我们把四层一层一层讲完。你听的时候，顺便对一对，自己现在站在第几层。</p>
+<p>先说第一层，弱时慕强。</p>
+<p>你回想一下你刚出来那几年。是不是觉得，这世上所有的事，都能用一个"强"字摆平。</p>
+<p>没钱，就想着赶紧赚钱；没本事，就想着赶紧变厉害；没位置，就想着赶紧往上挤。被欺负过的，想变得不好惹；吃过亏的，想反过来让别人也吃一回亏。</p>
+<p>为什么会这样？因为你弱的时候，眼睛里是看不见什么规律、什么道理的。你只看得见一件事——谁拳头大，谁说了算。</p>
+<p>你身边肯定有这种人。公司里那个说话最横的，你打听打听他刚上班那几年，被人踩成什么样。</p>
+<p>还有那种小时候穷怕了的。后来他特别在意钱，在意手上那点权力，在意别人见了他叫他什么总。</p>
+<p>\<mark>这一层最大的坑，是你把"变强"当成了终点。</mark></p>
+<p>\<mark>等你真熬出头了，你会发现一件特别别扭的事——你分不清身边那些人，是冲着你来的，还是冲着你手里的东西来的。</mark></p>
+<p>\<mark>人围了一圈，能掏心窝子说句话的，一个都没有。</mark></p>
+<p>老子早说过。《道德经》里有一句，"强梁者不得其死"——光知道逞强、不知道收的人，最后多半栽在自己这身力气上。《易经》乾卦里也有四个字，叫亢龙有悔。龙飞到最高处，没地方可去了，接下来只能往下掉。</p>
+<p>所以越顺的时候，越得收着点，藏拙、避锋芒。</p>
+<p>等你手里有了点实力，见过点人情，也栽过几次跟头，你会发现你要的东西变了。</p>
+<p>你不那么想比谁厉害了，你开始烦那些套路、话术、装出来的人设。为什么？因为你慢慢看懂了一个人塌下来，往往不是因为他不够强，是因为他这个人太假了。</p>
+<p>说到底，力量能办成很多事，可唯独办不成——让人真心信你。</p>
+<p>你做过生意就懂。能跟你做十年的人，不是当初嘴最甜的那个，是最不跟你玩虚的那个。处对象也一样，能过一辈子的，不是最会哄你的，是你在她面前，不用端着装着的那个。</p>
+<p>所有的招式都有破绽。只有真心，没有对手。</p>
+<p>到第三层，你不想比谁强了，也不太在意谁输谁赢了，连谁真谁假，你都懒得计较了。</p>
+<p>你把眼睛从外面收回来，开始往里看。你想弄明白一件事：我到底是谁，我到底在要什么。</p>
+<p>你会发现一个特别怪的事——你永远填不满你自己。有了车，就想要房；有了房，就想要财富自由；财富自由到手了，你又给自己立了下一个目标。</p>
+<p>一个接一个，永远在追，永远差那么一点。</p>
+<p>到这儿你才慢慢明白，让你难受的，不是外面缺了什么。是你心里那个口子，怎么填，都填不满。</p>
+<p>最后一层，觉时慕空。</p>
+<p>到这儿，你不太想抓住什么了。好事、坏事，都从你这儿过，可都不往心里搁。</p>
+<p>很多人一听"空"，以为是什么都没有了。空是——什么都经历，但什么都不往心里锁。</p>
+<p>别人夸你两句，你也高兴，但高兴完就过去了。你不会为了让人接着夸，去干你本来不想干的事。别人骂你两句，你也不急着跳起来证明什么。</p>
+<p>老话管这个叫"归根"。人往外折腾了一大圈，最后还是要回到一个能让自己安生的地方。</p>
+<p>回到开头那个问题——是一个人穷的时候更难受，还是什么都有了更难受。</p>
+<p>你现在，还选原来那个答案吗？</p>
+<p>人往上走，不是手里的东西越来越多，是想要的东西越来越轻。</p>
+<p>弱的时候想要力量，强的时候想要真，真过之后想弄明白，弄明白之后想放下。</p>
+<p>对照看看，你在第几层。也把你的答案，打在公屏上。</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s4" data-title="命，到底能不能改">
+  <div class="s-head">
+    <div class="s-num">04</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">命，到底能不能改</h2>
+      <div class="s-meta"><span>1,205 字</span><span class="fname">原文件 · 仿写_命有一半是你能改的_A融合型_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你个问题啊，一个人的命，到底是天注定的，还是能改的？</p>
+<p>天注定吧。</p>
+<p>OK。</p>
+<p>那我再问你一个——你要真信天注定，你现在每天这么拼，图什么？</p>
+<p>这个也打在公屏上，我一会儿回来翻。</p>
+<p>今天不聊运势，也不煲鸡汤。</p>
+<p>我们今天从三个维度来讲。相信你看完这期内容，会对命，有一种不一样的看法。</p>
+<p>先来说说谁信命，那无非就是东汉的王充了。</p>
+<p>他写了一本书，叫《论衡》。</p>
+<p>他说一个人这辈子有多大富贵、能活多久，出娘胎那口气就定了，跟你努不努力、善不善良，关系不大。</p>
+<p>他还在书里专门拆了一个当时人人都信的东西——"天人感应"。天人感应说白了就是，你做好事，老天就赏你；你做坏事，老天就罚你。</p>
+<p>但是你去看现实：穷人老老实实做了一辈子人，最后还是穷；坏人天天抢劫，照样吃香喝辣，活得比你还好。</p>
+<p>他甚至分了两个词。一个叫"命"，管你富贵贫贱、寿长寿短，那是定数；一个叫"偶"，管你遇到谁、赶上什么事，那是偶然。</p>
+<p>这两个加起来，意思就是——你过得好不好，跟你这个人好不好，是两码事。</p>
+<p>那不信命的，无非就是《了凡四训》的作者，袁了凡了。</p>
+<p>其实他年轻的时候也信命，信得比谁都深。</p>
+<p>有人给他算过一命：哪一年考第几名，还说他这辈子没儿子，五十三岁寿终。他信了。从那以后，他就彻底躺平——觉得剧本都写好了，自己做什么都是无用功。</p>
+<p>后来他碰到一位云谷禅师。禅师没跟他讲什么天机，只问了他一句：你自己想想，你该考上吗？你该有儿子吗？</p>
+<p>禅师接着问：是不是你脾气太急？是不是你对人太刻薄？是不是你一步都不肯让？</p>
+<p>禅师没让他去烧香、去求天。禅师是让他回头看自己。</p>
+<p>从那天起，他改脾气、改过错，待人厚道。当年算好的那些，全都不灵了。</p>
+<p>后来他把这件事总结成八个字：命由我作，福自己求。</p>
+<p>到这里，你是不是觉得，这俩人在左右互搏。</p>
+<p>但你把他们的话往前倒一倒，会发现一个很反常的地方。</p>
+<p>王充整本书里，火力最猛的地方，是拆掉"天会赏善罚恶"。他在说，人别指望天。</p>
+<p>云谷禅师让袁了凡做的第一件事，也不是求天，是审自己。他也不让人指望天。</p>
+<p>如果我们再往深层次去讲的话。</p>
+<p>王充说的话，落点在一个字上——果。</p>
+<p>他讲的是结局、是遭遇、是别人怎么对你。这些东西，你确实做不了主。你再好，也可能倒霉；你再差，也可能走运。</p>
+<p>袁了凡动手的地方，落在另一个字上——因。</p>
+<p>他改的不是结局，是他今天做了什么、怎么待人、肯不肯认错。这些是你的。</p>
+<p>他们根本不是在吵"命能不能改"。</p>
+<p>他们说的是命</p>
+<p>一半是果，一半是因。</p>
+<p>王充把"果"这一半看透了，所以他敢放下。袁了凡没停在果上，他退回去，改因。</p>
+<p>"命能不能改"这个问题，之所以一问就卡住，就卡在这儿——</p>
+<p>大多数人，都把"果"当成了命的全部，眼睛只盯着成不成、好不好，压根没看见"因"那一半，还在自己手里。</p>
+<p>所以你会觉得命改不了。可你回头看看，那一半，你从来没往那儿看过。</p>
+<p>回到刚才那个问题：命，到底能不能改。</p>
+<p>其实也没有标准答案，取决于你当下做的每一个选择。<br>既然天气预报说明天要下雨那我们带把雨伞不就好了是吧</p>
+<p>好啦 祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s5" data-title="你不是内耗，你是在背叛自己">
+  <div class="s-head">
+    <div class="s-num">05</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">你不是内耗，你是在背叛自己</h2>
+      <div class="s-meta"><span>2,787 字</span><span class="core">核心 · 内耗的本质是背叛自己；解法是找回本心（知天命→行天命→心态）</span><span class="fname">原文件 · 仿写_知天命_你不是内耗你是在背叛自己_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你个问题啊，你觉得一个人内耗，主要是因为外面给的压力太大，还是因为自己不够强？</p>
+<p>那肯定是压力太大吧。</p>
+<p>OK，大家怎么想的，也可以把自己的想法打在公屏上。</p>
+<p>那我再问你第二个问题——你觉得一个人活得最痛快的时候，是在拼命努力，还是在做一件自己擅长、又真心喜欢的事？</p>
+<p>这个也打在公屏上。</p>
+<p>其实这两个问题背后，藏着一个大多数人没想明白的事。</p>
+<p>荣格说过一句话：神经症患者，是那些违背自身本性而活、偏离了自己个体性道路的人。正因如此，他们承受着人格分裂的痛苦。</p>
+<p>说白了就是——一个人内耗，很多时候不是外面逼得太狠，是他一直在做一件跟自己本性拧着来的事。</p>
+<p>你想想，一个超级内向的人，被妈妈天天逼着去社交、去串门。他知道妈妈是为他好，妈妈跟他说，你这样以后混不好。他也想要那个好生活，所以只能强迫自己，按主流的方式去活。</p>
+<p>他不是不努力。是他每走一步，都在跟自己打架。</p>
+<p>所以人生最重要的一件事，是找回自己的本心。当你的行动听本心，你的能力才会被完全释放，那才是你真正起势的开始。</p>
+<p>怎么找回？大概分三步走：第一步知天命，第二步行天命，第三步——用一个什么样的心态，把它走完。</p>
+<p>先说知天命。什么叫知天命？就是你得知道，你到底是个什么样的人。</p>
+<p>这一步拆成三块：知其所份、知其所乐、知其所求。</p>
+<p>份，就是你比别人强的那部分能力，是你与生俱来的天赋。</p>
+<p>你比如说我，我发现我口才还可以，而且我特别喜欢创造一个东西，还能把它做出来。那我的能力就在"创造"和"表达"上。那我就去做内容，做互联网。别的领域再赚钱，那也不是我的份，术业有专攻。</p>
+<p>你找到自己的份以后，有个特别大的好处——你不再贬低自己了。</p>
+<p>因为你不必跟人比了。你看到另一个人口才比你好，他不一定比你强。口才里面细分也很多，你只看到了他的一个方面。份这个东西，是很细的，得慢慢挖。</p>
+<p>那怎么找到你的份？两个方法。</p>
+<p>第一个，去看身边人都来找你帮什么忙。人看自己，往往不如别人看得准。他来求你帮这件事，说明在他眼里，这就是你的长板。</p>
+<p>第二个，去看有什么事，你做的时候行云流水，但别人做起来特别难。难到什么程度？难到你根本教不出具体方法。你有天赋的地方，你甚至总结不出规律，你就是会。你看别人慢吞吞的，其实换个角度说，你已经练了好几辈子，他怎么可能上来就会。</p>
+<p>找到它，打磨它。你会变得特别自信。</p>
+<p>乐，就是你发自内心能找到快乐的东西。说白了就是热爱。</p>
+<p>它不是一件具体的事。每个人的燃料不一样。</p>
+<p>有的人，是打磨一件自己的作品，做到自己满意，那种幸福感。画一幅画，泡一泡茶，他就能感觉到自己在活着。</p>
+<p>有的人，快乐来自体验，他要到处走一走、看一看。</p>
+<p>有的人，是不断挣钱的时候，才感觉到自己活着。</p>
+<p>那怎么找你的乐？你可以问自己三个问题：</p>
+<p>哪一刻，你发自内心觉得"我在活着"？<br>哪一刻，你发自内心觉得自己"有价值"？<br>你很想再体验一次那个感受吗？</p>
+<p>那件事，可能就是你的乐。</p>
+<p>但你还得接纳它。因为你的乐，不一定符合世俗的标准。</p>
+<p>这个世界本来就是分阴阳的，有善就有恶，有聚就有散。有的人的快乐来自创造，有的人的快乐来自冒险，有的人的快乐，甚至来自一些别人根本看不懂的东西。</p>
+<p>灵魂选的那条路，没有好坏。但它走出来的行为，是有好坏的。</p>
+<p>我不是在替谁开脱。我是说，你得先承认这件事的存在，才谈得上真正接纳自己。</p>
+<p>求，就是你自带的那种、最想获得的人生状态。它跟你的份、你的乐都不一样。</p>
+<p>想知道你的求，特别简单。你问自己一句：我现在最想获得的生活，是什么样的？</p>
+<p>啪一下，你脑子里立刻有一个画面。那个画面，就是你的求。</p>
+<p>你可以把你的人生想象成一个游戏。你的求，就是主线任务。你按着它去探索。路上呢，可能会突然触发什么支线，把你的整个走向都改了——那也是你人生的任务。</p>
+<p>但有个事你注意：等你达成的那一刻，这个梦想就消失了。然后你会冒出一个新的求。</p>
+<p>那为什么很多人特别痛苦？</p>
+<p>因为他非常清楚自己的求，但他没找到自己的份，也没找到自己的乐。他就硬追那个求，追得一身伤。</p>
+<p>我想赚大钱——那你得先培养自己的价值。<br>我想当老板——可我发现自己天赋只能打工，那你就得调整梦想。<br>我能力够，我也想赚——但我赚钱的方式让我有罪恶感、让我不快乐。</p>
+<p>当你生活里问题一个接一个，那多半就是这三块，打架了。你就得停下来，重新调。</p>
+<p>第一步搞清楚了——你是什么人，你想要什么。第二步，行天命。</p>
+<p>什么叫行天命？就是让你身心合一、使得上劲地往前走。</p>
+<p>一句话说清楚：用你的核心价值，在符合你自己原则的前提下，去追那个梦想。</p>
+<p>我给你举个我自己的例子。</p>
+<p>我以前觉得，用一些"技巧"去影响别人，其实我不快乐。但我把想法发出来，有人看得懂，我很快乐。这就是我的原则。</p>
+<p>那我就顺着这个原则去发展我的事。不管进度快还是慢，整个过程我都是踏实的。因为你放开手脚的时候，你的身、心、灵是拧成一股绳的。</p>
+<p>所以你每做一件事，都可以拿三个问题量一量：</p>
+<p>这件事，能帮我达成目的吗？<br>它能让我获得快乐吗？<br>我有跟它匹配的能力吗？</p>
+<p>这三点一旦都满足了，你放心——你干这件事的时候，力量是无限的。你会主动想往上走，执行力是自然冒出来的，不用逼。</p>
+<p>到了第三步。前面都懂了，可问题是——事情不可能一直顺。</p>
+<p>有时候不顺，有时候特别顺，有时候很长一段时间，一点结果都没有。</p>
+<p>这时候你最容易怀疑自己：我是不是个特别没用的人。</p>
+<p>《易经》开篇第一卦，乾卦，就六个字：天行健，君子以自强不息。</p>
+<p>什么叫刚健？你看天，它永远在动，永远在轮转，什么都拦不住它，它就按规律一直运行。这种不停运作的劲儿，就叫健。</p>
+<p>所以"自强不息"，不是让你人定胜天。是让你顺着世界运行的规律，不断调整自己，去求一个更稳的状态。</p>
+<p>自强，是不断了解自己，知天命、行天命，别违背自己的本性和天道。顺的时候别得意，难的时候好好沉淀——这才叫自强。</p>
+<p>不息，是别让自己的那口气停掉。就算现在是低谷，是冬天，它也有机会回到春天。只要你还想运作，它就不可能一直是冬天。</p>
+<p>《易经》一共六十四卦，每一卦对应一种人生境遇。你去看，没有哪一卦是纯吉的。可反过来说——不管你凶到什么程度，你总有逢凶化吉的机会。</p>
+<p>它开篇就在告诉你：学规律，然后尽全力运作自己、调整自己。</p>
+<p>那如果你一直不找回自己，会怎样？</p>
+<p>你会用别人的标准，一点一点把自己磨掉。你越努力，越累。你付出了十分，只拿到三分的回报——因为你在拿别人的长处，比自己的短处。</p>
+<p>最可怕的是，你最后会活成一个"所有人都满意"的样子。可那个样子，你自己都不认识了。</p>
+<p>你不会痛苦得惊天动地。你只是会在某个深夜，突然觉得，好像没有一件事，是你真正想做的。</p>
+<p>所以回到开头那两个问题——内耗是外面逼的，还是自己不够强？一个人最痛快的时刻，是拼命努力，还是做擅长又喜欢的事？</p>
+<p>答案，可能跟你想的不一样。</p>
+<p>人也不可能一直身心合一。你的份、你的乐、你的求，都会在你成长的过程中变。所以你会时不时进入失控状态。没关系，那就重新审视自己，再回到身心合一。</p>
+<p>你现在拼命努力的那件事，到底是你要的，还是别人告诉你该要的？</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s6" data-title="庄子：把你凿没的，是爱你的人">
+  <div class="s-head">
+    <div class="s-num">06</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">庄子：把你凿没的，是爱你的人</h2>
+      <div class="s-meta"><span>2,433 字</span><span class="fname">原文件 · 庄子口播稿-框架v2版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你个问题啊。一个人这辈子活成了自己都不认识的样子，是因为有人恨他，还是因为有人为他好？</p>
+<p>（对方）那肯定是有人恨他。</p>
+<p>OK，大家怎么想？把自己的想法写在公屏上。</p>
+<p>庄子讲过一个故事。</p>
+<p>南海的帝王叫倏，北海的帝王叫忽，中央的帝王叫混沌。倏和忽经常在混沌的地盘上碰面，混沌对他们特别好。</p>
+<p>两个人就想报答他。他们商量说，人都有七窍，用来看，用来听，用来吃饭呼吸。混沌一个都没有，太可怜了。</p>
+<p>于是他们每天给混沌凿开一窍。一天一窍。</p>
+<p>七天以后，七窍凿完了。混沌死了。</p>
+<p>这两个人不是坏人。他们只是坚信，所有生命都应该长成同一个样子。</p>
+<p>杀死你的，有时候不是仇人。混沌是被凿死的。</p>
+<p>先说结论。把你一点点凿没的，往往不是恨你的人，是爱你的人。</p>
+<p>而且这件事，庄子两千三百年前就写完了。只是我们把它读反了。</p>
+<p>大家一听到庄子，第一反应是看淡一切，是无所谓，是躺平。这是今天要先拆掉的第一个误会。</p>
+<p>什么意思呢？看淡一切，是认为什么都不重要。可庄子从头到尾追问的是另一件事——究竟是谁，在规定什么重要。</p>
+<p>一个人要是真信了"看淡一切"，他会觉得自己很超脱。结果呢，谁的眼光他都忍了，谁的要求他都接了，最后活成了所有人满意的样子，他还以为这就是逍遥。</p>
+<p>这不是逍遥。这只是穿了一件比较好看的笼子。</p>
+<p>所以今天我们就顺着庄子，讲四个点。</p>
+<p>第一个点叫见识的引力。第二个点叫用途陷阱。第三个点叫标准件。第四个点叫裁决权。</p>
+<p>这不是四个道理啊。这是一条锁链。看完你会知道，这根链条的第一环，是从哪一天扣到你身上的。</p>
+<p>第一个点叫见识的引力。</p>
+<p>《庄子·秋水》里有一句话：井蛙不可以语于海者，拘于虚也；夏虫不可以语于冰者，笃于时也。</p>
+<p>意思是，井里的青蛙，没法跟它聊海，因为它被那个空间困住了。夏天的虫子，没法跟它聊冰，因为它被那个季节困住了。</p>
+<p>一个人的判断，永远被他的见识、经历、位置和利益限制着。什么意思呢？</p>
+<p>你看《逍遥游》开头那只大鹏。它要飞往南海，翅膀一拍，水击三千里，一飞就是九万里。地上有两只小虫子在笑它。一只叫蜩，一只叫学鸠。它们说，我使劲一飞，飞到榆树上就够了。有时候飞不到，掉在地上就是了。何必飞九万里往南跑呢？</p>
+<p>再往南有一种小鸟叫斥鴳，在蓬蒿之间跳来跳去，那已经是它的极限了。它抬头看着大鹏，问了一句，它到底要飞到哪儿去啊。</p>
+<p>它们不是坏，对吧。它们只是把自己飞不到的地方，判断成了别人根本不该去的地方。</p>
+<p>这给我们什么启发呢？</p>
+<p>评价不是从事实里长出来的，是从说话人的活动半径里长出来的。</p>
+<p>他没见过的生活，会被他说成不现实。他没走过的路，会被他说成瞎折腾。</p>
+<p>所以一句"你这样不行"，说的可能是你不该去，也可能只是他没去过。这两句话，在耳朵里听起来一模一样。</p>
+<p>他的屋檐，不是你的天空。</p>
+<p>第二个点叫用途陷阱。</p>
+<p>就是说，一样东西有没有价值，常常被简化成一件事——它能不能被用上。什么意思呢？</p>
+<p>惠子跟庄子说，魏王给了我一颗大葫芦的种子。我种出来一个葫芦，能装五石的东西。拿它装水吧，它软得提不起来。剖开做瓢吧，又太大，没地方放。我一气之下把它砸了。</p>
+<p>庄子说，你为什么不把它拴在腰上，当成一只小船，浮游在江湖上呢？</p>
+<p>惠子还有一棵树，叫樗。树干上全是赘瘤，枝条弯的弯、扭的扭。木匠从旁边走过去，看都不看一眼。惠子说，你看，这么大一棵，一点用都没有。</p>
+<p>庄子说，你把它种在空旷的地方。累了，就在树底下睡一觉。它不会被斧头砍掉，也没有东西来害它。</p>
+<p>惠子的问题不是没看见葫芦，也不是没看见树。他看见了。他只是只承认一种用法。</p>
+<p>这给我们什么启发呢？</p>
+<p>所谓无用，很多时候不是一个事实。它只是"对眼前这个人无用"。</p>
+<p>一个技术很硬的人被提拔去管人，天天挨骂，不是他没价值，是那把尺子量不出他。</p>
+<p>别人嘴里的"没用"，有很多时候只是"我用不上你"。</p>
+<p>尺子太窄，不是人太短。</p>
+<p>第三个点叫标准件。</p>
+<p>就是说，为了管理方便，把不同的生命加工成同一种规格。什么意思呢？</p>
+<p>《庄子·马蹄》里说，马本来在野外，吃草，喝水，高兴了就拿脖子蹭脖子，生气了就掉头踢一脚。饿了自己跑，渴了自己喝。</p>
+<p>后来出了一位伯乐。他说，我善于治马。于是烧的烧，削的削，刻的刻，凿的凿，给它套笼头，给它钉马掌，拿鞭子抽。</p>
+<p>第一轮下来，马死了十分之二三。到后来，死了一大半。</p>
+<p>可一直到今天，所有人还在夸，说伯乐真会治马。</p>
+<p>这给我们什么启发呢？</p>
+<p>标准，往往不是带着恶意来的。它披着三件外衣——我是为你好，大家都是这样，以后你会感谢我。</p>
+<p>混沌是被凿死的。凿它的那两个人，从头到尾都在笑。</p>
+<p>别人用十秒钟给你下一个结论，你却可能用一生，把自己改成他满意的样子。庄子给这种人起过一个名字，叫倒置之民——为了外在的东西，把自己丢掉。</p>
+<p>最贵的牢笼，没有一根栏杆。</p>
+<p>第四个点叫裁决权。</p>
+<p>就是说，评价可以进你的耳朵，但最后一票投给谁，是你自己的事。什么意思呢？</p>
+<p>《逍遥游》里写过一个叫宋荣子的人。全世界都夸他，他不会因此更起劲；全世界都骂他，他不会因此更沮丧。原文是：举世而誉之而不加劝，举世而非之而不加沮。他分得清，哪句话来自外面，哪句话属于自己。</p>
+<p>可庄子紧接着说了一句很奇怪的话：宋荣子犹有未树也。他还没到最高的境界。</p>
+<p>不被夸奖和批评带着走，只是起点，不是终点。</p>
+<p>《秋水》里还有一个更绝的场景。楚王派人来请庄子做官。庄子说，我听说你们有一只神龟，死了三千年，被供在庙堂上，很尊贵。你说这只龟，是愿意死了留下骨头被供着，还是愿意活着，在泥水里拖着尾巴走？</p>
+<p>使者说，那当然愿意活着。</p>
+<p>庄子说，回去吧。我也要在泥水里拖着尾巴。</p>
+<p>他做了一个排序。</p>
+<p>这给我们什么启发呢？</p>
+<p>庄子不是什么都不要。做官和自由，在他那里权重完全不同。你想想，一个真看淡一切的人，会做排序吗？</p>
+<p>所以听到一句评价，你不需要反驳。你只要问一件事：这个选择的代价，最后是谁在承担。</p>
+<p>那个不了解你的处境、也不承担你的结果、只想让你活得符合他期待的人，他可以发表意见。但他不能替你投票。</p>
+<p>反着来，也还是围着他转。</p>
+<p>回到开头那个问题。是有人恨他，还是有人为他好？</p>
+<p>其实恨你的人和爱你的人，用的是同一只手——他们都在替你做决定。区别只是他们的表情不一样。</p>
+<p>好，希望大家越过越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s7" data-title="王阳明：龙场悟道">
+  <div class="s-head">
+    <div class="s-num">07</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">王阳明：龙场悟道</h2>
+      <div class="s-meta"><span>1,172 字</span><span class="fname">原文件 · 口播文案-王阳明龙场悟道.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲王阳明人生中最重要的一天，<br>龙场悟道。<br>在讲之前我有一个问题啊，<br>你觉得一个人的觉醒，<br>是自己想明白的，<br>还是被现实逼明白的？<br>——那肯定是自己想明白的啊，<br>谁逼你能逼出觉悟啊。<br>OK，大家怎么想，<br>把自己的想法打在公屏上。</p>
+<p>先讲王阳明这个人。<br>什么条件？<br>父亲是状元，<br>十二岁就立志要做圣人，<br>后来官至兵部主事，<br>标准的别人家的孩子，<br>前途一片光明<br>按剧本走，<br>他这辈子最大的成就，<br>应该出现在朝堂上。<br>可就因为替一个言官说了句公道话，<br>得罪了大太监刘瑾，<br>廷杖四十，扔进大牢，<br>最后被贬到贵州龙场——<br>四周全是瘴气，<br>带去的随从一个接一个病倒。<br>换一般人，早垮了。<br>可他给自己凿了一个石椁，<br>天天躺进去问自己一句话：<br>圣人处此，更有何道？<br>圣人落到我这步田地，他会怎么办？<br>就在某个半夜，<br>他突然从石椁里跳出来，<br>就喊了一句话。<br>圣人之道，吾性自足，<br>向之求理于事物者，误也。<br>翻译过来就是：<br>我找了三十年的道，<br>原来一直在我心里，<br>我以前向外去找，全找错了。<br>说白了就一句话：<br>把目光从外面收回来，向内求。<br>那什么叫向内求？<br>遇到事，别先问<br>"世道怎么这样、他怎么能这样、谁来救我"，<br>先问一句：<br>"我自己能做什么，<br>我怎么看待这件事？"<br>答案不在别处，<br>它一直都在你身上，<br>只是你从来没往回看过。<br>这就是心学的起点，心即理。</p>
+<p>但是你发现没有，<br>我们普通人过日子，<br>恰恰是反着来的。<br>别人一句话，<br>你能琢磨一整晚；<br>领导一个脸色，<br>你能焦虑一下午；<br>发个朋友圈半天没人点赞，<br>你隔几分钟就点开看一次。<br>你的心情，<br>什么时候轮到外面保管了？<br>把心交到外面，<br>外面一有风吹草动，<br>你就跟着晃。<br>求人求不着，<br>就开始求道理。<br>可道理，到底有没有用？<br>大家有没有注意到，<br>烟盒上印着发黑的肺，<br>还有一些恐怖的照片，<br>目的不就是为了让人早点戒烟吗，<br>吸烟有害健康吗？<br>但是现实当中，<br>到底有几个人，<br>真的是因为简单几张图片，<br>就把烟戒了呢？<br>你发现没有，<br>人从来不因为道理而改变，<br>人只因为疼而改变。<br>那是不是只要疼了，<br>人就一定会改变？<br>好像也不是。<br>感冒发烧也难受<br>但是好了以后，照样熬夜。<br>直到体检报告上有箭头，需要动刀动枪的时候，<br>才开始后悔，才开始改变。</p>
+<p>王阳明等来的，<br>就是他人生里最大的一场疼——<br>龙场。<br>可我们大多数人，<br>一辈子都在等一场足够大的绝境，<br>来逼自己明白。<br>其实不用等，</p>
+<p>你心里那件翻来覆去过不去的事，<br>就是你的龙场。</p>
+<p>有人会说，<br>道理我都懂，<br>可我能怎么办呢？<br>我什么都改变不了。<br>先别急着下这个结论。<br>明天要下雨，你确实改变不了，<br>但是你可以带伞。<br>别人怎么看你，你管不了；<br>能改变的只有你面对它的那颗心。<br>外界决定发生什么，<br>你决定怎么面对。<br>这才是向内求的含义：<br>不是让你去跟命运掰手腕，<br>是把仅剩的力气收回，<br>花在自己唯一能决策的地方上。</p>
+<p>所以你心里那件翻来覆去过不去的事，<br>躲不掉的，那就不躲了，<br>躺进去，问自己一句：<br>这一课，要教我什么？<br>好啦，如果大家喜欢关于王阳明的智慧，我后面也会出类似的内容，希望大家越过越好，<br>好下课！</p>
+  </div>
+</section>
+<section class="script" id="s8" data-title="曾国藩：一个笨人如何靠“打呆仗”打赢半个中国">
+  <div class="s-head">
+    <div class="s-num">08</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">曾国藩：一个笨人如何靠“打呆仗”打赢半个中国</h2>
+      <div class="s-meta"><span>5,610 字</span><span class="fname">原文件 · 曾国藩-脚本.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲一个人，号称是"晚清半个圣人"，也是中国近代史上最有争议的一个人物——曾国藩。我们的论据主要来自《清史稿·曾国藩传》和他自己写的那本《曾国藩家书》。看完这期内容，你会了解到一个天资平庸、出身农村的普通人，如何靠"笨办法"、"死磕"和"自我管理"，在一个王朝彻底崩盘的乱世里，硬生生打出了自己的一片天，而且最后还能全身而退。</p>
+<p>先问你一个问题：你身边有没有那种人，比谁都努力，天天熬到凌晨，但就是不出成绩？反而是有些人，看着也没干啥，结果一路绿灯。<br>好像有<br>ok大家怎么想的也可以把想法打在公屏上</p>
+<p>事情其实是发生在清朝的道光、咸丰年间。那是个什么时期？用一句话概括就是：一个快破产的大公司。外面，鸦片战争打输了，英国人开着军舰堵在门口，相当于债主天天上门；里面，太平天国从广西杀出来，一路打到南京，半个中国都丢了，相当于核心业务全线崩盘。而清朝自己的正规军——八旗和绿营，什么德行呢？说好听点叫"闻风而逃"，说难听点就是一群吃空饷的关系户。八旗子弟提笼架鸟、听戏遛鸟那是专业的，真让他们上战场，跑得比兔子还快。</p>
+<p>你就想想你住的小区。物业费一分不少地交，可楼道灯坏了半年没人修，电梯三天两头卡人。真有一天小偷翻墙进来了，你打电话找保安，他跑得比你还快。</p>
+<p>整个大清，就是被这么一帮人"管"着的。</p>
+<p>就在这么一个烂摊子上，曾国藩登场了。</p>
+<p><strong>第一，他真的很笨。</strong></p>
+<p>曾国藩是哪里人？湖南湘乡人，农民家庭出身。他爹曾麟书，考了十七次秀才都没考上，最后还是靠儿子发达了才跟着捞了个功名。你说这基因能好到哪去？</p>
+<p>关于曾国藩笨，历史上有个特别有名的段子。说他小时候在家背书，一篇文章翻来覆去读了好多遍就是背不下来。结果房梁上趴着一个小偷，本来想等他睡了再下来偷东西，结果等了一晚上他还在那读，小偷实在忍不了了，跳下来把整篇文章从头到尾背了一遍，然后骂了他一句"这么笨还读什么书"，扬长而去。</p>
+<p>这个故事大概率是编的。但有意思的是——为什么这么离谱的故事，传了一百多年，偏偏安在他头上？</p>
+<p>因为人们心里都有一杆秤：大家愿意相信，一个笨到连小偷都看不下去的人，后来能封侯拜相。老百姓爱听的，从来不是天才的故事，是普通人翻盘的故事。</p>
+<p>而曾国藩，就是"笨人翻盘"最活生生的一个样本。</p>
+<p>他自己也承认。曾国藩后来在日记里写过一句话，叫"天下之至拙，能胜天下之至巧"。什么意思？就是说天下最笨的办法，往往能打败天下最聪明的办法。这句话，就是他这一辈子的方法论。</p>
+<p>那他笨到什么程度？考秀才，考了七次。前六次全部落榜，第六次考完，考官的评语是四个字——"文理太浅"，翻译过来就是：你这文章写得狗屁不通。</p>
+<p>你可能会想，不就考个试嘛，失败了下次再考呗。</p>
+<p>但在清朝，秀才不是今天考个证那么简单。考上秀才之前，你连个正经身份都没有，叫"童生"。什么叫童生？就是一个人哪怕考到六十岁，只要没中，他还是个童生。见县太爷得跪着；家里再有钱，在读书人眼里也是个没身份的人；你老婆孩子，都跟着你抬不起头。</p>
+<p>所以曾国藩连败六次，不是六次考试没及格，是六次"我这辈子可能就这样了"的绝望。</p>
+<p>换你，你敢考第七次吗？他敢。他把自己关在屋里，把这几次的卷子一篇一篇翻出来对比，我到底差在哪。第七次，中了。</p>
+<p>然后呢？考中秀才之后就跟开了挂一样，第二年中了举人，四年后中了进士，进了翰林院。你看，这就是笨人的好处——地基打得深，一旦开窍，后面全顺。前面那六次失败，看着是浪费时间，其实是在给他打地基。</p>
+<p><strong>第二，他对自己的狠，才是真的狠。</strong></p>
+<p>进了京城之后，曾国藩一开始也混得不咋地。他自己在日记里吐槽自己，三条罪状：第一，笨；第二，脾气差，动不动就跟人吵架；第三，好色。有一次他去朋友家参加婚礼，看到新娘子长得漂亮，多看了几眼，回家就在日记里写"注视数次，大无礼"，骂自己不是东西。还有一次听说朋友纳了个小妾，他特意跑去看，回来又写日记反省："人皆有好色之心，我独无？"——他一边看一边骂自己。</p>
+<p>这个就跟我们生活中很像啊。</p>
+<p>谁没给自己立过flag？说好了从明天开始早睡，结果第二天照样刷手机到半夜；办了健身卡，去了两次就再没去过；书买了一整套，塑封到现在都没拆。</p>
+<p>曾国藩的狠，就狠在他对自己下死手。他每天写日记，不是记流水账，是真骂自己。今天跟人吵架了，骂；今天多看了美女两眼，骂；今天多喝了几杯酒，骂。骂完还不算完，他把日记抄一份，寄给朋友看，让朋友监督他。</p>
+<p>这叫什么？这叫"倒逼"。你自己管不住自己，就把脸撕下来，让别人来管你。</p>
+<p>其实人性这东西，几百年就没变过。贪吃、好色、懒、易怒——这不是曾国藩一个人的毛病，是我们每个人身上都有的。区别只在于：有人一辈子装作看不见，有人把它摊在桌面上，天天跟自己死磕。</p>
+<p>说到这儿你停一下，问问自己：我身上有没有那种毛病，明知道不对，却一次都没真正动过手去改？</p>
+<p>就这么个笨人，在北京官场混了十几年，做到了二品大员。按理说这已经是祖坟冒青烟了，但真正的大戏，还没开始。</p>
+<p><strong>第三，他接了一个所有人都躲的活。</strong></p>
+<p>1852年，曾国藩母亲去世，他回老家丁忧守孝。就在这个时候，太平天国的大军已经把南方搅得天翻地覆了。朝廷下了一道旨意，让曾国藩在湖南帮办团练，说白了就是组织民兵。</p>
+<p>你品品这个活：没钱、没人、没枪，还要跟太平军那种打遍半个中国的职业军队硬碰硬，而且干好了是本分，干砸了要掉脑袋。这就像老板把公司最烂最没希望的项目丢给你，还不给资源、不给预算，说"好好干，我看好你"。</p>
+<p>换了你，接不接？大部分人可能会说，我守孝呢，我不方便，我身体不好。但曾国藩看到了机会。为什么？因为朝廷的正规军已经烂透了，这是他自建势力唯一的窗口期。他就说了一句话："事势如此，安能坐视？"——事情都到这个地步了，我怎么能坐视不管？</p>
+<p>他回到湖南，干的第一件事不是招兵买马，而是杀人。他在长沙设了个"审案局"，凡是抓到的土匪、流氓、太平军奸细，二话不说，砍头。三个月杀了两百多人，人送外号——"曾剃头"。</p>
+<p>这时候湖南官场炸锅了，你一个丁忧的二品官，凭什么在我们地盘上杀人？巡抚都烦他。但你想想，一个空降的领导，到一个老油条遍地的烂部门，第一件事该干什么？立威。曾国藩要的就是这一个字。乱世用重典，他要让湖南所有人知道，这片地方，我说的算。</p>
+<p><strong>第四，他用了一套最"反常识"的带团队方法。</strong></p>
+<p>立完威，他开始建军。这就是后来名震天下的"湘军"。</p>
+<p>湘军跟当时所有军队都不一样。八旗绿营是国家养的，当兵的就是领工资混日子，长官一跑，底下立刻散伙。曾国藩的湘军是什么体制？他让将领自己选营官，营官自己选哨官，哨官自己选士兵，一层一层全是自己人，互相之间不是亲戚就是老乡。打起来你想跑？你舅舅、你表哥、你发小全在后面盯着你呢，你往哪跑？</p>
+<p>你想想创业公司为什么比大公司拼？因为期权在你手里，你跑公司就完了，你跑了大家全完。湘军就是这个逻辑，把人绑成利益共同体。</p>
+<p>而且军饷给得高。当时绿营兵一个月饷银不到二两，湘军普通士兵一个月四两二钱，是正规军的两倍多。钱从哪来？朝廷不给，曾国藩自己筹。设厘金、劝捐、找富商要，反正自己想办法。这就是"自筹粮饷，自建武装"。</p>
+<p>但问题来了，曾国藩毕竟是个文人，没打过仗。他第一次带兵出征靖港，被太平军打得落花流水，急得当场跳水自杀，被手下捞上来了。后来打湖口，又被石达开打得大败，又跳了一次水。</p>
+<p>你注意一个细节：像他这样被寄予厚望、扛着这么大摊子的人，第一次真正上战场，就输得一塌糊涂，还跳了河。他不是神，他跟你我一样——第一次去做一件从没做过的事，就是会搞砸。</p>
+<p>你想想，我们生活里是不是也这样？第一次上台讲话，紧张得大脑一片空白；第一次带项目，搞得一团乱；第一次做点小生意，几个月就赔光。</p>
+<p>所以人和人的区别，从来不是"谁不会搞砸"，而是——搞砸之后，你是从此不敢再碰，还是擦干脸接着上。</p>
+<p><strong>第五，他悟出了一个赢到最后的笨办法。</strong></p>
+<p>打不赢怎么办？曾国藩的逻辑是：我不跟你硬刚，我耗死你。这就是他最经典的战术——"结硬寨，打呆仗"。</p>
+<p>什么意思？湘军每到一个地方，不主动进攻，先挖壕沟、修围墙、扎营盘。壕沟挖两道，围墙筑两层，先把自己变成一个乌龟壳。然后围而不攻，把你困在城里，困到没粮没草，自己崩溃。</p>
+<p>打安庆是这么打的，打天京也就是南京，也是这么打的。他弟弟曾国荃围住南京，一围就是两年多。太平军李秀成带了几十万大军来解围，愣是打不进来，为什么？因为湘军的壕沟太深、工事太硬，人海战术根本冲不垮。最后城里饿死的人比战死的还多，天京就这么破了。</p>
+<p>这套打法，你听着是不是特别怂？特别没技术含量？我围着你，但不打你，就在那儿耗着。</p>
+<p>但曾国藩自己说得很清楚："十余年来，但知结硬寨、打呆仗，从未用一奇谋、施一方略。"我打了十几年仗，一个妙计都没用过。</p>
+<p>你把这句放到今天看，其实挺扎心的。我们身边天天都在上演"快的东西死得也快"：三个月带你暴富的项目、三天两头涨停的妖股、各种速成神话，最后大多一地鸡毛。反倒是那些看着笨、看着慢、不声不响的人——闷头做点小生意、慢慢攒客户、老实熬资历——几年之后，他还在，还越做越大。</p>
+<p>聪明人爱抄近道，曾国藩知道自己笨，所以他反着来，专挑最笨、最稳的那条路走。</p>
+<p>这不就是他那句话——天下之至拙，能胜天下之至巧。</p>
+<p><strong>第六，他在人生最高点，选择了往下走。</strong></p>
+<p>好了，仗打赢了。1864年，湘军攻破天京，太平天国灭亡。这个时候的曾国藩是什么地位？他手里握着三十万湘军，控制着东南半壁江山，门生故吏遍布天下。他弟弟、他手下、还有一堆人劝他：大哥，反了吧，黄袍加身，天下就是你的了。</p>
+<p>野史里说，左宗棠给他送过一副对联："鼎之轻重，似可问焉。"意思是这天下的分量，好像可以掂量掂量了。曾国藩看了之后，把"似"改成了"未"，变成"鼎之轻重，未可问焉"。还有人说，彭玉麟写信问他："东南半壁无主，老师岂有意乎？"</p>
+<p>你想想，这就像一个公司高管，手底下管着全公司最能打的团队，老板又弱又菜，所有人都跟你说"你出来单干吧，我们跟你走"。你动不动手？</p>
+<p>曾国藩不动。三个原因：</p>
+<p>第一，他骨子里是个儒生。一辈子读圣贤书、学程朱理学，让他造反，他过不了自己心里那一关。</p>
+<p>第二，湘军已经不是铁板一块了。李鸿章的淮军、左宗棠的楚军，名义上听他的，真要造反，人家未必跟你走。而且湘军内部也腐化了，抢了金银财宝，个个想回家过日子，谁还陪你玩命？</p>
+<p>第三，也是最关键的——他太懂"功高震主"这四个字了。历史上手握重兵的功臣，有几个有好下场？韩信、岳飞、蓝玉，例子摆在那呢。</p>
+<p>所以曾国藩不但不反，还主动裁军。打下天京之后不到一个月，他就把曾国荃那五万多湘军裁掉了一大半。你说这个人懂不懂"见好就收"？"盛时常作衰时想，上场当念下场时"——打胜仗的时候就开始想败仗的事，上台的时候就开始想下台的事。你有没有见过那种人，项目刚成功就开始飘，结果一个跟头栽下去再也起不来？曾国藩最厉害的地方，就是他上得去，也下得来。</p>
+<p><strong>第七，他背了这辈子最大的一个锅。</strong></p>
+<p>后面他办洋务，搞江南制造总局，派第一批留美幼童出去，这些都是中国近代化的开端。但他晚年最倒霉的事，是天津教案。</p>
+<p>1870年，天津老百姓和法国教堂起了冲突，杀了法国领事和十几个传教士。法国军舰开到大沽口，要求给个说法，不然开战。朝廷把这个烫手山芋丢给了曾国藩。</p>
+<p>他怎么处理的？杀人偿命，赔礼道歉。杀了十八个带头闹事的中国人，充军流放二十五个，天津知府和知县革职发配黑龙江，赔了法国四十六万两银子，还派崇厚当特使去法国道歉。</p>
+<p>这一下国内舆论直接炸了，全骂他是汉奸、卖国贼。北京的湖南会馆把他的匾额摘下来砸了，连他老家的人都骂他。</p>
+<p>你想想这个局面：如果你是领导，遇到一个必输的谈判，你是要面子还是要里子？硬刚，全国跟你一起陪葬；认怂，你一个人背千古骂名。曾国藩选了后者。他自己说"内疚神明，外惭清议"——我对不起天地良心，也无颜面对舆论。这件事之后，他身体彻底垮了，一年之后就去世了。</p>
+<p><strong>最后，他留下的话，朴素得不像一个狠人。</strong></p>
+<p>临死前，他留下四句遗嘱：</p>
+<p>第一，慎独则心安。一个人独处的时候要严格要求自己，内心才能安宁。<br>第二，主敬则身强。保持敬畏之心，身体才会强健。<br>第三，求仁则人悦。多为别人着想，别人才会喜欢你。<br>第四，习劳则神钦。勤劳的人，连鬼神都会钦佩。</p>
+<p>你看，没有一句是讲权谋、讲厚黑的。一个在乱世里摸爬滚打一辈子、手上沾过无数血的人，最后留下的话全是修身养性的大道理。</p>
+<p>那我们今天讲曾国藩，到底讲什么？</p>
+<p>我觉得不是让大家学他什么权谋，而是学他那种"笨功夫"。这个世界上聪明人太多了，大家都想走捷径、玩套路、一夜暴富，但最后真正把事做成的，往往是曾国藩这种"笨人"。他的秘诀就六个字：不着急，不偷懒。</p>
+<p>不着急，就是不急于求成。他打太平军打了十二年，中间跳了两次水，受了无数挫折，他没急。今天减一斤肉看不见，明天背十个单词看不见，但你把时间拉长到三年、五年、十年，它就是天壤之别。</p>
+<p>不偷懒，就是该下的功夫一点不少。他每天写日记、读经史、处理军务、写家书，几十年如一日，直到临死前一天还在写日记。</p>
+<p>他在给弟弟的家信里写过一句话："有恒则断无不成之事。"人只要有恒心，就没有做不成的事。这句话听起来像鸡汤，但放在曾国藩身上，你就知道这是他用一辈子验证过的真理。</p>
+<p>当然，曾国藩这个人争议很大。有人说他是圣人，有人说他是屠夫；有人说他挽狂澜于既倒，有人说他镇压太平天国是历史罪人。这些评价都对，也都不对。因为历史，从来不是非黑即白的。</p>
+<p>但有一点是确定的——曾国藩是中国历史上少有的、真正从底层靠自己爬上来，并且在最高点还能全身而退的人。他没有贵族血统，没有天赐良机，甚至没有过人的天赋。他手里的牌，比我们大多数人都烂，但他把这副烂牌，打到了最好。</p>
+<p>所以如果你觉得自己不够聪明、没有背景、运气也一般，那不妨去读读曾国藩。他会告诉你一个特别朴素的道理——</p>
+<p>这个世界上，最厉害的人，往往不是最聪明的人，而是那个最能熬、最肯下笨功夫的人。</p>
+<p>好，那今天就讲到这里，祝大家越来越好下课。</p>
+  </div>
+</section>
+<section class="script" id="s9" data-title="为什么好人做一件坏事，就什么都不是了">
+  <div class="s-head">
+    <div class="s-num">09</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">为什么好人做一件坏事，就什么都不是了</h2>
+      <div class="s-meta"><span>1,789 字</span><span class="core">核心 · 人不是标签，是处境的产物；而我们评判别人，一直用的是两把尺子</span><span class="fname">原文件 · 仿写_为什么好人做一件坏事就什么都不是了_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你两个问题啊。</p>
+<p>第一个问题，一个好人，干了一件坏事。一个坏人，干了一件好事。这两个人，你更愿意原谅哪一个？</p>
+<p>那肯定是那个坏人吧。</p>
+<p>OK，大家是怎么想的，可以把想法打在公屏上。</p>
+<p>那我的第二个问题是，一个人的好坏，是打娘胎里就定死的，还是被他当时那个处境给逼出来的？</p>
+<p>今天我们就来依据斯坦福大学那个很有名的监狱实验，还有心理学家米尔格拉姆的电击实验。</p>
+<p>大致会讲三个部分。第一部分，一个正常人，是怎么在几天之内变成恶魔的。第二个部分，为什么我们对好人和坏人，用的是两把尺子。第三个部分，那到底该怎么看一个人。</p>
+<p>先讲第一个实验。</p>
+<p>一九七一年，斯坦福大学。一个叫津巴多的心理学教授，招了二十几个大学生。</p>
+<p>这些学生，全都身体健康，心理正常，按照严格筛选进来的。</p>
+<p>然后他把他们随机分成了两组。一组当狱警，一组当囚犯。</p>
+<p>就这么一个随机分组。没有面试，没有考核，全凭运气。</p>
+<p>结果呢。</p>
+<p>穿上狱警制服的那几个，几天之内就变了。开始定规矩，开始罚人，半夜还把人叫起来点名，变着法地羞辱对面那几个。</p>
+<p>而那几个当囚犯的，也真的低下了头。开始崩溃，开始哭着求人放他出去。</p>
+<p>你再想想，这些人是什么人。就是二十几个普通到你走在校园里都不会多看一眼的大学生。</p>
+<p>他们不是天生的坏人。他们只是被放进了一个位置里。</p>
+<p>第二个实验，</p>
+<p>米尔格拉姆找了一批普通市民。让他们坐在一台机器前面，对面是另一个人。对面答错了，就按一下电钮，加一档电压。</p>
+<p>最高那一档，标着四百五十伏。旁边印着三个字，危险。</p>
+<p>对面那个人开始惨叫，开始求饶，后来没声了。</p>
+<p>你以为普通人按到第几档就不按了。</p>
+<p>结果是，六成多的人，一路按到了最高那档。</p>
+<p>他们都是些什么人。老师，职员，工人。都是平时会给你让座、会帮邻居提东西的那种人。</p>
+<p>可只要旁边有人轻声说一句，请继续。他们就接着往下按。</p>
+<p>所以你看，一个人做不做坏事，很多时候不取决于他是什么人。取决于他站在哪个位置，身边是谁在说话。</p>
+<p>我们总以为，一个人的品性是一块石头。放在什么地方，都还是那块石头。</p>
+<p>可这两场实验说的是 人不是石头。人更像水。你把它倒进什么样的容器里，它就是什么样的形状。</p>
+<p>所以环境从来不是个小东西。它不是往一个人身上涂一层颜色，它是把一个人，重新捏一遍。</p>
+<p>但是回到头来啊，那是外国，我不知道你们会不会啊，可能w比较反人性，但凡我来xuan这两个身份 我会毫不犹豫的选择被伤害的，与其我被伤害还不如别人不被伤害shi'ba</p>
+<p>那问题就来了。</p>
+<p>同样是做坏事，我们对好人和坏人的判断又是什么</p>
+<p>一个平时老实的人，做了一件坏事。旁边的人会说他本来就是个坏人，之前那些好，全是装的。</p>
+<p>一个平时本身就坏的人，做了一件好事。反而会说他心其实是好的，这就是浪子回头。</p>
+<p>好人犯了错，我们把他前面所有的事，一笔勾销。坏人做了件好事，我们也把他前面所有的事，一笔勾销。</p>
+<p>同样是勾销，方向正好相反。</p>
+<p>老话有一句，放下屠刀，立地成佛。</p>
+<p>你想想，一个杀人如麻的人，只要把刀一放，他就成佛了。可一个好人要成佛，得历经九九八十一难。</p>
+<p>这就是我们的两把尺子。</p>
+<p>为什么会这样。</p>
+<p>因为大多数时候，我们不是在判断这件事到底发生了什么。我们是在维护一个早就贴好的标签。标签一贴上，后面所有的事，都只是拿来证明这个标签的。</p>
+<p>所以他做了一件和标签对不上的事，我们不去看这件事实，先去想他为什么不像标签。一个好人的，就成了装的。一个坏人的，就成了醒了。</p>
+<p>这里头最伤的是谁。是那个一直在好好做人的人。</p>
+<p>他做了一百件好事，没人记得。他做了一件坏事，前面那一百件，全没了。</p>
+<p>那说到这里，也不是就让屏幕前的你去做一个坏人。而是想说，我们手里这把尺子，从一开始，就量错了地方。</p>
+<p>那这个事，怎么解。</p>
+<p>你给别人贴的那个标签，其实贴的从来不是他。贴的是你心里那张图，那张"好人应该长什么样"的图。</p>
+<p>他做了一件跟那张图对不上的事。你看见的不是这件事，你看见的是那张图，跟他对不上了。</p>
+<p>所以你要真想看懂一个人，先得承认一件事。他没变。变的是他站的那个位置。</p>
+<p>那位置是什么。位置不是一把椅子。位置是你手里有多少权力，是身边有谁在说话，是你往前一步，要不要付代价。</p>
+<p>一个人能守住自己，从来不是因为他本来就是个好人。是他心里一直有个声音，在提醒他，再往前一步，就回不了头了。</p>
+<p>所以这事最后落下来，其实就一句话。</p>
+<p>你别急着去审判那个做坏事的人。你先问自己一件事。</p>
+<p>如果今天，站在那个位置上的是我。身后没有人拦我，身边还有人一直推我。我，还是现在这个我吗。</p>
+<p>好啦</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s10" data-title="你不是不够自律，你是一直在硬扛">
+  <div class="s-head">
+    <div class="s-num">10</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">你不是不够自律，你是一直在硬扛</h2>
+      <div class="s-meta"><span>2,001 字</span><span class="core">核心 · 顶级高手不是靠意志力硬扛，是靠生理机制让大脑强制关机</span><span class="fname">原文件 · 仿写_你不是不够自律你是一直在硬扛_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你一个问题啊。</p>
+<p>一个人老是睡不好、没精神、干什么都提不起劲。你觉得，是他不够自律，还是他实在太累了？</p>
+<p>那肯定是不够自律吧。</p>
+<p>OK，大家是怎么想的，可以把想法打在公屏上。</p>
+<p>今天我们就来讲，怎么抵消熬夜和刷手机对大脑的摧毁。从而实现让自己每天dou'shi满负荷状态</p>
+<p>依据的，是斯坦福大学医学院的终身教授，胡伯曼。你可能没听过他，但他在美国的思想界和精英圈都很有名。这几年爆火的多巴胺管理、早晨晒太阳，都是他一手推动的。</p>
+<p>我们从小被教的那些东西，还有你在网上刷到的成功学，翻来覆去就一句话。你得拼，你得自律，你得凌晨四点半起床，你得把油门一直踩到底。</p>
+<p>我们大致会讲三个部分。第一部分，为什么硬扛反而会把你搞垮。第二个部分，怎么用身体，一秒让大脑断电。第三个部分，你实在撑不住的时候，怎么办。</p>
+<p>胡伯曼说过一个例子</p>
+<p>两个年轻人，目标一样大，给他们的资源一样，智商一样。十年以后，谁能长成那种强得可怕、怎么都打不垮的人。</p>
+<p>他说，我会把钱全压在这个人身上。就是懂得在每天最后一小时，强行让自己大脑关机的人。</p>
+<p>你可能会想，不就是让我早睡吗，有这么玄吗。</p>
+<p>他研究了很多顶尖的企业家、投资人、运动员，发现他们有九成醒着的时间，都卡在一个状态里。</p>
+<p>这个状态有个名字，叫扣合状态。</p>
+<p>所谓扣合，说白了就是，你人坐在那儿干活，心却一直绷着。你明明已经烦得不行，明明想站起来走人，可你还是硬把自己按回椅子上，逼着自己接着干。</p>
+<p>这种状态，特别费神经递质。它就等于在你那一池子精力上，撕开一个大口子。</p>
+<p>这么硬扛的人，不出三年，大脑会因为皮质醇过载，整个变形。</p>
+<p>你身边肯定有这样的人。连着卷了好几年，钱没见多赚多少，头发倒是掉了一把。白天在工位上硬扛，晚上回到家，饭都不想吃，往床上一躺，眼睛累得睁不开，脑子却停不下来。一件一件事往外冒，越想睡，越睡不着。第二天闹钟一响，接着扛。</p>
+<p>你想想你的手机。白天开着导航，后台十几个App全挂着，晚上你还让它一边充电一边用，从来不关机。你这么使，电池用一年就不行了。</p>
+<p>人也一样。你不是不想睡，是你的大脑，从来没被人按过一次关机键。</p>
+<p>那你肯定说，道理我都懂，可让大脑说关就关，做不到。</p>
+<p>我最开始也不信。直到我自己试了胡伯曼这个方法，我彻底服了。</p>
+<p>这个方法不光你半夜睡不着能用，白天心态崩了也能用。<br>这真是交出焚决了啊</p>
+<p>而且你现在就跟着做。</p>
+<p>闭上眼。眼球慢慢地向左转，再向右转。然后逆时针转一圈，再顺时针转一圈。</p>
+<p>最后，把视线看向你自己鼻尖那个位置。长长地呼出一口气。</p>
+<p>多做几遍。</p>
+<p>这套动作之所以管用，是因为你在转眼睛的时候，等于强行打乱了脑子里一个回路，叫本体感觉。</p>
+<p>本体感觉，就是你的大脑随时都在盯着你的手脚在空间里的位置。</p>
+<p>而一个人想真正睡着，想真正松下来，第一步就得先忘掉自己的身体姿势。你老惦记着自己是怎么躺着的，你怎么都不舒服。</p>
+<p>你用眼球运动，把本体感觉这一路骗过去，你的神经系统就没辙了，它只能强制待机。</p>
+<p>哪怕你前一秒还在为明天还不上房贷发愁。这一秒，你的身体会强行把你那个情绪掐断。</p>
+<p>所以这里头藏着顶尖高手的一个秘密。他们不是靠硬扛去解决情绪，他们是靠生理机制去摆弄大脑。</p>
+<p>那白天那种压得你喘不过气的压力，怎么断。</p>
+<p>用另一个办法，胡伯曼叫它左右栏法则。海豹突击队的人在用。</p>
+<p>拿一张纸，画两栏。</p>
+<p>左边，写所有让你焦虑、害怕，可你根本管不了的事。大环境好不好，别人在背后怎么议论你，明天客户会不会爽约。</p>
+<p>右边，写你现在立刻就能管的事。起身去倒杯水，深呼吸五次，今晚早睡半小时，把手机锁进抽屉。</p>
+<p>让自己调整到右边去就xing'l</p>
+<p>讲到这儿，你可能以为胡伯曼就是个站得高高在上的教授。</p>
+<p>其实他小时候父母离婚，他一个人混在街上，日子一路往下掉。后来好不容易进了学术圈，他当成父母一样的三位导师，一个接一个走了。有自杀的，有癌症的。</p>
+<p>那几年，他一分钱都没有。身边全是失去。</p>
+<p>他每天晚上都躺在那儿，看着天花板想，我是不是被诅咒了。我这辈子是不是就是个彻底的失败者。</p>
+<p>熬过来之后，他说了一句特别清醒的话。</p>
+<p>失败的人和胜利的人，在撞上苦难的那一瞬间，那份绝望、那份痛苦、那份无力，一模一样。</p>
+<p>区别是。</p>
+<p>失败的人，会让那些不受他控制的烂事，变成心里一个惩罚自己的声音。然后用熬夜，用喝酒，或者干脆躺平，来接着伤害自己。</p>
+<p>而真正胜利的人，是那个掉在深坑里，还能强行把那个攻击自己的声音，掐断的人。</p>
+<p>你这一秒什么都做不了，没关系。你就坐在椅子上发呆，也行。</p>
+<p>只要你不做伤害自己的事，只要你熬过这五分钟，你就是在一点点，把大脑的方向盘拿回来。</p>
+<p>我们很多人，这辈子都在跟自己较劲。觉得自己不够好，不够坚强。</p>
+<p>可做人有时候真的很难。你的大脑天生就在找危险。你的焦虑，你的害怕，不是懦弱，是你的神经系统在拼命保护你。</p>
+<p>胡伯曼还说过</p>
+<p>你掉下去那个坑有多深，往往就等于你将来能达到的地方有多高。</p>
+<p>你要是现在就在坑底。那些你觉得快死了、最后又活过来的瞬间，都在给你往后十年的爆发，攒最底下的那点筹码。</p>
+<p>好啦。</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s11" data-title="你不是在反思，你是在反刍">
+  <div class="s-head">
+    <div class="s-num">11</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">你不是在反思，你是在反刍</h2>
+      <div class="s-meta"><span>1,760 字</span><span class="fname">原文件 · 仿写_你不是在反思你是在反刍_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你两个问题啊。</p>
+<p>第一个问题：你觉得，一个人反复想同一件事，和他干脆忙起来不去想，哪个对人的伤害大</p>
+<p>那肯定是反复想吧。</p>
+<p>OK，大家怎么想的，可以把你的想法打在公屏上。</p>
+<p>那我的第二个问题是——一个人总在同一件事里绕不出来，是他不够坚强，还是他用错了想的方式？</p>
+<p>所以今天我们来讲，一个人怎么才能不在自己脑子里跟自己打架。依据的是心理学里的一个核心概念，叫反刍。</p>
+<p>大致会讲三个部分的内容：第一个部分是，反复想的本源到底是什么；第二个部分，我们会列举你每天都在问的那几种"为什么"，它们的本质和原因；第三个部分，我们会讲怎么把这个循环停下来。</p>
+<p>心理学里有一个概念叫反刍，研究它最出名的是一位心理学家，Susan Nolen-Hoeksema，她研究了几十年。</p>
+<p>人反复想一件事，本源只有一个——你在问一个问题。</p>
+<p>而这个问题，只有两种问法。</p>
+<p>一种往回问："这事为什么会这样""这到底是谁的责任""我当初要是不那样就好了"。长出来的东西，叫反刍。</p>
+<p>一种往前问："那我接下来做什么""先找谁""先改哪一处"。长出来的东西，叫反思。</p>
+<p>所以你有没有发现，反思和反刍用的是同一套动作——都在想，都在复盘。区别只在一个地方：出口。</p>
+<p>反思有出口，它通向明天的一个动作。反刍没有出口，它通向更深的同一个夜晚。</p>
+<p>那我们就讲第二部分了。你脑子里那些话，看上去很多，其实一共就那么几种。</p>
+<p>我们一个一个来看。</p>
+<p>第一种，"为什么是我"。</p>
+<p>你被领导挑了一句、被一个合作方放了鸽子、被人踩了一脚，心里第一句就是"为什么偏偏是我"。</p>
+<p>你真的在等一个答案。可这个问题，从来没有答案。</p>
+<p>\<mark>你每问一遍，就把自己按回那个场景里一次。</mark></p>
+<p>第二种，"他凭什么"。</p>
+<p>"他凭什么这么说我""他凭什么过得比我好"。</p>
+<p>这句话听上去像在评价他。它真正做的事，是把你的委屈，泡得更浓一点。你多问一遍，委屈就再涨一层。</p>
+<p>第三种，"如果当初我没那样就好了"。</p>
+<p>你在拿现在，跟一个根本不存在的版本比。</p>
+<p>那个版本从来没有发生过，也永远不会发生。但你天天拿它来量自己，你当然天天不合格。<mark>你恨的不是当初，是那个你永远追不上的、想象中的自己。</mark></p>
+<p>第四种，"我是不是有问题"。</p>
+<p>一件事没做好，你从"这件事我做得不行"，一路滑到"我这个人是不是不行"。</p>
+<p>事情是有限的。你把一个有限的失误，升级成了对整个人生的判决。</p>
+<p>第五种，"他们是不是都在看我"。</p>
+<p>别人一个眼神、一句没说完的话、一条没回的消息，你能在脑子里拍成一部剧。</p>
+<p>那部剧里，你是主角，你是唯一观众，也是唯一受伤的人。</p>
+<p>第六种，"我到底哪里做错了"。</p>
+<p>你要的不是"接下来怎么做"，你要的是"我错在哪"。这两个问题差得很远——一个往前，一个往后。</p>
+<p>你看，这六句话，表面完全不一样。但它们都在问同一个字——为什么。</p>
+<p>而"为什么"最要命的地方在于，<mark>它的答案不在你手里，在那件已经发生过的事里。所以你永远找不到。</mark></p>
+<p>找不到，你就接着问。</p>
+<p>然后我们就来理一下这个循环的逻辑。</p>
+<p>一件事发生了，你心里立刻冒出一个问题。这个问题是"为什么"，你就开始往回找。</p>
+<p>往回找，找不到——答案在过去，过去里本来就没有答案。</p>
+<p>找不到，你更想找。你更想找，你的情绪就跟着涨一层：一层委屈、一层愤怒、一层自责。</p>
+<p>涨到一定程度，你更问不出一句"接下来怎么办"。</p>
+<p>到了明天同一个时间，你又从"为什么是我"开始。</p>
+<p>\<mark>你看，这个循环它不需要外面再发生任何事，它自己就能转。</mark></p>
+<p>\<mark>那件事早就过去了。是你在替它加班。</mark></p>
+<p>那么怎么办。</p>
+<p>这个研究给的答案，比你想象的简单得多。它不让你别想——你越压着不想，它转得越厉害。</p>
+<p>它只说一件事：别让它一直待在脑子里。</p>
+<p>你现在就可以试。</p>
+<p>半夜你躺在床上，把你每天wan'hsang想的事情都写出来</p>
+<p>一直往下写</p>
+<p>"他当时那句话到底什么意思。"<br>"我是不是真的做得不行。"<br>"明天去公司，他们怎么看我。"<br>"我是不是该辞了。"</p>
+<p>你就写，写到写不出新的一句为止</p>
+<p>所以在你身上发生的那些让你睡不着的事，本质都是同一件事——你在反复问一句，问不到头的话。</p>
+<p>其实一件事发生之后，你脑子里第一句冒出来的话，就是你和这件事的关系。</p>
+<p>那句话要是往回问的——"他凭什么""我怎么这么倒霉"——你就一直和那件事捆着。</p>
+<p>那句话要是往前问的——"那我明天先做哪一步"——你就往前走了一步。</p>
+<p>那件事发不发生，你说了不算。它发生之后你接哪一句，你说了算。</p>
+<p>好啦</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s12" data-title="塑造直觉">
+  <div class="s-head">
+    <div class="s-num">12</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">塑造直觉</h2>
+      <div class="s-meta"><span>3,252 字</span><span class="core">核心 · 直觉不是天赐的高我，是被经历塑造出来的产物；想让它靠谱，得换掉喂给它的东西</span><span class="fname">原文件 · 仿写_塑造直觉_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲塑造直觉。</p>
+<p>讲之前，我有个问题啊。在人生的重大决策面前，你更愿意听信自己的直觉，还是听信自己的思考？</p>
+<p>思考，<br>OK大家怎么想的可以打在公屏上。</p>
+<p>今天会讲三个部分。</p>
+<p>第一部分，什么叫直觉。</p>
+<p>第二部分，直觉到底靠不靠谱。</p>
+<p>第三部分，怎么塑造自己的直觉，让它靠谱。</p>
+<p>先说结论，两句话。</p>
+<p>第一句，人应该听信直觉。第二句，你的直觉，必须得牛逼。</p>
+<p>先讲直觉和思考的关系。</p>
+<p>你回想一下你过去做过的那些决定。你会发现，你其实是听信了直觉。你的思考，是用来给直觉找理由的。</p>
+<p>说白了，硬币抛出去那一刻，你心里就已经有答案了。你早就想好怎么选了。然后你拿一大堆思考，去给这个直觉做包装，让它听起来更可靠一点。</p>
+<p>直觉这东西，其实就是你过去的记忆、你过去的经历、你遇到的那些人。它们全都藏在你的潜意识里，一个一个，成了模板。你平时想，是想不出来的。可你眼前突然冒出一个抉择的时候，它就跟这些老的记忆，全对上了。</p>
+<p>所以为什么你有时候见到一个人，直觉告诉你不喜欢他。</p>
+<p>因为他的面相，像极了你以前遇到过的某个你不喜欢的人。他的性格，也像。所以你的直觉就跟你说了，我不喜欢他。</p>
+<p>那直觉准不准。</p>
+<p>当然准。但它是对你准。</p>
+<p>因为直觉是被塑造出来的，它不代表它是对的。</p>
+<p>我们先说你的父母。</p>
+<p>你的父母，塑造了你的人生观。你想想，你爸妈做决定的标准，是什么。</p>
+<p>我小时候，我爸妈就说，你这么做，家里的亲戚怎么看你。你这么做，周围的人背后怎么说你。</p>
+<p>所以你的人生观，你的价值标准，就是从你爸妈灌输给你的这些东西里来的。</p>
+<p>当年直播最火的时候，新媒体最火的时候，你压根没看出来那是个机会。你想的是，我去做自媒体，周围的人怎么看我。</p>
+<p>可自媒体，就是九零后的房地产。</p>
+<p>但你的直觉告诉你，你不适合干这个。为什么不适合。其实是你爸妈，早就往你潜意识里，种了一个心魔。</p>
+<p>你爸妈老说，咱们比上不足，比下有余。所以后来你碰到这种高风险、高回报的事，你都不敢冲。</p>
+<p>你以为是你直觉准。你以为这事就是不适合我，我早就知道。其实不是。是你的直觉太有局限性，是你的思维固步自封了，画地为牢了。牢笼外面的东西，你都觉得跟自己没关系。</p>
+<p>再说你的老师、同学、朋友。他们塑造了你的价值观。</p>
+<p>你会觉得，活着的意义就是赚钱吗。赚了钱才有面子吗。</p>
+<p>老师教你赚钱了吗。没有。老师嘴上没教你赚钱。但是很多老师，我不是说所有老师啊，他的行为就是在告诉你，赚了钱就有面子，赚了钱就能获得尊重。</p>
+<p>这个很难免的。</p>
+<p>你在学校里就看得出来。老师对家里条件好的那个，就比较nice。对家里条件不太好的那个，就比较敏感，就比较不友善。</p>
+<p>于是你做决定的时候，你的直觉就把你往钱那边引。不是往你真喜欢的事上引。</p>
+<p>不是因为你的认知不够。是因为你的精神世界里，压根没有别的选项。你在过往的环境里，没见过一个人，能因为做自己喜欢的事，赚到钱，还被人尊重。</p>
+<p>再往上，你的阅读，你的认知，你的眼界，决定了你的世界观。</p>
+<p>你的三观，就是你过往的经历、你的环境、你遇到的人、你的记忆，一起决定的。</p>
+<p>你以为你的直觉，是某个"高我"的存在。其实不是。它就是你经历的产物。</p>
+<p>所以直觉准不准。准。但它是对你准，是在你那个有限的思维里，准。</p>
+<p>这有点像什么呢。</p>
+<p>你脑子里只认识一条路。现在面前出现了三条路。你认识的那一条，是最大的那条弯路。</p>
+<p>弯路，不代表它到不了终点。你顺着这条弯路走到头了，你说，你看我直觉多准。</p>
+<p>其实不是。是你只认识一条路。</p>
+<p>你认识的这个，叫中庸之解。它不是最优解。</p>
+<p>那什么时候，它才能变成最优解。</p>
+<p>你得把自己的直觉，养得牛逼一点，高级一点。这样那三条路你三条都认识，你就能找那条shortcut，找最直的那条。</p>
+<p>四个方法。</p>
+<p>第一个，也是最难的。它是塑造直觉的前提。</p>
+<p>空杯心态。</p>
+<p>一句话讲清楚。你读书的时候，尤其是读那种经典的大部头，或者你跟人交流的时候，尤其是碰到行业顶尖的人，一定不要觉得自己比别人高明。</p>
+<p>书里说的，或者这个人说的，你听不懂，你就慢慢消化，慢慢理解。</p>
+<p>千万别觉得，我有我自己的一套思路。你这样的话，你的直觉，永远是那个低级的直觉。</p>
+<p>我不是让你完全去复刻那个人的思维。是说你得先理解他，你才有得选。</p>
+<p>包括我在内啊，我觉得很多人都有这个毛病，总觉得自己比别人高明。</p>
+<p>你看书的时候，你会觉得，这人说得不对。你还会用一句话来支持你的高傲，叫什么，"尽信书则不如无书"。</p>
+<p>你碰到一个比你高明得多的人。某个行业的顶尖。他说了一些跟你的认知完全相反的话。你第一反应是什么。</p>
+<p>他只不过是运气好。他有个好爹，他有个好岳父，他有好多运气成分，他自己都忘了。</p>
+<p>这就叫没空杯。</p>
+<p>第二个方法，阅读。</p>
+<p>阅读有三个好处。</p>
+<p>第一个好处，它是一个meditation，就是冥想。人有时候心静不下来，太吵了，事情太多。你读书读进去了，你会有很明显的那个感觉。所以有时候你读着读着，觉得时间过得特别快。</p>
+<p>第二个好处。书这东西，发明几千年了。人在书面前，天然是有敬畏的。你就不会有那种高傲。你会天然觉得，这个作者比我高明一些。你就更容易空杯，你就进入那个状态，去理解他。</p>
+<p>第三个好处。写书那个人，是你生活里根本遇不到的人。</p>
+<p>一本流行书，或者一本经典，一本被时间检验过的书，它的作者，在你能接触到的圈子以外。他比你的认知圈，高了好几个level。你读书的时候，才能拿到一些新的思想。</p>
+<p>而且你得把它养成习惯。养成习惯以后，你的直觉会慢慢变。</p>
+<p>你的大脑是会变的。怎么变，就是重复。你不断地重复一些信息的输入，你的大脑就会变，会变得更高级。</p>
+<p>第三个方法，塑造你身边的环境。</p>
+<p>环境是能塑造一个人的。</p>
+<p>你肯定有感觉。你要工作的时候，你必须得去公司，或者去工作室。你在家里，就是很难工作。</p>
+<p>我要是有一件很重要的事，我就一定要去工作室做。</p>
+<p>说白了，你要把你家里，布置成你向往的那个样子。不是让你舒服的样子。是你想象里那个更牛逼的自己，应该待在什么样的环境里。</p>
+<p>比如说，客厅里摆满书。</p>
+<p>人是会被环境影响的。人之所以能被洗脑，都是被细节洗的。</p>
+<p>你要是把周围弄成了那个"高我"住的环境，你进去第一反应，是不配得。</p>
+<p>你家里摆满了书，你朋友过来一看，这么好学啊。你第一反应是，其实我不好学。你觉得你不配。</p>
+<p>你为了配得上，你就会改自己的行为。你就会想，要不要不读两本书吧，人家都以为我好学呢。</p>
+<p>我英语那次，才背了俩单词，前天看了一天剧。不行，我得稍微看点书。</p>
+<p>这就是环境的塑造。我就举一个例子啊，你可以举一反三。</p>
+<p>包括你身边的人，也一样。</p>
+<p>我比较简单，我就喜欢跟有热情的人待在一起，他能让我也变得有激情。</p>
+<p>我喜欢那种，对自己手里那件事特别有激情的人。</p>
+<p>因为我们的直觉，全是被周围的人塑造出来的。</p>
+<p>你想变成什么样的人，就让什么样的人，围着你。</p>
+<p>第四个方法，你得有一个role model。</p>
+<p>这个其实挺难的。</p>
+<p>你得找一个人，你百分之九十认同他。</p>
+<p>比方说让你跑一场马拉松。前半程你是第一名，你心里其实很慌的。因为你不知道后面的人有多大劲，你也不知道该往哪走。要是有个人给你引路，那就简单多了。</p>
+<p>所以你一定要找一个作者，或者一个偶像，你去跟从他。</p>
+<p>遇到人生的大抉择，你不要想自己会怎么做。你别听自己的直觉。你想，我崇拜的那个人，他会怎么做。</p>
+<p>你想象他几点起床。他每天健不健身。他一个月会不会花点时间去读书。他会不会一直往前拱。</p>
+<p>你就这么想。你在脑子里想的过程里，你的行为会自己就变了。行为一变，一遍一遍重复，你的大脑就变了。你的思考方式就变了。你的直觉系统，也就变了。</p>
+<p>我以前就是这样，我给自己设各种偶像。这个点上，让他当我偶像。那个点上，让他当我偶像。我就跟着学。</p>
+<p>一定要是名人吗。生活里的人也行。但我尽量找名人，尽量找离你远一点的。</p>
+<p>因为人要是离得近，你就看见他的缺点了，这个偶像的光环，"啪"就崩了。他离你远一点，你看见的全是优点，你就学他的优点，缺点你看不着，你也不跟他过日子。</p>
+<p>所以最好是名人，最好是一个抽象的人。他才能把你带到一个高处去。</p>
+<p>要是个真实的人，我跟你说，我觉得不行。哈哈哈。反正我不多说了，哈哈哈。</p>
+<p>好啦。</p>
+<p>你的直觉，不是天上掉下来的。是你这一路，被喂出来的。</p>
+<p>你想让它牛逼，就回头，把它吃的东西，换一换。</p>
+<p>祝大家越来越好，直觉越来越牛逼。下课。</p>
+  </div>
+</section>
+<section class="script" id="s13" data-title="成功最大的敌人，是恐惧">
+  <div class="s-head">
+    <div class="s-num">13</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">成功最大的敌人，是恐惧</h2>
+      <div class="s-meta"><span>2,579 字</span><span class="core">核心 · 成功最大的敌人不是能力，是恐惧；恐惧分两种，一种对未知，一种对责任</span><span class="fname">原文件 · 仿写_成功最大的敌人是恐惧_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲，成功最大的敌人是什么。</p>
+<p>讲之前，我有个问题啊。</p>
+<p>一个人一直想改变，想了好几年，一直没变。你觉得，是他没这个能力，还是他害怕？</p>
+<p>没能力吧。</p>
+<p>OK，大家是怎么想的，可以把想法打在公屏上。</p>
+<p>没能力，是"我够不着"。也就是你的手伸出去多长，就够多远。它也是能补的，你练一练，它就长一点。</p>
+<p>害怕，是"我不敢够"。这个跟你有多少能力，没关系。一个本事再大的人，照样也会怕。</p>
+<p>那你想，一个真的没能力的人，他是什么样。</p>
+<p>他不会为这事纠结好几年的。他早就认了。</p>
+<p>真正为这件事纠结了好几年、难受了好几年的，恰恰是那些有能力的人。他只是，不敢。</p>
+<p>所以拦住你的，从来不是能力。</p>
+<p>是恐惧。</p>
+<p>他为自己的没成功，找遍了借口。太辛苦了，没时间，没天赋，环境不行。可这些借口底下，藏的都是同一件事。</p>
+<p>那我们今天讲三个部分。</p>
+<p>第一部分，为什么说成功最大的敌人是恐惧。</p>
+<p>第二部分，我们为什么会恐惧。</p>
+<p>第三部分，怎么把这种恐惧破掉。</p>
+<p>先免责声明下 zhe'与过往视频不同，yao看完这一期xu'yao足够的勇气，如果你看完了可以在结尾打个卡</p>
+<p>先说第一本部分<br>其实我们每个人身上，都存在着两种人生。</p>
+<p>一种，是你活过的人生。</p>
+<p>另一种，是你从来没活过的人生。</p>
+<p>你活过的这个人生，通常，就是你并不满足的那个。</p>
+<p>可对大多数人来说，没活过的那一个，才是你向往的那个。</p>
+<p>里面可能有更多的钱，更好的工作，更好的身材，更大的房子，更大的世界。</p>
+<p>你如愿过上了自己想要的人生，这就叫成功。</p>
+<p>那你可能会说，我倒是想过啊，可我哪有那个本事。</p>
+<p>真的吗。</p>
+<p>你真的没那个本事吗。</p>
+<p>你真的，为你那个没活过的人生，使过劲吗。</p>
+<p>我们拿一个具体的事来看。减肥。</p>
+<p>几乎每个想重启人生的人，都有过这个念头。想要好身材，想要健康。</p>
+<p>那一个人减肥失败，到底是因为什么呢。</p>
+<p>大部分人给的答案都一样。减肥太苦了，太反人性了，我坚持不下来。</p>
+<p>那我们就往下问一层。</p>
+<p>苦，是多苦。</p>
+<p>是每天吃得干净一点，就叫苦。</p>
+<p>还是一周要去有氧五次，才叫苦。</p>
+<p>你说的这个苦，是一年，是一个月，还是一周，一天。</p>
+<p>还是说你压根还没开始，就已经放弃了。</p>
+<p>那还有的人，它真的那么苦，为什么他就坚持下来了呢。</p>
+<p>它客观上真的那么苦，还是你主观上，不愿意吃这个苦。</p>
+<p>是你的身体，真的不如别人扛得住这个过程吗。</p>
+<p>那我现在换个说法。只要你减下来十公斤，就给你五千万。<br>哇塞</p>
+<p>你只是不想为了减肥这件事，白吃这个苦。</p>
+<p>你看，这么一问就清楚了。</p>
+<p>不是因为辛苦，你才减肥失败。</p>
+<p>是你心里先有了"我要减肥失败"这个目的，才给自己制造出了"减肥很辛苦"这个理由。</p>
+<p>一直以来，都是你在主动选择减肥失败。</p>
+<p>也是你在主动选择，现在这个人生的样子。</p>
+<p>那问题就来了。</p>
+<p>明明你向往的那个生活，比现在好。明明你心里是想去的。</p>
+<p>为什么你心里，却一直在往回躲。</p>
+<p>两个原因。</p>
+<p>第一个，是对未知的恐惧。</p>
+<p>你不满意自己的身材。可你已经习惯了。你甚至已经攒出一整套应对的办法。买什么衣服显瘦，拍照从哪个角度，被别人问起来怎么打岔，怎么自我安慰。</p>
+<p>可你要是真去减肥，接下来有多少苦、多少反复、多少你不知道的事在等着你。</p>
+<p>所以你看，你嘴上说的那些不满，都是真的。但你心里还是觉得，待在现在这样，更轻松，更让你安心。</p>
+<p>这是第一个。</p>
+<p>第二个，是自由这个东西，本身特别沉。</p>
+<p>我们每个人生下来，就面对一个事。你想怎么活，都行。</p>
+<p>对很多人来说，这个自由，不是好事，是个特别重的负担。</p>
+<p>所以你干了什么。</p>
+<p>你给自己制造了一个敌人。减肥太反人性了。它就是你坚持不下来这件事的替罪羊。</p>
+<p>你把"我自己选择不改"，悄悄地，换成了"减肥这事本来就不是人能干的"。</p>
+<p>这样一来，你就躲开了一件更吓人的事。</p>
+<p>那件事是，只要你敢，你就真的可以彻底把自己的人生重来一遍。</p>
+<p>以及，这件事背后，跟着的全部责任。</p>
+<p>你假装自己是被某种打不过的东西控制着。这样，你就不用当那个"我的人生我说了算"的人了。</p>
+<p>所以真正拦着你改变的，就这两个。</p>
+<p>一个是对未知的恐惧。</p>
+<p>一个是对责任的恐惧。</p>
+<p>对未知的恐惧，让你一直泡在那个活过的人生里。</p>
+<p>对责任的恐惧，让你一直在给自己找借口。</p>
+<p>它俩合起来，就是那扇你一直不敢推的门。</p>
+<p>那怎么破。</p>
+<p>你发现没有这一切根源都是来源于火力不足</p>
+<p>一个是跳出过去的勇气。</p>
+<p>一个是把责任扛起来的勇气。</p>
+<p>比如</p>
+<p>拿出一张纸，画两栏。</p>
+<p>左边，写上你已经活过的这个人生的样子。</p>
+<p>右边，写那个你从来没活过、但你真的很向往的人生。</p>
+<p>写完了，你就盯着右边那栏，问自己一句。</p>
+<p>我到底想不想，去过一过右边这个。</p>
+<p>哪怕就先实现里面的一条。</p>
+<p>如果答案是，想。</p>
+<p>那第二步，我送你两句咒语。</p>
+<p>《5%的改变》里有句话，我很喜欢。</p>
+<p>恐惧在敲门，勇气打开门，门外什么都没有。</p>
+<p>如果你对自己的勇气，没什么底。</p>
+<p>那这两句话，你记着。任何一个你不敢开门的时候，都能用。</p>
+<p>第一句，敌人不在外面，外面没有敌人。</p>
+<p>你要减肥的时候，那顿宵夜不是你的敌人。</p>
+<p>你要公开表达的时候，脸红不是敌人，结巴也不是敌人。</p>
+<p>真正的敌人，只有你自己。</p>
+<p>没有什么东西是真的在拦着你。是你在心里，一个接一个地，把敌人造出来。造出来了，你就可以跑得心安理得。</p>
+<p>所以每次你准备找借口跑的时候，你就跟自己说一句。别怕。外面没有敌人。</p>
+<p>我放弃了，那也是我自己要放弃的。那从今往后，我就不该再怪任何人。</p>
+<p>第二句，没有过去，此刻就是人生原点。</p>
+<p>那些过去，是很沉的。</p>
+<p>你要是走到哪都背着它，你走不远的。</p>
+<p>可你一旦把它放开，人一下就轻了。</p>
+<p>别再跟我说，我是个懒人，我是个胆小的，我没有做生意的脑子。</p>
+<p>你给自己贴的这些标签，说的是你过去做过的某件事。并不是自己ben'she</p>
+<p>你今天中午没忍住，吃了个热量炸弹。</p>
+<p>你要是揪着它不放，你就会一直想着，一直后悔，一直骂自己。</p>
+<p>然后为了躲开这个后悔，你就会偷偷跟自己说，算了，放弃吧，放弃就轻松了。</p>
+<p>可放弃不会让你轻松。</p>
+<p>真正能让你松下来的</p>
+<p>吃了就是吃了。<br>做了就做了，那又能怎么样</p>
+<p>吃没吃，都已经过去了，对你现在这一刻，没一点影响。</p>
+<p>没有过去，此刻就是人生原点。该干什么，去干什么。</p>
+<p>最后还有一句，我得提醒你。</p>
+<p>别太指望"顿悟"这个东西。</p>
+<p>这期视频你关掉三分钟，很可能就打回原形了。</p>
+<p>你要是脑子还行，这辈子会顿悟好几次。可顿悟之后呢，那些老习惯、老业力，还会一层一层地拉你，想把你拽回原来那条道上。</p>
+<p>所以那两句话，你得记着。</p>
+<p>语言是有能量的。你每次需要转个念头，需要跟那个拽你的劲较一下的时候，就把它们想起来。</p>
+<p>没有过去，此刻就是人生原点。</p>
+<p>敌人不在外面，外面没有敌人。</p>
+<p>然后，清清楚楚地，重新做一个选择。</p>
+<p>好啦。</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s14" data-title="你不是在思考，你是在站队">
+  <div class="s-head">
+    <div class="s-num">14</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">你不是在思考，你是在站队</h2>
+      <div class="s-meta"><span>1,991 字</span><span class="core">核心 · 杠精捍卫立场，批判性思维迭代观点</span><span class="fname">原文件 · 仿写_批判性思维_你不是在思考你是在站队_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>问你个问题啊，你跟别人辩论的时候，你觉得你用的是批判性思维，还是杠精思维？</p>
+<p>杠精思维。</p>
+<p>OK，大家怎么想的，也可以把自己的想法打在公屏上。</p>
+<p>那我再问你第二个问题——中医和西医，你觉得哪个更好？这个也可以打在公屏上。</p>
+<p>在往下讲之前，我们得先把杠精和批判性思维的区别讲清楚。</p>
+<p>杠精是什么？只有立场，没有观点。他是立场的捍卫者，不是观点的迭代者。</p>
+<p>批判性思维是什么？是一种主动的、系统的、理性的思维方式。有了它，你会把事情看得更理性、更清楚、也更利己，同时又不冒犯别人。</p>
+<p>那想培养批判性思维，大概需要五个方法：明确问题、寻找信息、解读信息、考虑后果、反向思维。</p>
+<p>有句话叫：未经审视的人生，不值得一过。</p>
+<p>什么叫审视？就是先搞清楚——我到底要解决什么问题。</p>
+<p>你看你身边有没有这种人，天天喊着要谈恋爱。你问他为什么谈，他说不上来。其实他可能只是太孤独；也可能他是真喜欢上了谁；还有可能是，他指望有个人出现，顺便把他整个人生的问题都解决了。</p>
+<p>这几件事，看起来都叫"想谈恋爱"。但你要解决的问题，完全是两码事。</p>
+<p>再比如减肥。有人是为了好看，有人是为了健康，有人只是觉得肚子空一点状态更好。三个目的，三种做法。</p>
+<p>还比如，很多人抱怨钱不够。那你到底是欲望太大，还是挣得太少？还是两个都有？</p>
+<p>你得先知道自己要解决什么。不然你就是一只无头苍蝇，一头撞进问题里，最后搞砸。</p>
+<p>问题明确了，信息才找得对。</p>
+<p>你想想，如果你一门心思觉得，只有暴富才能让你幸福，那你要找的是什么？是创业，是投资。</p>
+<p>找工作帮不了你。工作最多让你到小康，到不了财富自由。</p>
+<p>再比如，你要去面试，要去谈一个项目，你要找的是"说服"和"谈判"的方法。不是"辩论"的方法。</p>
+<p>这俩差在哪？辩论是我要赢你。谈判是让你愿意接纳我。</p>
+<p>方向都错了，你越努力，越偏。</p>
+<p>信息找到了，还得吃透。一知半解，问题照样解决不了。</p>
+<p>你听过一句话吧——"存在即合理"。</p>
+<p>很多人拿它当挡箭牌，说凡是存在的都是合理的，连看到犯罪也说存在即合理。</p>
+<p>但这句话真正的意思是：任何一件事存在，都有它背后的逻辑合理性。注意,是逻辑上的合理，不是道德上的合理。</p>
+<p>一个人犯罪，他的"合理性"在于——在他那种处境里，这件事发生的概率就是更大。不是说他做得对。</p>
+<p>一句话就想解释一个特别复杂的问题，这就是典型的杠精。因为你压根没读懂那个信息。</p>
+<p>再举个投资的例子。很多人听巴菲特、芒格，只记住两个字："复利"。然后说我也复利，每天涨百分之一，一年就是三十七倍。</p>
+<p>他没想过，巴菲特的初始资金有多大。你就一百块，怎么复利也复不到财富自由。</p>
+<p>信息得放到你自己的处境上去用，那才叫真懂了。</p>
+<p>一个真正理性的人，永远多想一步——我要这个东西，背后的代价是什么？</p>
+<p>你想结婚，你要的是陪伴。但代价是自由，某种程度上甚至是爱情。婚姻是不是爱情的坟墓我不知道，但你至少得知道，这个代价它存在。</p>
+<p>你想创业，你想的是挣钱。但你几乎一定失去了自由。</p>
+<p>很多人不是这样的。他只想着"我要"，不想代价。</p>
+<p>那什么情况下，你可以说"我知道我在干嘛"？是你既要了自己想要的，也认了它带来的代价。</p>
+<p>就像你看上一件衣服。你喜欢它，你也认那个价签。你不能说我喜欢，然后不看价钱，直接刷爆信用卡。</p>
+<p>最后一个，也最重要。</p>
+<p>你要用几乎一样的逻辑，站到你的对手那边，站到跟你观点完全相反的人那边，去想一遍。</p>
+<p>批判性思维走到这一步，才算闭环。</p>
+<p>如果这个世界上有两拨人，信的东西正好相反，那你得相信——跟你相反的那拨人，一定有他的原因。</p>
+<p>你觉得他不可理喻，往往只是因为，你没掌握他掌握的信息。</p>
+<p>你回头想想开场那个问题——中医和西医，信的人剑拔弩张。到底谁更好不是重点。重点是：不管你最后站哪边，你得是在掌握全面信息之后，才说出你的结论。否则你不是在维护观点，你只是在维护立场。</p>
+<p>我举个例子。以前我一直不理解一件事——西方人怎么老拿《圣经》当论据？这不就等于我们拿《山海经》当论据吗？</p>
+<p>后来我去美国读书，我懂了。他们从小受的教育，就是相信有一个灵性世界。他们拿《圣经》，就像我们拿《史记》，从小根深蒂固。美国总统宣誓，是扶着《圣经》的。他们跟《圣经》的那种绑定，有点像我们中国人的家国情怀。</p>
+<p>我们中国人，家和国绑得特别紧。他们是把信仰绑得特别紧。</p>
+<p>你信息够了，就明白了——原来他们这么做，是特别自然的一个本能反应。不是蠢。</p>
+<p>你多想一步就懂了：世界上最强大的国家之一，怎么可能全是一帮不可理喻的蠢货？不至于。</p>
+<p>那如果你一直用杠精思维活着，会怎样？</p>
+<p>你会一辈子待在自己的立场里，看不到真相。你会把所有跟你不一样的人，都当成敌人。</p>
+<p>你去翻翻自己十年前的观点，你会发现——你什么都没变。因为你从来不是在迭代观点，你只是在一次一次捍卫立场。</p>
+<p>你会很累。你赢了每一场争论，但你没得到过任何一个新东西。</p>
+<p>所以回到开头那个问题——你是在批判性思考，还是在当杠精？</p>
+<p>杠精和批判性思维，差的不是聪明程度。就差一个念头——你是想在争论里赢，还是想弄清楚这件事。</p>
+<p>祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s15" data-title="让人对你相见恨晚的五个方法">
+  <div class="s-head">
+    <div class="s-num">15</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">让人对你相见恨晚的五个方法</h2>
+      <div class="s-meta"><span>2,402 字</span><span class="fname">原文件 · 仿写_相见恨晚_五个方法_小五狼结构版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲三个提升社交的方法<br>那在开始讲之前先问你一个问题啊。</p>
+<p>一个人能让别人愿意跟他来往，是因为他真诚，还是因为他有套路？</p>
+<p>那肯定是真诚吧。</p>
+<p>OK，大家怎么想的，可以打在公屏上。</p>
+<p>今天大致会讲三个部分：第一个部分，人为什么会对一个人相见恨晚，它的本源是什么；第二个部分，把这一个本源，拆成五个具体的动作；第三个部分，我们把整个过程，理成一条线。</p>
+<p>老子在《道德经》里说——挫其锐，解其纷，和其光，同其尘。<br>什么意思呢，说的是一个人怎么把自己收起来，去跟别人合上。</p>
+<p>一个人喜欢你，真不是因为你多好。是因为他跟你待在一起的时候，他自己感觉很好。</p>
+<p>所以让人对你相见恨晚的本源是他在你这儿，看见了一个更好的自己。</p>
+<p>那第一种变形——你还没开口，他已经在给你贴标签了</p>
+<p>你有没有发现，同一件事，看是谁做的，你感觉完全不一样。</p>
+<p>一个你打心底佩服的人，跟你说话时不小心把水洒了一身。你不觉得他丢人，反倒觉得他挺真实、</p>
+<p>换成你一个看不上的同事，洒了一身水，你心里早就职责她一万遍了</p>
+<p>因为人对一个人的判断，是先贴标签，再找证据。他给你贴了个好标签，你后面干什么他都往好处想；贴了个坏的，你干得再好，他也觉得你动机不纯。就像超市里同一个东西，摆在高端货架上你觉得质量好，扔进打折区你就觉得它有点毛病。</p>
+<p>所以能不能让人一见如故，第一件事不在你开口之后，在你开口之前。</p>
+<p>你穿什么、用什么、身边站着谁、谁替你说了一句话——都是他在读的信息。</p>
+<p>你开个奔驰E，非改成迈巴赫的样子，他看一眼就知道你在装。你就老老实实开个E，</p>
+<p>自己夸十句，不如别人夸你一句。见面之前，让他先从别人嘴里听到你的好；见面的时候，身边有个人帮你搭一句，你越谦虚，效果越好。</p>
+<p>\<mark>你要是不给他贴，他会替你贴一个负面的。这个时代的人，天生就带点自卑，而自卑的人是带着攻击性的。</mark></p>
+<p>毕竟他见你三十秒，就得在心里判一件事——这个人，值不值得我花时间。</p>
+<p>那第二种变形——他要的不是道理，是你告诉他"你行"</p>
+<p>你人生最难的时候，往往最后找的那个人，一定是能让你重新觉得"我行"的人。</p>
+<p>假如你分手了，对方嫌你不够好。你找朋友喝酒，朋友说：兄弟别难过，天涯何处无芳草。</p>
+<p>这话安慰到你了吗，其实心里真正想听的是——其实我特别好，是他眼力不行，她配不上你，她克你</p>
+<p>人就是这样。谁能让你看见那个理想中的自己，你就会信他，甚至爱上他。</p>
+<p>所以你手上其实握着一个特别大的权利，神才有的那种——我说你是什么，你就是什么。</p>
+<p>但这句话不能瞎说，它有公式：你看见的具体行为，加上你对这个行为的解读，再加上你给他的那个身份。</p>
+<p>比如："我发现你聊天的时候特别细。你听人说话，是在找对方的思路。这个动作我在别人身上没见过，一般人不会这么用心。所以我觉得，你是个能成大事的人。"</p>
+<p>这句话一出口，他看你的眼神就变了。</p>
+<p>所以她就永远都离不开你，一旦离开你l 就会变成一位普通人了</p>
+<p>那第三——他缺的从来不是建议，是有人替他点头</p>
+<p>前两件事做完，他对你印象很好了。但你们离"相见恨晚"，还差一件——他有没有真的从你这儿拿到东西。</p>
+<p>有个理论叫社会交换理论，说人和人之间的关系，本质上都是一种交换。人心里会算一笔账：跟你在一起，我得到的比我付出的多还是少。多，这关系才继续。</p>
+<p>你对谁有过那种"早点认识他就好了"的感觉？多半是那个人一句话，帮你解开了一个憋了很久的疙瘩。</p>
+<p>所以高手脑子里的第一个问题，永远是：我能给他什么。</p>
+<p>按an'xin'li'xue来看：他心里其实早就有答案了，他缺的不是有人教他，是有人当众肯定她</p>
+<p>那第四件事——他不是不想靠近你，是不敢</p>
+<p>这个就比较关键了</p>
+<p>对面那个人，又优秀、又对你好、还真帮到了你。其实你反倒会自卑。</p>
+<p>你会想：我该怎么跟他打交道，我够不够格，他是不是对谁都这样。</p>
+<p>心理学上有个说法，人会本能地躲开那些可能伤到自己价值感的情境。所以他不会来找你。</p>
+<p>很多人爱说一句话：我们聊得挺好，有空一起吃饭。这句话翻译过来就是——咱俩这辈子别吃了。</p>
+<p>你得把时间、地点、内容，都说死。</p>
+<p>别说"有空常联系"，你说：我每周三晚上都在这个工作室喝茶，我很喜欢跟你聊，周三你有空就上来坐坐。</p>
+<p>别说"下次再聊"，你说：我觉得你对这个话题特别有见解，下周三我们线下有分享会，你来给大家讲一讲，行不行？</p>
+<p>他大概率会来。因为在这个局里，你站在高位，他站在低位。低位的人，一般不会拒绝高位的人递过来的机会——他会觉得，这是我的机会。说白了，这是一次服从性测试。</p>
+<p>从那天起，他想要发展，第一个想到的就是你。</p>
+<p>\<mark>可你不递这个确认键，他就只会远远地欣赏你，一辈子不开口。</mark></p>
+<p>那第五件事——他早就听腻了"你真牛"</p>
+<p>假设你现在身家过亿，一路拼杀过来。对面有个年轻人，张嘴就是：你真牛。</p>
+<p>这话你听过一千遍了。你只觉得他不真诚。</p>
+<p>你真正想要的，是有人能看懂你这一路是怎么走过来的。</p>
+<p>他不对你的名好奇，他对你的人好奇。他会问你，当年你把稳定工作辞了去创业，晚上睡不着的时候在想什么；身边人背叛你的时候，你是怎么撑过来的。</p>
+<p>这就叫平等。问感受，不问结果。</p>
+<p>人真正想要的，从来是被看见、被理解、被当成一个普通人。</p>
+<p>让人产生"你没有目的"的感觉，靠的是提问。</p>
+<p>心理学上有个特别有名的实验。两个人刚认识，互相问一组越来越深的问题，四十五分钟之后，百分之三十的人觉得，对方比自己生命中任何一段关系都亲。</p>
+<p>交心到这一步，才叫知己。</p>
+<p>这件事的整个过程，其实就一串。</p>
+<p>一件事发生了，你出现在他面前。</p>
+<p>他先花三十秒，给你贴一个标签——这一下，决定了他愿不愿意继续了解你。</p>
+<p>然后你说了一句话，让他看见一个更好的自己——这一下，决定了他会不会信你。</p>
+<p>接着你帮他解开了一个他憋了很久的疙瘩——这一下，决定了他会不会觉得你重要。</p>
+<p>再往下，你递给他一个明确的邀请——这一下，决定了他会不会真的走近你。</p>
+<p>最后，你问了他一个关于"他这个人"的问题——这一下，决定了他会不会把你当知己。</p>
+<p>回到开头那个问题。</p>
+<p>一个人能让别人愿意跟他来往，是因为他真诚，还是因为他有套路。这两个字，其实都不是答案。真诚是结果，不是原因。</p>
+<p>真正的原因，是你有没有在看他。</p>
+<p>老子那句话，说到底就一件事——把自己收起来，让对面那个人亮起来。</p>
+<p>你越想让人记住你，他越记不住你；你越把他放在心上，他反倒一辈子忘不掉你。</p>
+<p>好啦 祝大家越来越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s16" data-title="放过自己（沉没成本）">
+  <div class="s-head">
+    <div class="s-num">16</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">放过自己（沉没成本）</h2>
+      <div class="s-meta"><span>2,993 字</span><span class="fname">原文件 · 沉没成本-口播稿-框架v2版-副本.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲沉没成本。</p>
+<p>先问你一个问题：假如你投的那家公司已经全亏了，你是要继续投入，还是要及时止损？</p>
+<p>肯定继续投入啊，都投这么多了。</p>
+<p>OK，大家怎么想？可以把自己的想法打在公屏上。</p>
+<p>那得先说清什么是沉没成本。大家应该都听过一句话：沉没成本不参与重大决策。但它多数时候只在两种场合出现：劝别人的时候，和看别人故事的时候。真轮到自己算，用的往往是它的反面。</p>
+<p>沉没成本，指的是那些已经付出、而且无论你接下来怎么选都拿不回来的东西——已经花掉的钱，已经搭进去的时间，已经投入的感情。它的关键从来不在“花了多少”，在“拿不回来”。</p>
+<p>所以“不参与重大决策”这句话，真正的意思不是让你忘掉它，而是算下一笔账的时候，把它从等式里拿出去。因为它跟接下来投不投，已经没有关系了——它现在唯一的作用，是让你舍不得走。</p>
+<p>所以你今天会听到五个维度来讲沉没成本。相信你看完这期内容，你会对沉没成本会有新的认知</p>
+<p>第一个点，过去的账。</p>
+<p>比方说你花一百块买了张电影票，看了半小时，发现就是个烂片，你是选择走掉还是继续停下来看”可你把这笔账拆开看：不管你继续坐还是现在走，那一百块都回不来了。所以真正该问的从来不是“钱都花了还看不看”，而是——从现在这一秒起，你愿不愿意再花两个小时，看完这部电影。</p>
+<p>人生里这笔账更大。一份工作待了十年，不代表第十一年就得继续；一个选择付出了很多年，也不代表必须用接下来的十年，去证明它没选错。</p>
+<p>有一句话是这么说的：人生只能向后理解，却必须向前生活。从今天回头看，那个决定好像是错的；但我们经常忘了一件事——今天的你，知道当年的你不知道的事。你没法拿着今天的信息、经历和判断力，回去审判五年前、十年前的自己。所以就算当时真的选错了，那也只是一笔该认的账：当时的你，用当时知道的东西，做了当时最好的选择。</p>
+<p>这给我们什么启发呢？一段经历没走到原本期待的地方，不等于它没有价值——学到的还在你身上，只是它只送你到这里。而如果为了证明过去没错，再搭进去十年，那不是坚持，是把未来的自己，也押给过去的决定。</p>
+<p>别拿未来，给过去陪葬。</p>
+<p>第二个点，别人的尺。</p>
+<p>最近看了一篇文章，写一个叫晨曦的女孩。十七岁去美国，大学学心理学和数学，毕业后在华盛顿做顾问。用她自己的话说，从十七岁起几乎没真正停下来，一直在追那个“更高的地方”。直到二〇一八年，甲亢复发，身体逼她停了下来。她辞了职，回国，因为一个公益项目第一次去了贵州，后来慢慢搬到村里：盖木屋，结婚，种水稻，村里还建了个图书馆。</p>
+<p>评论区点赞最多的一条，置了顶，大意是：十七岁就能去美国，家里条件可想而知。</p>
+<p>我看到这条的时候，第一反应不是反驳。家庭条件、教育、经济基础，当然影响一个人的选择，这个得承认。但问题是：拥有同样的条件，就一定会做出同样的选择吗？十七岁家里不同意，她会不会坚持自己去申请？在美国有工作有车有房，她会不会因为身体真的停下来？到了一个完全陌生的村子，她愿不愿意留下来，把人生重新安排一遍？这些，“家里条件好”一个变量，解释不了。</p>
+<p>咱们比较的时候，有个特别有意思的现象：别人的资源看得特别清楚，别人做过的选择反而看不见。别人过得越好，咱们越会说——他家有钱，运气好，赶上风口了。都可能是真的。但一个人的人生，从来不是其中一个变量决定的。</p>
+<p>这给我们什么启发呢？比较这个东西，你没法不比。但你选跟谁比、比什么，其实是在决定你怎么看待自己的人生。只往一个方向比，比来的每一样东西，最后都会变成砸向自己的石头。</p>
+<p>资源看得见，选择看不见。</p>
+<p>第三个点，没有答案的题。</p>
+<p>为什么我已经很努力了，还是没变成想要的样子？为什么有的人看起来没怎么努力，过得却不错？为什么身边人好像个个都有拿得出手的东西，我回头看自己，好像什么都没有？</p>
+<p>这些问题我以前会反复想。因为我觉得，只要把“为什么”想明白，就能安心了。后来我发现一件更早的事：你不是在找答案——你是在找一个理由，一个能证明“这一切本不该这样”的理由。可是人生，从来不按“应该”发生。</p>
+<p>所以现在我会跟自己说：我还是不知道为什么，但我已经不需要知道了。不是因为过去不重要，而是它已经发生了；也不是摆烂，而是既然问题不给答案，日子得先往下过。存在主义里有个态度，说的就是这件事：世界不一定会给你一个清楚的解释，但这不妨碍你继续生活。</p>
+<p>这给我们什么启发呢？“为什么”这三个字，问到最后，问出来的往往不是答案，是审判——每一遍“为什么是我”，其实都是把自己重新审了一遍。</p>
+<p>不是所有为什么，都有答案。</p>
+<p>今天的你，知道当年的你不知道的事。有些题现在没答案，不代表以后也没有——只是不用现在逼自己答。</p>
+<p>第四个点，往上的坡。</p>
+<p>有个词，我以前特别不喜欢：执念。觉得它假、空，好像什么东西想不开，最后都能换来一句“你放下执念”。这几年我才体会到，这个词精准得可怕。执念不是你特别想要某样东西——是你偷偷给自己立了个规定：事情应该按这个方向发展。干了这么多年，收入就应该一年比一年高；这段感情失败了，下一段就应该更幸福。真正折磨你的，不是你想要的东西，是后面那个“应该”。</p>
+<p>我自己就是典型。进互联网的时候正好赶上风口，工资一年比一年高，换个工作涨一次，晋升的机会肉眼可见。连续几年之后，人会产生一种错觉：觉得这就是人生本来的规律。可你冷静想想——哪有人能一年升一次职、年年涨工资，一直涨到退休？只不过刚好生活在一个快速增长的行业里，把时代给的上升，误认成了自己人生的轨迹。等行业一停下来，才发现原来人生不是这样。</p>
+<p>感情也一样，它不是手机——iPhone 用完十五，下一个自然就是十六，每一段关系面对的问题都不一样。比赛也一样，今年的最好成绩，明年可能就没了：又老一岁，可能受伤，可能天气不好。那努力就白费了吗？不是。努力和结果，本来就不是一条永远向上的曲线。</p>
+<p>尼采讲过一句话，叫“热爱命运”。它不是让你认命，说发生什么都无所谓；它的意思是，别一直要求人生把你不喜欢的部分删掉之后，你才肯接受它。</p>
+<p>这给我们什么启发呢？我还没到“热爱命运”那个程度——失意的时候，我做不到说“太好了，这也是命运的一部分”。但我至少可以慢慢接受一件事：人生出现下降的时候，不等于我这个人出了问题。</p>
+<p>人生是波，不是坡。</p>
+<p>第五个点，最后是你自己。</p>
+<p>这是最重要的一点。听到这儿你可能会问：如果我真的接受自己了，是不是就不会再进步了？觉得现在这样也挺好，那我还为什么要健身、为什么要工作、为什么要学新东西？</p>
+<p>我以前也是这么让自己进步的：觉得胖了，所以练；觉得不够优秀，所以学；看到别人比自己好，心里不舒服，所以告诉自己“你还差得远”。这个方式有用，它确实推着人往前走。但你想想这个游戏的规则：如果你所有前进的动力，都来自“我现在不够好”——那瘦下来之后呢？还想更瘦。赚到一百万之后呢？还想要更多。做到这个位置之后呢？盯着下一个。这场游戏没有终点线，因为每前进一步，终点就被挪一步。</p>
+<p>心理学家卡尔·罗杰斯说过一句话，大意是：一个很奇妙的悖论是，当我接受自己原本的样子时，我才能改变。</p>
+<p>同样是成长，有两种走法。一种是逃离：我不能这样，我必须变成另一个人，才算数。另一种是好奇：我挺喜欢现在这个身体的，但我想看看认真练一年，它能变成什么样；现在的日子其实还行，但我好奇接着做下去，能把它带到哪儿。两种看起来都在动，但你和自己的关系完全不一样——一个在追杀自己，一个在陪自己走。</p>
+<p>接住自己，改变才开始。</p>
+<p>所以回到开头那个问题：全亏了，继续投，还是止损？现在你可能会发现，这道题问的根本不是那笔钱——它问的是，你肯不肯让一件事结束。</p>
+<p>好，希望你越过越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s17" data-title="治愈心理创伤的五个方法">
+  <div class="s-head">
+    <div class="s-num">17</div>
+    <div class="s-headmain">
+      <div class="s-kicker">心理 · 成长</div>
+      <h2 class="s-title">治愈心理创伤的五个方法</h2>
+      <div class="s-meta"><span>2,512 字</span><span class="fname">原文件 · 治愈心理创伤的五个方法-预览版.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>我问你一个问题啊。<br>你觉得失恋更痛苦，<br>还是失业更痛苦？</p>
+<p>——失业。</p>
+<p>OK，大家怎么想，<br>可以把你的想法打在公屏上。</p>
+<p>我先说结论啊。</p>
+<p>你既然选了一个，<br>就说明你认为痛苦是分高下的。</p>
+<p>"受伤"和"创伤"，是两件事。</p>
+<p>受伤，是疼一阵，会过去。<br>创伤，是那件事早就过去了，<br>你的神经系统还没过去——<br>痛苦超过了它能承受的极限，<br>卡在那儿了。</p>
+<p>所以不管这事发生在恋爱里、<br>工作里、还是友谊里，<br>只要超了极限，<br>都会留下创伤，<br>只是方向不一样。</p>
+<p>所以要治愈创伤，有五个方法。</p>
+<p>第一个，心理咨询。<br>第二个，眼动疗法。<br>第三个，瑜伽和冥想。<br>第四个，演员疗法。<br>第五个，大脑重塑。</p>
+<p>最知名的创伤专家，<br>巴塞尔·范德考克，Bessel van der Kolk，<br>他说<br>不管是童年留下的创伤、<br>战争留下的创伤，<br>还是一次车祸留下的创伤，<br>都有治愈的方法。<br>而最好的方法，绝对不是吃药。<br>咱们由浅入深地讲。</p>
+<p>第一个方法，心理咨询。</p>
+<p>说到心理咨询，<br>很多人觉得它的本质就是跟人唠嗑。<br>你觉得，唠嗑真能把这事唠好吗？<br>其实还真管用。<br>管用的点，在两个方面。</p>
+<p>第一方面，<br>你愿意跟别人聊，<br>首先说明你还想活。</p>
+<p>就好像一个人掉进了水里，<br>他还在呼救，<br>就证明他想活命；<br>另一个人掉进水里，<br>连呼救都不呼了，<br>那他可能就是想沉下去了。</p>
+<p>第二方面，<br>如果对方是一个层次够高的心理咨询师，<br>你会在跟他聊的过程中，<br>意识到一个非常本质的问题：</p>
+<p>我之所以有这段创伤经历，<br>不是因为我糟糕，<br>是因为那段经历糟糕。</p>
+<p>这句话一出，<br>你会对自己产生一种同情——<br>对当年经历过那件事的你自己。<br>再往深挖一层，<br>你就不会自责了。</p>
+<p>比如有些人小时候经常被打、被骂、被霸凌。<br>你知道人的第一反应是什么吗？<br>一定是"我做错了什么"——<br>我这个鸡蛋为什么开裂了，<br>所以才引来了苍蝇。</p>
+<p>而他在咨询里起码会明白<br>这么糟糕的经历，落在谁身上，<br>谁都会有创伤，<br>谁都会难受，<br>谁都会出问题。<br>所以这不是我的问题。<br>当年的我，能扛过这一切，</p>
+<p><strong>不是你糟糕，是经历糟糕。</strong></p>
+<p>第二个方法，眼动疗法，EMDR。</p>
+<p>这一条讲给专业人士听，<br>咱们当长见识。<br>作者给它的定义是：<br>它是非常规疗法里，真的见效的那种。</p>
+<p>比方说，有个人小时候差点淹死过。<br>就在村口那个池塘，<br>脚底下突然踩空了，<br>水一下子没过头顶，<br>他扑腾了不知道多久，<br>才被人捞上来。</p>
+<p>人没事。<br>但从那以后，<br>他脸不敢碰水——<br>洗头都要仰着头，<br>游泳就更别提了，<br>水一漫过胸口，<br>心跳立马就上来了。</p>
+<p>这就是创伤：<br>事情过去了，身体没过去。</p>
+<p>有个医生给他做眼动治疗。<br>方法说出来特别土：<br>伸一根手指，离他眼睛三十多公分，<br>让他眼睛跟着手指走，<br>一边走，一边回忆那天。</p>
+<p>第一遍回忆，<br>他是被整个扔回去的——<br>又是那个池塘，<br>耳朵里全是水声，<br>心跳飙上去，<br>手把椅子扶手抓得死紧。</p>
+<p>手指左右晃，二十来下，<br>再问：现在呢，你还记得什么？</p>
+<p>奇怪的事发生了。<br>他想起一个从没想起过的细节：<br>那天岸边有人家在炒菜，<br>他是先闻到那股油烟味，<br>然后才滑下去的。</p>
+<p>再晃二十来下，接着想。<br>他又想起一个：<br>他在水里扑腾的那一分钟，<br>其实一直有人在朝他喊，<br>不是没人管他，<br>是他吓坏了，<br>什么都听不见。</p>
+<p>也就是说，<br>在最危险的那一分钟，<br>他不是一个人。</p>
+<p>再晃，再想。<br>到后来，他说了一句话：<br>那件事还在，<br>但我好像是在看一部电影——<br>隔着银幕，看当年那个小孩，<br>在水里扑腾，很危险。<br>但我知道，那是电影，<br>我坐在影院里，<br>我是安全的。</p>
+<p>就在这一句话里，<br>他把“当年”和“现在”，<br>分开了。</p>
+<p>那段活着的记忆，<br>变成了死去的记忆。</p>
+<p>为什么说它非常有效？<br>因为通过手指的晃动、眼神的转动，<br>大脑的神经回路会发生改变，<br>你看这件事的角度，会直接被改掉。<br>我一开始也不信，<br>直到我想起自己身上的一件事。</p>
+<p>大家都知道，我是一个特别怕热的人。<br>一热，我就暴躁，<br>经常因为太热，<br>连调理身体的项目都不做了。</p>
+<p>后来来了一位老医生，<br>问我：你是哪里人？<br>我说，漳州人。<br>他说，漳州人很喜欢吃小吃吧？<br>我去过漳州，<br>你们那边的小吃太多了，<br>尤其是每一家店的辣椒，都很有特色。</p>
+<p>就这样聊着，<br>我的艾灸，做完了。</p>
+<p>场外：哦~</p>
+<p>第三个方法，瑜伽或冥想。</p>
+<p>你做过瑜伽吗？<br>没有。你呢？也没有。<br>做过冥想吗？<br>也没有。OK，我也没有。</p>
+<p>作者说，在所有合法的治疗方式里，<br>带冥想的那种瑜伽，几乎是最好用的。<br>是印度那种带冥想的瑜伽，</p>
+<p>第四个方法，演员疗法。</p>
+<p>作者所在的那个州有个规定：<br>未成年人犯罪，<br>一半的孩子会被定罪，该处罚处罚；<br>另外一半，<br>会进一个项目——<br>你去演莎士比亚的话剧。</p>
+<p>你说这算什么处罚？演话剧？<br>作者说，这叫文明。</p>
+<p>演话剧有什么好处？<br>这些孩子要演不同的角色：<br>今天演奴隶，<br>明天演战士，<br>后天演英雄，<br>再往后，演一个王。</p>
+<p>同一个演员，<br>演王是一种气质，<br>演乞丐是另一种气质。<br>他会亲身明白一件事：<br>人在不同境况里给出的反应，<br>是完全不同的。</p>
+<p>那对一个带着创伤的孩子来说，<br>这意味着什么？<br>意味着我现在行为这么怪诞，<br>活得像个有病的人，<br>其实只是环境给我的影响——<br>但环境是可以换的。<br>我的人生还有很多种角色可以演，<br>具体演哪一个，<br>剧本是我自己写。</p>
+<p>那个犯罪的未成年人，能怪他吗？<br>说不能，也不对。<br>家庭教育有没有原因？有。<br>社会有没有原因？有。<br>他自己有没有原因？也有，<br>因为选择最后还是摆在他面前。</p>
+<p>但通过表演他明白了一件事：<br>我只是原因里的一部分，<br>我不是没救。</p>
+<p>我们小时候最怕听什么？<br>老师给你下定论：<br>"你这辈子就这样了""你小子没救了"。<br>这话就是把人的路堵死。<br>你既然说我没救，<br>那我就去混社会了。</p>
+<p>而演员疗法，恰恰是把这条路重新打开——<br>不是我没救，<br>是我还没换到下一个角色。</p>
+<p>第五个方法，大脑重塑，学术名叫神经可塑性。</p>
+<p>如果你是个意志力很强的人，<br>就逼自己做积极的事，<br>逼自己和积极的人来往，<br>时间长了，创伤自己会被磨平。</p>
+<p>说真的，这个方法对普通人反而最管用。<br>但我也知道，<br>人在没心气的时候，<br>逼自己是最难的。<br>点背的时候，喝水都塞牙，<br>干啥都想躺着。<br>但改变的第一步，<br>永远是最难的一步。</p>
+<p>简单说一下原理。<br>大家以为行为是大脑控制的，<br>但很多人不知道：<br>行为可以反过来控制大脑。</p>
+<p>举个例子就明白了。<br>一个混社会的人，<br>你让他去部队，他肯定不愿意。<br>但你真把他送进去，<br>他慢慢就适应了，<br>最后甚至爱上了部队。</p>
+<p>为什么？<br>部队纪律性太强了，<br>他每天都在重复积极的行为，<br>时间一长，习惯长出来了，<br>他就变成了一个自律的人。</p>
+<p>所以最后，<br>作为任何一个带着创伤的人，<br>你要做到的就一件事：<br>不要怪自己。</p>
+<p>有人说，坏人也不怪自己，<br>那还得了？<br>是有一定道理。<br>但你放心，<br>坏人不用你审判，<br>审判他的是法律。</p>
+<p>而我们每一个普通人，<br>要学的是原谅自己——<br>别自己跟自己内耗，<br>先试着往前走一步。</p>
+<p>好，希望大家越过越好，<br>下课。</p>
+  </div>
+</section>
+<section class="script" id="s18" data-title="如何克服拖延症（同题仿写）">
+  <div class="s-head">
+    <div class="s-num">18</div>
+    <div class="s-headmain">
+      <div class="s-kicker">方法 · 短稿</div>
+      <h2 class="s-title">如何克服拖延症（同题仿写）</h2>
+      <div class="s-meta"><span>2,123 字</span><span class="fname">原文件 · 仿写稿-如何克服拖延症（同题仿写）.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲拖延症。<br>在讲之前我有一个问题啊，<br>你觉得一个人拖延，<br>是活太多了，还是人太懒了？<br>——那肯定是活太多了吧，<br>谁天生想拖啊。<br>OK，大家怎么想？<br>把自己的想法写在公屏上。</p>
+<p>我们先说结论啊，<br>拖延和懒，殊途同归，<br>但它俩真不是一回事。<br>懒，是我什么都不想干；<br>而拖延，是我特别想干，<br>可就是迈不出那一步。<br>真正拦住你的，<br>既不是活多，也不是懒，<br>是你心里那股说不清道不明的害怕。<br>所以今天我们就来讲拖延症的成因，<br>以及它的解决方法。<br>看完这期内容，<br>我相信大家一定可以克服自己的拖延。</p>
+<p>我们先来说拖延症到底是如何形成的<br>其实你仔细想一下<br>为什么你在正准备做一个正事的时候<br>你突然想刷一下手机<br>你突然想看一下视频<br>你突然想听看逍遥宫主的视频<br>其实是因为你害怕<br>因为你害怕没办法把这事做完<br>或者你害怕没办法把这事做好<br>其实是因为这种恐惧<br>所以导致你想着要不<br>放一放因为人体的机制其实叫什么<br>fight or flight<br>我要么就做这事<br>要么我就逃避<br>所以当你产生这种恐惧心理的时候<br>你的这个大脑的这个<br>杏仁核里面会有一组神经元<br>它是管理你的情绪识别的<br>当你受到威胁的时候<br>它会释放出一种荷尔蒙<br>其中就包括了去甲肾上腺素<br>换言之就是当你感到恐惧<br>当你感到你做不好或做<br>不完这件事情的时候<br>你的杏仁核就会释放压力<br>荷尔蒙或者是威胁的这种荷尔蒙哈<br>这种恐惧感会覆盖住<br>你前额叶皮层的脉冲<br>这个前额叶皮层是干嘛的<br>是负责理性的<br>是负责规划的<br>它其实是帮你克服恐惧的<br>它其实是帮你克服懒惰的<br>为什么呢<br>比方说你学习的时候<br>你就需要这个前额叶皮层<br>由于你的前额叶皮层有理性<br>所以他知道短暂的来说<br>学习一定是极其耗能的<br>任何形式的进步都是非常耗能的<br>但是从理性和逻辑的角度来讲<br>前额叶皮层告诉你<br>长期来说<br>学习进步是一个好<br>好事但是这个前额叶皮层的<br>脉冲如果被恐惧覆盖以后<br>你的大脑会呈现出三种状态<br>一个叫fight<br>一个叫flight<br>还有一个叫pause<br>什么意思呢<br>就是说要么我就解决问题<br>要么我就逃离<br>我回避问题<br>要么我就暂停<br>2/3的情况下是不去解决问题的<br>你发现没<br>所以拖延症患者本质<br>上是他控制不好情绪<br>他没有办法应对自己的这种恐惧感<br>所以他有2/3的情况会不<br>去面对当下的工作<br>所以我们可以得出结论<br>拖延症患者并不是懒人<br>而是控制不住情绪的人<br>所以什么样的人往往比较容易拖延呢<br>比较感性的<br>完美主义者<br>完美主义者<br>比较感性的以及啊<br>这种就是非常敏感的人<br>因为只有敏感你才能完美<br>不敏感的人是无法成为完美主义者的<br>对吧就是他很在意这种细节<br>他想把每个细节都做好<br>正是因为他想把每个细节都做好<br>他太在意了<br>所以这个看起来很小的困难<br>突然变成了各个具体的困难<br>这恐惧袭来以后<br>他就不想干了<br>你看fight flight pause<br>就是你回避和暂停都不是解决问题<br>就会拖延<br>那么第2部分我们就来讲<br>这个克服拖延的方法<br>有一些错误的方法是什么呢<br>有很多人认为拖延症患者<br>是因为他的时间管理不行<br>通过以上的描述我们知道<br>拖延症患者是非常聪明的<br>他不是时间管理不行<br>他可能时间管理很行<br>只是恐惧太大了<br>他没法管理<br>恐惧袭来的时候<br>他这个前额叶皮层这个理性部分没了<br>被遮盖住了<br>所以他没法管理<br>他是聪明的<br>他是知道的<br>所以你应该学的并不是时间管理<br>而是两个点<br>一个叫强调逻辑<br>再一个叫减轻恐惧<br>什么叫强调逻辑呢<br>很多人是自知自己是拖延症的<br>由于他拖延一件事情<br>导致他没做这个事情<br>或者没做完这个事情<br>他会给自己找一个特别好的借口<br>叫什么因为我是完美主义<br>所以我才拖延<br>所以呢我才没做完<br>但是如果你足够聪明的话<br>你自己去推敲一下你这句话<br>你就会发现他极其有逻辑漏洞<br>他说这个话就有点像什么呢<br>比方说我中考高考拿到了数学试卷<br>由于我是完美主义想拿满分<br>但是最后一道大题我<br>没有把握把它解完<br>我没有把握能拿满分<br>所以我没交卷是不是<br>嗯<br>所以从逻辑的角度来讲<br>你不要给自己找借口<br>否则的话其实从结果的角度来看<br>和懒人是没区别的<br>这是第一个点啊<br>要不断强调逻辑<br>就是你要从逻辑的角度不断的强调<br>就是说千万不要交白卷<br>哪怕它是一个非满分的卷子<br>也不要交白卷<br>这是第一个点<br>非常简单的一个点<br>要不断强调<br>不要欺骗自己<br>那第二个点是什么呢<br>叫减轻恐惧<br>如何减轻恐惧呢<br>就是你要做一件正事<br>你知道这个恐惧最大<br>的时候是什么时候吗<br>其实是刚开始<br>是你去面对它的那一瞬间<br>那是最恐惧的<br>就是面对它之前的5分钟<br>10分钟是最恐惧的<br>我们形而上的做一个想象<br>假设恐惧是一个完美的圆<br>如果你的指头哈碰到了这个完美的圆<br>这个完美的圆还圆吗<br>不圆了是吧<br>啊是<br>那是不是它就不是恐惧了<br>恐惧就变了对吗<br>假设恐惧等于圆<br>当我的手碰到这个圆的时候<br>这个圆不完美了<br>恐惧就被打破了对吧<br>所以就是面对它是很重要的<br>但是由于有的时候恐惧太大了对吧<br>很好的一个方法是什么<br>拆分问题<br>或者说是不要给自己压力那么大<br>比方说让你一个月读一本书<br>肯定是很困难的<br>但是我让你一天读10页书<br>就很简单<br>所以还是拆分问题<br>这也是老生常谈了<br>总而言之<br>你掌握以上三个方法第一<br>通过逻辑的角度来告诉自己<br>完美主义不等于你要交白卷<br>第二触碰恐惧的一瞬间恐惧<br>就会被打散<br>第三把这个困难拆分成小困难<br>一点一点去做<br>如果同时你能做到以上三点<br>你的拖延症一定会被解决<br>而且与此同时<br>你还会练就一个什么样的技能呢<br>控制情绪<br>你会获得勇气<br>因为你会不断的有正向反馈<br>你以后就不再怕事了<br>我之前看过一个特别有意思的观点<br>他说所有的宗教书籍<br>里面出现最多的词<br>你知道是什么<br>叫Don't be afraid别害怕<br>勇气是人类最欠缺的<br>好希望大家越过越好<br>希望大家不再拖延啊好下课</p>
+  </div>
+</section>
+<section class="script" id="s19" data-title="如何摆脱精神内耗">
+  <div class="s-head">
+    <div class="s-num">19</div>
+    <div class="s-headmain">
+      <div class="s-kicker">方法 · 短稿</div>
+      <h2 class="s-title">如何摆脱精神内耗</h2>
+      <div class="s-meta"><span>1,948 字</span><span class="fname">原文件 · 仿写稿-如何摆脱精神内耗.md</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲精神内耗。<br>在讲之前我有一个问题啊，<br>你觉得内耗的人，是心思太重，还是太闲了？<br>——那肯定是心思太重啊。<br>OK，大家怎么想？<br>把想法写在公屏上。</p>
+<p>我们先说结论啊，<br>内耗和想太多是殊途同归的，<br>但他们真的不是一种人。<br>想太多，说的是思考的成本高；<br>而内耗指的是，<br>你以为你在思考，<br>其实你的大脑在原地空转，<br>一焦耳都没有用在解决问题上。<br>所以今天我们就来讲精神内耗的成因，<br>以及它的解决方法。<br>看完这期内容，<br>我相信大家一定可以把内耗停下来。</p>
+<p>我们先来说内耗到底是怎么形成的。<br>其实你仔细想一下，<br>为什么领导就说了句"你来我办公室一趟"，<br>你从工位走到办公室的这十米，<br>已经把自己开除了三次，<br>把这一句话解读出了八种意思？</p>
+<p>其实是因为你的大脑有个坏习惯。<br>心理学上有个词，叫反刍思维。<br>这是耶鲁大学的心理学家<br>苏珊·诺兰-霍克西玛提出来的。<br>什么叫反刍呢？<br>就是牛吃草那个反刍。<br>吃下去，吐出来，再嚼一遍，再咽下去。<br>你的大脑也在干同样的事：<br>一件事明明已经过去了，<br>它把这件事捞出来，嚼一遍，咽下去，<br>过两个小时再捞出来，再嚼一遍。<br>问题在哪呢？<br>草嚼一遍，能吸收营养，<br>事嚼一百遍，不产出任何营养，<br>它只生产一个东西，叫恐惧。</p>
+<p>为什么嚼出来的全是恐惧呢？<br>因为你的大脑分不清<br>"真实的危险"和"你想出来的危险"。<br>你在脑子里排练跟老板吵架，<br>排练了一百遍，<br>你的杏仁核就真的一百次当了真。<br>它每次都以为你遇到威胁了，<br>每次都给你释放压力荷尔蒙。<br>所以你会发现一个特别诡异的事：<br>你今天什么都没干，<br>就是躺着想了一下午的事，<br>但你累得像跟人打了一架。<br>因为对你的身体来说，<br>那一百次排练，<br>就是一百次真的战斗。</p>
+<p>那什么样的人容易内耗呢？<br>共情能力强的、责任感强的、<br>心思重的、敏感的人。<br>因为不在乎的人是不会内耗的，<br>只有在乎，才会内耗。<br>对吧？<br>你看，<br>内耗的本质，<br>不是你想太多，<br>是你的大脑把"想"当成了"在做"。<br>反刍不是思考，是自残。</p>
+<p>那么第二部分，<br>我们就来讲停止内耗的方法。<br>先说一个错误的方法是什么呢？<br>有很多人认为，<br>内耗是因为想太多，<br>那解决方案就是"别想太多"。<br>这是全世界最没用的一句话，<br>就像对一个失眠的人说"你睡啊"，<br>他能睡着吗？<br>睡不着。<br>所以你要学的不是"别想"，<br>而是三个动作。</p>
+<p>第一个动作，叫区分思考和反刍。<br>还记得开场那个问题吗？<br>内耗的人不是心思太重，<br>恰恰相反，<br>内耗的人思考的产出比谁都少。<br>其实有一个特别简单的检验标准：<br>思考会指向行动，<br>反刍只在原地绕圈。<br>你把脑子里那个念头拎出来，<br>问它一句话：<br>这个问题你已经转到第三圈了，<br>它有没有多出来一个动作？<br>没有。<br>那就不是思考，是反刍，<br>立刻停，去做点什么。<br>你内耗一整个晚上，<br>产出是零，<br>情绪成本是一整个晚上。<br>从结果的角度讲，<br>这跟什么都不干是一回事，<br>纯亏。<br>这是第一个动作，<br>非常简单的一个点：<br>每一个念头都要产出动作。<br>不产出动作的念头，<br>都在收你的税。</p>
+<p>那第二个动作是什么呢？<br>叫用最小的行动关后台。<br>如何理解呢？<br>内耗最大的来源，<br>其实是"悬而未决"。<br>你知道大脑有一个毛病吧，<br>心理学上叫蔡格尼克效应，<br>心理学家蔡格尼克发现的：<br>一件没做完的事，<br>大脑会一直给它挂着号。<br>像什么？<br>像你手机后台开着的程序，<br>你不理它，<br>它也一直在耗你的电。<br>所以你躺着刷视频的时候，<br>为什么突然"哎不对，我那件事还没回"？<br>就是那个后台程序弹出来了。<br>怎么关掉它呢？<br>非常好用的一个方法：<br>你不需要解决整件事，<br>你只需要动1%。<br>那条你拖了一周不敢回的消息，<br>你哪怕只回一句<br>"我看到了，明天答复你"，<br>后台程序就关掉一个。<br>因为大脑认的不是"做完"，<br>大脑认的是"启动了"。<br>完成1%，大脑就会松手。</p>
+<p>那第三个动作呢，<br>叫给焦虑设一个预约制。<br>有人说，<br>我也想停，但念头自己冒出来怎么办？<br>很好办。<br>你每天给自己划十五分钟出来，<br>就叫"官方焦虑时间"，<br>比如晚上六点到六点一刻。<br>其他时间冒出来的担心，<br>你别跟它吵，<br>拿张纸把它记下来，<br>跟它说：到点了再想你。<br>你猜怎么着？<br>真的到了那十五分钟，<br>一半的担心你已经想不起来了，<br>另外一半，<br>写下来的那一瞬间它就变小了。<br>因为你发现没有，<br>恐惧在脑子里的时候是个庞然大物，<br>落在纸面上，<br>它就一行字。<br>焦虑也是要预约的，<br>不许插队。</p>
+<p>总而言之，<br>你掌握以上三个方法，<br>第一，区分思考和反刍，<br>不产出动作的念头立刻停；<br>第二，用1%的行动关掉后台，<br>大脑认的不是做完，是启动；<br>第三，给焦虑设预约制，<br>不许它免费占用你一整天。<br>如果同时你能做到以上三点，<br>你的内耗一定会被停下来。<br>而且与此同时，<br>你还会练就一个什么样的技能呢？<br>你会把省下来的精力，<br>第一次完整地用在自己身上。<br>你会获得一种特别新的自由：<br>事情在你脑子里只剩一个版本，<br>就是当下这个版本。</p>
+<p>我之前看过一个特别有意思的研究，<br>宾州大学让一批人<br>把自己担心的事全都写下来，<br>追踪下来发现，<br>你猜有多少担心真的发生了？<br>百分之八十五的担心，<br>根本没有发生。<br>你一直都在为没有发生的事打工。<br>好，希望大家越过越好，<br>不再内耗，好下课！</p>
+  </div>
+</section>
+<section class="script" id="s20" data-title="读心术的十个方法">
+  <div class="s-head">
+    <div class="s-num">20</div>
+    <div class="s-headmain">
+      <div class="s-kicker">方法 · 短稿</div>
+      <h2 class="s-title">读心术的十个方法</h2>
+      <div class="s-meta"><span>4,294 字</span><span class="fname">原文件 · 十个心里学技巧.txt</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天我们来讲读心术的十个方法。讲之前我有一个问题，在刷这条视频的时候是不是右脚搭在左脚上？在视频的最后我会告诉你们为什么。这条视频的论据是来自于世界知名的意念魔术师ozpillman和fbi二十五年工龄的反间谍员joenova。这条视频会在你工作、事业、爱情的谈判中起到巨大的作用。</p>
+<p>讲内容之前，先给大家一个小技巧。尝尝咸淡，如果你的伴侣偷偷去见了异性，你问他去见了谁的时候，他一定是双手插在私处。之前ozpillman说这个方法百试不爽。如果他见的是同性，双手的姿势会比较舒展。如果他见的是异性，一定是双手插在私处。</p>
+<ul><li>首先第一个方法是如何通过语言来识别谎言。说谎的人并不是说他摸鼻子就代表他说谎，或者并不是说他双手插在胸前就是说谎，这都是一些所谓的自我安慰动作，不代表他说谎。说谎人最大的特征是他在自己的描述中会减少大概四分之三的低人称描述，就是说他把我这个词摘出去了。</li></ul>
+<p>你是不是偷偷去见异性了？没有。你有没有偷偷抽烟？没。谁抽烟了？原理是什么？就是人是分意识和潜意识的，而潜意识占到了我们思想的大部分。就人在说谎的时候，潜意识会有一种恐惧的感觉，这种恐惧的感觉就会通过语言表述出来。怎么通过语言表述出来？就是把我摘掉，就是那个干错事的人不是我。为什么干错事的人不是我？因为人类的潜意识都希望把自己塑造成一个高于自己的存在，无论是道德上还是智商上还是能力上都要高于自己的存在。所以问到负面问题的时候，他会不由自主的把我摘掉。</p>
+<ul><li>第二个识别别人谎言的话，就是他会用大量的文字描述简单的事实。大家都知道这个美国总统尼克松当时出现了一个水门事件，也就是说他在竞选的时候去监听他的竞选对手的信息。但是他在发声明的时候他说：我们美利坚合众国的白宫里面从官员到同事没有一个人做这种事。你看是不是非常典型？</li></ul>
+<p>首先他把我摘掉了，其次他用了大量的语言描述了一个简单的事实。他本来可以说我没有倾听，但他没这么说，他说我们美利坚合众国的白宫自上而下，自官员到同事没有一个人敢这种龌龊的事情。长难句，但是他表述的核心是简单事实。这两个同时具备就绝对在说谎。<br>一般如果说水平差一些的人会用简单句，他会把一句话说的特别简单，他会尽量少的去白描事实。但是水平高一些的人就会用长难句，用复杂的句式包装一个简单的事实。</p>
+<ul><li>第三个是识别一个人的个性是冷漠还是热情，就是你看这人会不会假笑，他假笑程度大不大？他如果说他假笑的特别真，特别大，说明这个人底色特别冷漠。为什么这么说？就是说首先他不在乎我们之间聊的内容，其次他想希望通过假笑来结束这场对话。第三他甚至不在乎自己控制自己的身体来假笑。一般人是不希望假笑的，不想笑我就不笑，我可能通过尴尬来结束这场对话。但是特别冷漠的人他根本不在乎这些，以最高笑的方式赶紧结束。所以这个假笑声越大的人，假笑的越真的人，假笑越夸张的人，他往往是那个最冷漠的人。</li><li>第四个点就相对比较简单了，就是说你可以通过看一个人的额头看出他的性格。我觉得和我们中国的面相有点像，他们就说这个所谓天庭。fbi的探员他说其实你主要看的是什么？是眉宇之间，两个眉毛之间。你看这个人的个性，一个人是否思虑过度，一个人是否心思缜密，一个人是否喜欢思考，在他的眉头之间就可以看出来。看皱纹，wrinkles。如果说他的眉毛之间皱纹比较多，说明这个人心思很重。</li></ul>
+<p>那么如果说一个人眉宇之间非常的平整，说明这个人就没有那么重的心思。根据对方不同的性格，你就要转换自己和对方打交道的方式。心思不是很重的人，你就可以敞开心扉一点，就无所谓一点。如果说这个心思很重的人，往往证明他的底色相对来说比较敏感，他的思想相对来说比较复杂，你说话就要相对谨慎一些。<br>而且这个东西是岁月在人的脸上留下的痕迹，是改不了。</p>
+<ul><li>第五个点是用发型去看一个人的性格。因为发型这个东西是没有要求的，你听说过有dresscode，就是你去一个场合，他要求你穿怎么样的衣服，你有可能是要穿成coser的样子，你有可能是要穿正装。但是没有会对发型有要求，也就是发型是一个完全自主的存在。</li></ul>
+<p>简单来说就是有刘海的相对来说比较封闭，内向一些，或者说他自我保护欲会更强一些。把头梳到后面，把刘海亮出来的，像这种人往往就是自信，坦荡一些。但是发挥到极致就有点自大，也有这种情况。这个是基础的。<br>除此之外再加一层的话，就是你看他对发型的精致程度是不是一丝不苟，是不是严丝合缝，那你就知道这个人对事情的要求和他的发型是一样的。因为没有会要求发型，也就说他下意识他底色对自己的发型是这样要求的，那他对事情要求也是这样。<br>你要是想给人建立一个好的第一印象，尤其是在工作场合中，最好是要打理自己的发型。大家看我这性格就知道了，乱了吧唧的，拍视频前还会捯饬一下，如果在生活中见到我肯定蓬头垢面的，知道我这人可能生活中没那么讲究，工作中讲究一些。你看你通过这个就可以解读出一个人的性格，然后通过面部的下半部分可以看出一个人对话题的接受度或者对于一个提议的接受度。<br>你不用听他怎么说，你需要观察的是几个事情，比方说你提出一个提议，你要察言观色的过程中，你看他鼻子的褶皱度。而且鼻子和嘴是连接在一起的，比方他会抿嘴，并且这个鼻子会褶皱，就这种表情一闪而过，这就代表他可能不喜欢，他可能抵触，但是他嘴上可能说：我同意。那你就知道他的配合度不会太高。<br>以及就是说人有的时候不会抿嘴，他会用舌头去顶自己的口腔内壁，这也代表着他不知可否，本质上是否定的。在这个基础上你不用听他说什么，你听他音色，如果他音色高，那你就知道其实他的内心是同意的。如果他音色低沉，就知道他最近的状态是什么样子，以及他对这件事情的态度是什么样。</p>
+<ul><li>第七个点其实是躯干的闪避。躯干闪避是什么？就是你要判断一个人喜不喜欢你，你看他跟你的安全距离。一般情况下安全距离是维持在半米到一米之间，如果你往前倾，对方下意识的躯干闪避，然后你往后倾，对方还是维持在原地不向前倾，证明对你没啥好感，就是他的身体是诚实的。</li></ul>
+<p>而且躯干闪动那个点还可以应用在生活中的方方面面。你比方说你的伴侣或者是你周围的朋友看手机的时候，你只要一瞄，他手机就变成这样了，姿势倾斜了。您猜怎么着？一定是在隐瞒些什么，一定是有一些不想让你知道的东西。是，那这个时候你要看他手机吗？当然不要看了，但是你可以告诉他：我知道你背后在干嘛，你别搞了，别搞我心态。是吧？他就会瑟瑟发抖，战战兢兢。就可以了。<br>再延伸一点就是说他手机老扣着，你一走进他的手机，他就坐立难安，这些都是可能隐藏一些，但是隐藏东西你不用去看的。有的时候隐藏的可能只是你比方说闺蜜之间吐槽男朋友，或者是兄弟之间吐槽女朋友都很正常，这是爱情之中，两性关系之中。你要是再放到工作之中也是一样的。</p>
+<ul><li>第八个点就是说在一个局里面，在一个重大场合里面，你要看这个人兴趣在什么方向，是不是在你身上。你不要看他上半身，你要看他下半身，尤其看他的脚。脚尖对门证明他想撤，如果脚尖对着其他人，他可能喜欢这个局里的其他人，他想去那个人那边。为什么是脚尖？因为人类的底层机制是fightorfight，人类随时要做好逃离的准备。</li></ul>
+<p>逃离的第一反应是什么？就脚尖冲什么地方，就是他要逃离的方向。他可能觉得跟你聊天不舒服，他要去别人那边。或者说有一个人他可能正在跟别人聊天，但是他脚尖冲着你，可能很远，跟你有过几次对视，你知道他可能会对你感兴趣。<br>还有就是商务谈判的时候，我们都想了解对方到底是认同你的说法还是对你的说法不屑一顾。如果他对你的说法不屑一顾，他一般听你说话是大概这个样子的，他可能会用舌头去顶自己的口腔内壁，以及他会抬起下巴，用鼻孔看你，可能没有那么夸张，但是你能感受出来是这样。这一定是对话题不感兴趣，或者对你是一个否定状态，或者是在审视你的状态。<br>如果对话题感兴趣，甚至非常同意你的说法，他的动作应该是什么样子？应该是这样，耳朵倾向你，对吧？我有时候对什么东西感兴趣，我经常是这样，因为我耳朵不好，我说话声音太大了，导致自己稍微有点轻度耳聋，所以我经常感兴趣我就这样，说啥呢？我想听，我每次听到八卦的时候我都是这样，我要保证我完全听清楚。</p>
+<ul><li>第九个读心术的方法是什么？就是你看他的双手，他双手如果是这样叉腰，代表他不舒服，代表你说的话可能有些冒犯，这是一个领地意识的pose，一个领地意识的姿势，就说这是我的领域，你不要乱说话，或者说你不要尝试把我的东西拿走，就是这样一个东西。</li></ul>
+<p>如果反过来大拇指朝前，就证明什么？不是说他有领地意识，而是他正在观察，他在思考，他在想你说的话，他还没有给出态度。那如果这个时候他双手抱在一起，代表什么？不代表什么，还是在观察，因为人需要把手放在一个地方，你要么插在兜里，要么放在胸前，你要两个耷拉着有点怪，对吧？所以这很正常，不要把这个当成一个特别奇怪的东西。<br>也就是说这个读心术，也就是所谓通过一个人的微表情或者微动作观察一个人，你要看的并不是单个动作或者单个语言给予你的信息，每一个动作每一个语言都会传递一些信息，你要看的是这个信息之间的变化。比如说有些人天生就喜欢这样，因为他本身的自我防护意识就比较强。<br>你比方说他双手搂抱着，突然又变成了这样，就是在搂抱的同时捏了自己的鼻子，两个自我防护的动作加在一起，有可能才代表他对你说的话不知可否，有可能才代表他在回避，他在说谎。所以就是单个动作你很难看出对方的内心到底是怎么想的，但是如果把所有的动作加到一起，把他所有的动作之间的变化加到一起，你就能读出他真实的想法是什么样子。<br>最后我来解答一下开场的问题，为什么我说你是右脚搭在左脚上？因为下班以后大家都得坐着，但是你要知道人的身体不是绝对平衡的，你双手插在胸前的时候有一个姿势，对吧？你脚肯定也有一个姿势，其实是为了让你自己更加平衡。往往右撇子就是右脚搭在左脚上会更加平衡，跷二郎腿的时候会这么翘，而左撇子大概率会左脚搭在右脚上，而右脚搭到左脚上的概率大概是百分之六十到百分之七十。<br>所以我开场说了这么一句话，所以很多看似读心术的东西，本质上是经过观察，经过归类得来的一些结论。我当时看他们的文章和视频，看得我醍醐灌顶，我觉得这些技巧太牛逼了，结果我看到一条高赞评论，那个高赞评论是这么写的：女朋友说我他妈现在超生气，男朋友脑子在想。根据他的微动作和微表情，我发现他生气了。<br>所以很多时候谜底就在迷面上，你甚至不需要看微表情，是吧？ok，我觉得这个亲密关系里面你是不用看微表情，他会直接告诉你，但是在这个商业谈判之中，在这个同事相处之中，在朋友相处之中有些很微妙的东西，知道比不知道好。<br>今天就讲到这里，希望大家越过越好，下课。</p>
+  </div>
+</section>
+<section class="script" id="s21" data-title="吸引力法则">
+  <div class="s-head">
+    <div class="s-num">21</div>
+    <div class="s-headmain">
+      <div class="s-kicker">方法 · 短稿</div>
+      <h2 class="s-title">吸引力法则</h2>
+      <div class="s-meta"><span>3,270 字</span><span class="fname">原文件 · 吸引力法则.txt</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>看完这期内容，你会突破自己的基因和生长环境的局限性，不可逆地提升自己的思维模式，从而改变自己的命运。所以今天我们来讲吸引力法则。</p>
+<p>在讲之前我依旧有两个问题：</p>
+<ul><li>第一个问题是你觉得你的父母给予你的基因影响你更大，还是你的父母给予你的生活环境影响更大？生活环境、基因，大家怎么想？把自己的想法写在公屏上。</li><li>第二个问题是你有没有发现你的认知很高，但是你的行为总是跟不上你的认知，你总是做不到知行合一。</li></ul>
+<p>的确，今天我们的论据是来自全球知名的个人潜能开发专家，也是所谓的吸引力法则教父之一Bob Proctor。我们的内容大致会分为两部分：</p>
+<ul><li>第一部分会讲吸引力法则的工作原理。</li><li>第二部分会讲如何改变自己的认知模式，从而改变命运。</li></ul>
+<p>首先来讲吸引力法则是如何运作的。按照他的说法，吸引力法则并不是一个假想或者是一个假设，而是像地心引力一样，它就是真实存在的。他说人其实可以被拆分为两个部分：</p>
+<ul><li>第一部分叫做你的身体。</li><li>第二部分叫做你的思想。</li></ul>
+<p>第一部分来讲人的构成，你的身体究竟是一个怎样的存在？你的身体是一堆分子经过能量的作用，震动的一个存在。也就是说你就算离开你的身体，你的身体还是在震动的。如果你拿显微镜去看，即便是一个死人，他的身体都是一堆分子在震动。</p>
+<p>但是人之所以为人，是因为我们不只是物理层面的一个身体，我们还有自己的一个思想。一个活人是如何生活的？就是说你的思想控制你的身体震动的频率或者是你身体震动的模式，从而你就成为了你。</p>
+<p>第二部分就要讲思想的构成，一个人的思想又可以分为两部分：一部分叫意识，另外一部分叫潜意识。问题来了，你觉得你平时做决定是受你的意识影响还是潜意识影响？意识其实不是。你有没有发现一个非常微妙的事情？我现在问你，你明天要不要去创业？你的第一反应是什么？不创业。第一反应为什么是不创业？说明你其实没思考。其实人的大部分决定是被自己的潜意识影响的，而不是意识影响。</p>
+<p>你的思想以为它自己在思想，其实它没思想。你的大脑认为它在思考，其实它没思考。我们说了人大部分的决定是由潜意识做出的，那么潜意识有什么控制？有一个词叫做paradigm，这个paradigm翻译成中文叫做范式。就是规范式的。</p>
+<p>我举个例子大家就明白什么叫范式思维了。比方说你找对象的时候，你可能给自己定了五个标准，比方说他要长得帅、长得漂亮，或者说他要有钱，他家里面要有房、有车。但是真正当你谈恋爱的那一瞬间，你根本不在乎那五个标准，你的理性全没了，你喜欢就只是对他有感觉。你为什么对他有感觉？因为他的范式思维和你的范式思维产生了共振，你潜意识里面喜欢他，而不是用理性去筛选自己喜欢他。</p>
+<p>换言之，人活着你做的所有的重大决定都和你的范式思维相关。你的范式思维就是你潜意识里面的分子波动，你们这个波动频率可以达到共振，你就喜欢。这是对人，对于思想，你也是要找那个和你有共振的思想。对于工作，你也是要找那个和你有共振的工作环境，这个就是所谓的范式思维的共振。</p>
+<p>无论男女都有一定的直觉，这个直觉是啥？其实就是你的范式思维，就是你没思考。我有一个直觉，我不喜欢这个人，我有个直觉我喜欢这个人，我有个直觉我能干这个事，我有个直觉我不能干这个事，这就是你的范式思维。你以为是你直觉很准，其实不是的，是你把自己框死了。你以为自己只能干这个事，是你父母告诉你的，是你从小到大生长环境告诉你的，所以你才觉得有些事我注定干不了，你还觉得是自己直觉准，其实不是的，是你的范式思维把你框的，你只能做那一两件事。</p>
+<p>这个范式思维是怎么来的？其实就是从小你爸妈跟你说那些道理，因为他反复的在说，反复的在给你的潜意识进行灌输，所以你的潜意识才形成了当下的范式思维。比方说小的时候，你父母有没有告诉钱是省出来的？说过。钱真的是省出来的吗？好像不尽然。但是当你成年以后，当你可以挣钱以后，你还是尝试去以省钱的方式来攒钱，而不是以赚钱的方式来致富，这就是范式思维对于你的限制。</p>
+<p>而且你在互联网上获取信息的时候，你以为你学到了新东西，其实没有，你只是在筛选那个和你的范式思维共振的信息。换言之，你只是去相信或者是点赞你愿意相信、愿意点赞的东西。为什么？因为和你不共振的这种信息会让你感到不适，会让你感到不舒服，甚至有点反胃。</p>
+<p>如果当下活得非常好，那你的范式思维很棒。但是如果说你现在遇到了困境，很有可能是你的范式思维在当下这个时代或者在你的状况之中它不管用，或者说你不满足于这样的生活，你的范式思维达不到你对于生活的要求，所以我们就必须得做出改变。</p>
+<p>你想要改变如何去思考，几乎是不可能的，因为底层是范式思维，你明明听了那么多道理，你还是过不好一生，这道理你想也想明白，你就是做不到，就是无法知行合一。为什么？因为你感到不适，所以要改变的是潜意识的范式思维，而不是思考本身。</p>
+<p>那我们就讲到第二部分了，想要改变潜意识只有一个方法，就是你要想变成什么样子，把这样的信息不断的重复给自己听，每天说二十到三十遍。Bob Proctor他就说了一句话，他说我经常跟自己说话，说的我周围人都觉得我是不是生病了，是不是有点精神疾病。他经常跟自己说什么话？他说我希望我的财富以不同的方式从各个渠道多样化的流向我，而每年流向我的这个财富是在递增的。他说这个话我每天跟自己说二十到三十遍，还挺具体，非常具体且不断的重复，非常具体且不断的重复，非常具体且不断的重复。</p>
+<p>于是乎他就是从每年挣个几千刀变成了世界上最富有的人之一。具体的如何改变自己的范式思维？其实我觉得三个方法：</p>
+<ul><li>首先是你自己对自己说的，就是你想变成什么样子，一定要非常具体的把它写成一到两句话，每天说二十到三十遍，尤其是对着镜子说，因为你不光要眼睛看一遍，你还要自己的耳朵听一遍，你还要自己的口腔说一遍，你还要自己的脑子想一遍，四五维的立体的给自己进行洗脑，这是第一个方法。</li><li>第二个方法就是你周围的人，其实你周围的人对你的影响比你想象中大的多。我就给大家一个简单粗暴的方法，不要再去找那个你喜欢的人跟他相处，因为你喜欢的人有可能他身上有很多消极的地方，你只找积极的人，只找那种自信的人，你只找那种阳光的人，你只找那种用行为改变自己生活的人，哪怕你不喜欢他，你硬跟他相处，让这个人给你灌输那种打鸡血的信息，你接受的信息反反复复的重复的话，你的范式思维也会被改变。</li><li>第三个点我觉得这个点可太重要，尤其在当下世界，你刷的视频非常非常重要，以后一定要少看那种消极的视频。人当然会看消极的视频，你比方说我有的时候都会很喜欢看那个消极的视频，为什么？因为那个消极的视频仿佛跟我自身的这个经历共振了，消极的视频共情力比较强，而且那个消极的视频配上一个悲伤的音乐，很有气质，它是那么的吸引人。</li></ul>
+<p>但是你要知道这个东西会潜移默化的影响你的范式思维，在你的范式思维中它会给你种下一个消极的心锚，它会让你觉得消极某种程度上是一件很美的事情，消极有可能很美，这没错。你看那个宋词，很消极很美，但是如果说你真的想过好自己生活的话，多刷积极的视频。</p>
+<p>我在这还跟大家透露一个小的秘密，就是我们视频下课之前的那句话，我都说希望大家越过越好，其实我是想给大家一个积极的洗脑，就是你只要看完我这个视频，最后一句话我永远会鼓励你，某种程度上就是给你潜意识的种心锚，你一定会越过越好的。这是我自己每次做视频给大家一个正向的一个愿望，大家自己刷视频的时候一定也要这样。</p>
+<p>为什么说刷视频这个事放到以前，Bob Proctor可能都不会教你怎么刷视频，但我必须得告诉你，当下世界人刷视频时间太长了。你看那个有一次有一个人突击采访雷军，看他手机里面用各个app的时长，雷军每天刷两个小时视频，有人采访王硕，王硕说我现在每天刷十个小时视频。也就是说刷视频这件事情已经对我们产生了巨大的影响，那么我们一定要尝试去多刷一些积极的视频，而不是让这个消极的信息给我们重复的影响。</p>
+<p>其实现在的这个短视频平台包括视频平台有个很好的点，就是你越刷积极的它越给你推积极，这样的话你就会越积极，也是个好事。我们要把这个坏软件用出好方法，这才高级。</p>
+<p>那最后希望大家越过越好，好下课。</p>
+  </div>
+</section>
+<section class="script" id="s22" data-title="醍醐灌顶语录（一）">
+  <div class="s-head">
+    <div class="s-num">22</div>
+    <div class="s-headmain">
+      <div class="s-kicker">语录 · 合集</div>
+      <h2 class="s-title">醍醐灌顶语录（一）</h2>
+      <div class="s-meta"><span>275 字</span><span class="fname">原文件 · 醍醐灌顶语录.txt</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>给大家分享九个醍醐灌顶的语录。</p>
+<p class="num">1. 别人给我上了一课，那是别人的本事，如果我走不出来，那就是我的无能。</p>
+<p class="num">2. 我吃过的猪都来我身边报复我了。</p>
+<p class="num">3. 地铁坐满了人，脚下的鞋子各式各样，他们早有准备，要走不同的路。</p>
+<p class="num">4.人生没那么多观众，但是他妈评委挺多</p>
+<p class="num">5.人生凡是妥协的决策，基本上都是错误的。</p>
+<p class="num">6.不能把智力低下的人看做善良的人，善良的人是智力极高的人，邪恶源于无知。</p>
+<p class="num">7.看一个人蠢不蠢，你就看他会不会以小概率事件来反驳常规事实。</p>
+<p class="num">8.机会总是伪装成困难，陷阱总是伪装成机会。</p>
+<p class="num">9.一事无成的男女睡了一觉就成了伟大的父母，穷了一辈子的老祖宗死了之后就能保佑你发财。</p>
+<p>ok</p>
+  </div>
+</section>
+<section class="script" id="s23" data-title="醍醐灌顶语录（二）">
+  <div class="s-head">
+    <div class="s-num">23</div>
+    <div class="s-headmain">
+      <div class="s-kicker">语录 · 合集</div>
+      <h2 class="s-title">醍醐灌顶语录（二）</h2>
+      <div class="s-meta"><span>243 字</span><span class="fname">原文件 · 醍醐灌顶语录2.txt</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天给大家九条看似脑残却醍醐灌顶的语录</p>
+<p class="num">1.努力是穷人唯一买得起的信仰。</p>
+<p class="num">2.所谓孝顺，很多时候只是父母能拿出去讲的那份年终总结。</p>
+<p class="num">3.成熟不是你学会了忍，而是你终于发现，忍根本没用。</p>
+<p class="num">4.所谓抱怨不公平的人，想要的从来不是公平，是换成他占便宜。</p>
+<p class="num">5.我们普通人只有两种活法，一种是忍气吞声，一种是我去你的。</p>
+<p class="num">6.你对自己好一点也算是帮助穷人了</p>
+<p class="num">7.所谓天才，是把一件无聊的事，重复到别人做不到的无聊。</p>
+<p class="num">8.教育最成功的地方，是让所有人都相信，考不好是自己笨。</p>
+<p class="num">9.别怪父母不懂你，他们连自己都没弄懂过。</p>
+  </div>
+</section>
+<section class="script" id="s24" data-title="醍醐灌顶语录（三）">
+  <div class="s-head">
+    <div class="s-num">24</div>
+    <div class="s-headmain">
+      <div class="s-kicker">语录 · 合集</div>
+      <h2 class="s-title">醍醐灌顶语录（三）</h2>
+      <div class="s-meta"><span>295 字</span><span class="fname">原文件 · 醍醐灌顶语录3.txt</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>今天来讲九个让你醍醐灌顶的语录</p>
+<p class="num">1.所谓理想，是年轻时买不起、老了买得起却不想买了的东西。</p>
+<p class="num">2.. 人的本质就是赌徒，不赌其实是在赌自己输</p>
+<p class="num">3.不要批评任何人，除非他向你付费。请记住你的赞美一定要脱口而出，但你的指点一定是千金不换。</p>
+<p class="num">4. 有句话说得好，孤独不叫孤独，它只是一种生活中非常常见的状态。你惧怕它，它就是孤独；你享受它，它便成了自由</p>
+<p class="num">5.不要拿自己的幕后生活去和别人的精彩片段比较，放松点，大家都在虚张声势。</p>
+<p class="num">6.道德，常常是给没能力作恶的人准备的替代品。</p>
+<p class="num">7.所谓关心，有时候只是打听。</p>
+<p class="num">8.学校教你做人，社会教你做鬼，就是没人教你做自己。</p>
+<p class="num">9.所谓陪伴，有时候只是两个人各玩各的手机，谁也不拆穿。</p>
+  </div>
+</section>
+<section class="script" id="s25" data-title="失败人生指南">
+  <div class="s-head">
+    <div class="s-num">25</div>
+    <div class="s-headmain">
+      <div class="s-kicker">哲思 · 认知</div>
+      <h2 class="s-title">失败人生指南</h2>
+      <div class="s-meta"><span>2944 字</span><span class="core">核心 · 人生底色就是失败，可你活得惨不惨，是你自己选的；依据古罗马斯多葛哲学家塞涅卡</span><span class="fname">仿写小五狼《痛苦人生指南》结构</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>我们拼了一辈子，不就是为了不失败吗？</p>
+<p>可你仔细想想，你活到现在，真正做成的事多，还是没做成的事多。</p>
+<p>今天我们来讲，失败人生指南。</p>
+<p>我们会分享古罗马最著名的斯多葛哲学家，塞涅卡，对人生的七个看法。</p>
+<p>问你两个问题啊。</p>
+<p>第一个问题，你觉得人生更应该追求成功，还是追求成长？</p>
+<p>OK，大家是怎么想的，可以把想法打在公屏上。</p>
+<p>那我的第二个问题是，你觉得人生的底色，是得到，还是失去？</p>
+<h3 class="s-sub">#1/7 存在即失败</h3>
+<p>你仔细想想我们这个人的存在啊。</p>
+<p>你在来到这个世界之前，从来没有人跟你商量过。</p>
+<p>你没做好准备，就被扔进来了。</p>
+<p>你要是个清醒的人，跟生活见招拆招了十几年，你慢慢会发现一个事。</p>
+<p>在这个物理世界里，充满了失败。</p>
+<p>比方说最简单的，你想考的学校，没考上。你想追的人，没追上。你想做的项目，黄了。</p>
+<p>你再往大一点看，你想留住的人，留不住。你想保住的身体，保不住。你想永远年轻，不可能。</p>
+<p>这是物理世界的失败。</p>
+<p>那精神世界呢。</p>
+<p>你想要的东西，永远比你能拿到的多。你拿到了，快乐一下，又想要下一个。</p>
+<p>人生就像钟摆一样，在想要和得不到之间来回摆。</p>
+<p>想要的时候痛苦，得到了无聊，无聊了又想要新的。</p>
+<p>所以你看，无论是物理世界，还是精神世界，我们人类的底色，全都是失败。</p>
+<p>我们生下来，就是来不断失去的。</p>
+<p>那我的第二个问题是，你觉得我们作为人类，活着是不是一件很丧的事？</p>
+<h3 class="s-sub">#2/7 丧是种选择</h3>
+<p>在塞涅卡看来，人生是一场不断的失去。</p>
+<p>但你的生活是不是丧，是你自己选的。</p>
+<p>他说这个世界上最让人崩溃的事，无非是什么呢。</p>
+<p>就是你最在乎的东西，没了。</p>
+<p>比方说你做了三年的项目，一夜之间全没了。</p>
+<p>那摆在你面前，就是两个选择。</p>
+<p>第一个选择，你瘫在那儿，反复想，为什么偏偏是我，为什么这种事要降临在我头上。</p>
+<p>第二个选择是什么。</p>
+<p>把该处理的事先处理清楚。该交接的交接，该赔钱的赔钱，该跟团队说的话说清楚。不要让跟着你的人，因为你的崩溃乱成一锅粥。</p>
+<p>尝试把情绪先收一收，然后面对接下来的人生。</p>
+<p>那你就不显得那么丧。</p>
+<p>你看，当具体的失败降临的时候，一个不成熟的人，会把自己的生命变得特别丧。</p>
+<p>而一个得体的人，他会想，我怎么让事情好起来，我怎么少给周围人添麻烦。</p>
+<p>在失败本身就很残酷的面前，我们面对它的态度，区分了过得好的人和过得丧的人。</p>
+<p>塞涅卡说，我们要尝试去做那个过得好的人。</p>
+<p>特别重要的一点是什么呢。</p>
+<p>这社会会跟你说，你要振作啊，你要加油啊。</p>
+<p>可没人教你，面对一塌糊涂的生活和一塌糊涂的情绪的时候，怎么把自己重新拼起来。</p>
+<p>所以你能看到，他这种悲观主义的前提之下，有一种很实在的关怀。</p>
+<h3 class="s-sub">#3/7 成功无效</h3>
+<p>既然生活的底色是失败，那很多人就会想，那我就只追求成功好了。</p>
+<p>人生不如意十之八九，那我就盯着那一二成的成功，使劲追。</p>
+<p>升职，赚钱，买房，买车，旅行，体验。</p>
+<p>在塞涅卡看来，追求成功是一个非常转瞬即逝、而且不解决本质问题的方式。</p>
+<p>如果一个人只追求成功，他会极其容易地陷入虚无。</p>
+<p>你想得到那个东西，是在你没得到的时候。你追到的那一瞬间，是最快乐的。</p>
+<p>可这个快乐是递减的。</p>
+<p>你刚升职那一个月最开心，过了三个月，你就习惯了。你刚买新车那几天最兴奋，过了半年，那就是个代步工具。</p>
+<p>成功就是多巴胺的释放，而多巴胺的释放是非常短暂的。</p>
+<p>它抚不平人生的底色。因为人生的失败太沉了，成功终将过去。</p>
+<p>如果你只追求成功，你会发现成功越来越难追了。</p>
+<p>小时候考个双百就开心，长大了给你一个亿你都不一定开心。</p>
+<p>它越来越难得到。</p>
+<p>那你会不会突然觉得，生活一点意思都没了。我这辈子，就这样了。</p>
+<h3 class="s-sub">#4/7 追求意义</h3>
+<p>那塞涅卡追求的是什么。</p>
+<p>就是意义。</p>
+<p>人为什么要追求意义呢。</p>
+<p>因为只有意义这种宏大的东西，才能抚平人生宏大的失败。</p>
+<p>当一个人，为了一个宏大的、有价值的远期目标，去忍耐当下的失败时，他的内心会维持一种长期的、稳定的状态。</p>
+<p>就说你的目标是做一件十年后还能立得住的事。</p>
+<p>那这途中所有的失败，在你看来都从负面变成正面了。</p>
+<p>你遇到的每一个坎，都是那件事的养分。哪怕周边发生了什么不如意的，你有一个更宏大的长期目标撑着。</p>
+<p>说透一点，就是你需要一个长期的意义，来撑住自己。</p>
+<p>那种五分钟就完事的快乐，撑不住。追求意义，有点像你玩一个要玩十年的大游戏。</p>
+<p>在这十年里，该积累积累，该失败失败。你最终是为了这个游戏的体验。</p>
+<p>那我们追求意义的时候，会不会跑偏。</p>
+<p>你觉得你的目标有意义就有意义吗。有些意义，过两年你回头看，觉得它也没那么有意义了。</p>
+<p>那塞涅卡给了五个判断的标准。</p>
+<p>第一个，背负重任。</p>
+<p>你想要得到光荣之前，你得先背起那个十字架。你得先想清楚，你愿意付出什么代价。</p>
+<p>第二个，秩序与混沌。</p>
+<p>一种是秩序的状态，一种是混沌的状态。两种到了极致都不好。</p>
+<p>你极端追求秩序，人会僵。你完全沉溺混沌，人会散。</p>
+<p>你想过得有意义，得像走钢丝一样，在混沌和秩序之间走。</p>
+<p>第三个，尽量诚实。</p>
+<p>不要陷入那种特别油的人情世故里头。不要为了短期的好处，说自己都不信的话。</p>
+<p>第四个，承认你心里的阴暗面。</p>
+<p>每个人心里都有见不得人的部分。你假装它不存在，它迟早会爆发。</p>
+<p>你得承认它，然后管住它。一个有能力做坏事、但选择不做的人，才叫好人。你只是没能力做坏事，那不叫好人，那叫没办法。</p>
+<p>第五个，在失败里淬炼出东西。</p>
+<p>把每一次生活给你的重创，当成一次重生。</p>
+<p>人的成长不是来自于活了多久，而是来自于你被打倒了多少次，又站起来了多少次。</p>
+<h3 class="s-sub">#5/7 如何过上有意义的人生</h3>
+<p>先从一件最小的事开始。</p>
+<p>塞涅卡说，第一步，把你眼前的事做好。</p>
+<p>这社会会跟你说，去修复你的人生啊。</p>
+<p>可修复人生，就像告诉你去修一艘正在漏水的大船。你不知道从哪儿下手。</p>
+<p>那你就先从最小的那一件开始。</p>
+<p>你眼前那张桌子，先收拾干净。你今天该回的消息，先回了。你答应别人的事，先做了。</p>
+<p>很多年轻人房间乱得下不去脚，他跟你谈拯救世界，谈人生理想。你觉得可能吗。</p>
+<p>外在的东西会影响内在的。你把自己收拾利索了，你穿得干干净净去见每一个人，你获得的机会都不一样。</p>
+<p>先把眼前这一件事做好，再谈下一件。</p>
+<h3 class="s-sub">#6/7 遇到失败反求诸己</h3>
+<p>只在自己身上找原因。</p>
+<p>很多人遇到失败，会说大环境不好，时机不对，原生家庭不行。</p>
+<p>理由很多。</p>
+<p>可这些东西是大家的最大公约数。大家活在同一个大环境里，大家都有各自的不容易。</p>
+<p>哪怕这件事的失败，百分之九十五是外部原因。你也要在那百分之五里，找自己的原因。</p>
+<p>只有做到了，遇到任何失败先反求诸己，你才有可能拿回生活的主动权。</p>
+<p>你才会觉得，哎，我对这件事是有责任的。所以我的改变是有意义的。所以我要变得更好。这件事下次的成功率就会变大。</p>
+<p>如果一件事失败了，你怪的全是外部原因。那你变得再好，对这件事也没意义。那你就彻底交出去了。</p>
+<p>所以对于你的人生来说，先从自己身上找原因。</p>
+<p>你才有可能把方向盘，拿回来。</p>
+<h3 class="s-sub">#7/7 不要因为失败否定生命</h3>
+<p>塞涅卡说，有一个声音特别有迷惑性。</p>
+<p>它会跟你说，这个世界充满了失败，充满了失去。你辛辛苦苦几十年，最后什么也带不走。</p>
+<p>它说，既然这么苦，那这么拼有什么意义呢。</p>
+<p>你千万别被这个声音说服。</p>
+<p>一旦你接受了它，第一种结果，你陷入虚无。第二种结果，你把自己活成一个受害者。我本来就不想来这个世界的。</p>
+<p>生活本身就是充满失败的。可你怎么应对它，是你自己的事。</p>
+<p>人生是不断失去的，但是你活得丧不丧，你可以选。</p>
+<p>你可以梗着脖子，跟生活对抗。</p>
+<p>你可以得体地，把每一天过好。</p>
+<p>这是塞涅卡，作为一个悲观主义者，给的最积极的思考。</p>
+<p>好啦。</p>
+<p>不知道能不能给大家一点启发。</p>
+<p>但还是希望大家越过越好。</p>
+<p>下课。</p>
+  </div>
+</section>
+<section class="script" id="s26" data-title="讨厌一个人最好的办法不是翻脸">
+  <div class="s-head">
+    <div class="s-num">26</div>
+    <div class="s-headmain">
+      <div class="s-kicker">自由发挥</div>
+      <h2 class="s-title">讨厌一个人最好的办法不是翻脸</h2>
+      <div class="s-meta"><span>3,554 字</span><span class="core">核心 · 用《毛选》的维度打击——不翻脸、不内耗，把能量收回自己身上，靠降熵与升维让烂人自生自灭</span><span class="fname">自由发挥</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>读了毛选才明白，讨厌一个人最好的办法不是翻脸。毛主席在《中国革命战争的战略问题》中写过一句极其经典的话：“你打你的，我打我的”。这句话不仅是极其高明的军事战略，更是处理人际关系对付那些你极其讨厌的人的最高心法。</p>
+<p>如果你现在正因为某个小人、某个烂人而心烦意乱，恨不得立刻跟他撕破脸皮、大吵一架，请你立刻停下来，看完这个视频，你会发现跟一个人翻脸是最下等的做法。真正读懂《毛选》的人面对烂人从来不翻脸，他们只做一件事，那就是降熵。</p>
+<p>你以为翻脸是出气吗？错，翻脸是人局。当你在心里盘算着怎么去怼他、报复他，甚至晚上躺床上都在重演争吵画面时，你已经把原本可以用来提升自己、赚钱、享受生活的宝贵能量全消耗在一个对你的人生毫无价值的人身上了。</p>
+<p>在物理学中这叫“熵增”，意思是你的系统正在走向混乱和无序。而在《毛选》的智慧里，这叫陷入了敌人的节奏，丧失了战略主动权。</p>
+<p>大家好，我是你的毛选领读者。今天我们就用《毛选》的底层逻辑彻底扒开人际交往的残酷真相，教你如何用降熵的维度打击让讨厌的人在你的人生里彻底灰飞烟灭。</p>
+<p>我们先来搞清楚第一个问题：你为什么会讨厌一个人？抛开表面的利益冲突，你讨厌一个人本质上是因为他干扰了你的磁场，破坏了你内心的秩序。他可能是喜欢抢功劳的小人，也可能是不断向你倒垃圾的吸血鬼。当你面对这些人本能反应是想要去辩理，证明他是错的。</p>
+<p>毛主席在《矛盾论》里早就告诉过我们，在众多矛盾中必定有一个起决定作用的“主要矛盾”，其他则是次要矛盾。现在请你立刻问自己，你当前人生的主要矛盾是什么？是跟这个烂人争个高低吗？当然不是。你的主要矛盾永远是你对美好物质精神生活的需要，与目前能力不足、搞钱不够、阶层未跨越之间的矛盾。</p>
+<p>既然主要矛盾是发展自己，这个烂人算什么？他充其量只是路边的一坨狗屎，你非要跟这坨狗屎较劲踩下去，狗屎是被踩扁了，但你的鞋脏了，原本要赶的火车错过了，好心情全毁了，这就叫被次要矛盾牵着鼻子走，这是人生最大的熵增。</p>
+<p>所以读懂《毛选》的第一步就是学会战略上的无视，降熵的核心就是剔除无效的能量消耗。你讨厌一个人时不要愤怒，愤怒会降低智商，不要翻脸，翻脸会暴露底牌，你要做的是在心里默默给他判死刑，然后把所有注意力收回自己身上，这叫保存有生力量。</p>
+<p>你的每一分情绪都该像子弹一样珍贵，怎么能随便浪费在烂人身上？那么具体该怎么做才能实现真正的降熵？《毛选》提供了三套极其凶猛的战术。</p>
+<h3 class="s-sub">第一套战术：剥离情绪，冷眼旁观</h3>
+<p>毛主席说：战略上藐视敌人，战术上重视敌人。对待讨厌的人，你要在战略上极度藐视他，他在你眼里就该是个NPC，是个不带感情色彩的客观存在。</p>
+<p>比如他在人前阴阳怪气，你不要生气，要像看猴戏一样看着他想，这人原生家庭一定很糟，认知水平怎么这么低下，用这种拙劣手段掩饰自卑，真是可怜又可笑。当你用这种上帝视角去俯视他，情绪瞬间就抽离了，你不再是受害者，而是研究人类愚蠢行为的观察者。</p>
+<p>你没有情绪波动，你的系统就没有熵增。相反，那个试图激怒你的人像一拳打在棉花上，内心会产生极大的挫败感和混乱，这就是不战而屈人之兵。</p>
+<h3 class="s-sub">第二套战术：统一战线，边缘化处理</h3>
+<p>你讨厌的人可能跟你在同一个办公室或者在同一个圈子里，你无法在物理空间上完全避开他，这时候去跟他拉帮结派地斗争，太小儿科了。</p>
+<p>毛选里有一个无敌的法宝，叫做统一战线，毛主席说：什么是政治？政治就是把我们的人搞得多多的，把敌人的人搞得少少的。对待讨厌的人，你不需要去攻击他，你只需要去团结其他所有人，你把工作做好，你对其他人释放善意，你提供价值，你建立起自己良好的人际口碑和基本盘。</p>
+<p>你越是讨厌他，你越要在别人面前表现得大度、专业、靠谱。时间一长，群众的眼睛是雪亮的，那个烂人的人品和行事作风迟早会得罪其他人。如果没有的话，建议可以听一下papi酱的神曲《生气了》。这里是开个玩笑，如果不好笑，我就把它剪掉。</p>
+<p>当所有人都在心里默默远离他的时候，他就在这个圈子里被彻底边缘化了。你没有跟他吵过一句嘴，没有跟他翻过一次脸，但他已经被你用系统升维的方式给孤立了。在这个过程中，你不仅没有消耗自己的能量，反而通过结交有价值的朋友，提升了自己的影响力，实现了人生的熵减，让他自己在这个孤立无援的系统里自生自灭，这才是最狠的惩罚。</p>
+<h3 class="s-sub">第三套战术：建立根据地，跳出当前维度</h3>
+<p>夏虫不可语冰，你之所以被这个人恶心到，本质上是因为你们目前处于同一个阶层，同一个维度。红军当年被几十万大军围剿时，如果只知道翻脸硬刚早就全军覆没了。毛主席是怎么做的？长征。既然这里生存环境恶劣，敌我悬殊，那我就不跟你玩了，我跳出包围圈去陕北发展壮大。</p>
+<p>对待讨厌的人，最彻底的降熵就是你个人的长征。你要拼命搞事业，拼命提升认知和财富水平。当你的能力越来越强、眼界越来越高时，你会发现当初那个让你恨得牙痒痒的人，连同他所在的鸟烟瘴气的圈子，都已经离你越来越远了。</p>
+<p>老虎从来不会因为一条疯狗狂吠而停下来反击，因为老虎眼里只有整片森林。当你登上了山顶，再俯瞰山脚下那个曾经恶心过你的人，只不过是一只微不足道的蚂蚁。你还需要去恨一只蚂蚁吗？根本不需要。他的好坏和死活已经跟你的世界毫无关系了。</p>
+<p>说到这里，再深度剖析一下翻脸的危害。很多人有一个错觉，觉得我如果不翻脸，我如果不怼回去，我如果不骂回去，我就是软弱，我就是好欺负，觉得不怼回去就是软弱，这是一种极其短视的流氓无产者思维。</p>
+<p>成年人的世界实力的强弱从来不是靠嗓门大决定的，一旦翻脸，矛盾公开化，你就必须投入大量时间精力去应对接下来的各种明枪暗箭。在这个过程中，你的心态会失衡，你的工作会受影响，你的睡眠质量会下降。更可怕的是，你在跟烂人斗的过程中不知不觉就会用上烂人的手段，你会在潜移默化中变成你曾经最讨厌的那种人。</p>
+<p>这就是尼采所说的，当你凝视深渊的时候，深渊也在凝视你，与恶龙缠斗过久，自身亦成为恶龙。而在毛选的智慧体系里，这叫做陷入了绝对平均主义和盲动主义的泥潭。降熵不仅是对付讨厌之人的策略，更是一种高级的人生修行。</p>
+<p>我们再把视野放大一点，来看看降熵这种思维模式能给我们的人生带来什么？一个人的一生其实就是一个不断抵抗系统熵增的过程。小时候，我们对世界充满好奇，但随着年龄的增长，我们会遇到各种挫折、背叛、不公。这时候，如果不懂得降熵，我们的内心就会充满怨气，我们的精神系统就会变得越来越混乱。</p>
+<p>我们会把大量的时间浪费在抱怨体制、抱怨出身、抱怨同事、抱怨伴侣上，就像一辆破旧的汽车，即使油箱里还有油，也会把仅有的一点燃料全部消耗在内部的摩擦上。而读懂了毛选的人，他们是这个世界上最清醒的降熵大师。他们深知客观世界的复杂和丑恶是无法改变的，唯一能改变的是自己应对这些复杂和丑恶的系统架构。</p>
+<p>他们不会去抱怨为什么总有小人算计自己，因为他们知道，有人的地方就有江湖，有利益的地方就有纷争，这是事物发展的客观规律。他们只会默默地升级自己的防御系统，提高自己的不可替代性。让小人无从下手。他们不会因为被领导穿了小鞋就整天长吁短叹，因为他们知道在不对等的权力格局下一切委屈都是必然的代价。他们会把这份委屈化作动力去寻找新的突围方向，去打造属于自己的核心竞争力，让自己成为规则的制定者。</p>
+<p>通过一点一滴地积累力量，通过在一次又一次的小摩擦中消耗敌人，最终实现战略相持乃至战略反攻，这就是持久战。因为很多时候你讨厌的不仅仅是一个具体的人，而是这个人所代表的一种环境、一种阶层、一种生存状态。</p>
+<p>你要消灭这种状态就必须经历漫长而痛苦的过程。在这个漫长的过程中你需要极度专注、极度自律，你需要把你所有的能量像激光一样聚焦在一点上，这就是降熵的极致表现。</p>
+<p>别人在因为一点鸡毛蒜皮的小事跟邻居大吵大闹的时候，你在安静地阅读一本提升认知的书。别人在因为亲朋的闲言碎语而暗自生闷气、拉帮结派的时候，你在复盘今天的工作，思考如何优化业务流程。别人在酒桌上吹牛逼、抱怨社会不公的时候，你在健身房里挥汗如雨或者在电脑前敲打着能为你带来税后收入的代码。</p>
+<p>你没有跟任何人翻脸，你看起来甚至有些孤僻，但在时间的长河里你正在完成一次不可思议的进化。你的熵值越来越低，你的生命能量越来越纯粹，你的行动效率越来越高。当你看透了这一层，你就会觉得去跟他们翻脸、去跟他们生气是一件多么荒谬可笑的事情，你会产生一种深深的悲悯，不是对他们的同情，而是对自己曾经因为他们而浪费过哪怕一秒钟生命而感到的惋惜。</p>
+<p>所以从现在开始把毛选里的智慧刻在骨子里，不要被任何人打乱你人生的步伐，你的目标是星辰大海，不要在泥坑里跟烂人摔跤。当你把降熵的理念贯彻到极致，你会发现你的世界里再也没有你讨厌的人了，因为那些人已经连仰望你的资格都没有了。这就是毛选教给我们的最高级的人间清醒。这就是降熵带给你的绝对自由。去发动你自己的长征，把所有的烂人烂事永远甩在身后的废墟里。我们下期再见。</p>
+  </div>
+</section>
+<section class="script" id="s27" data-title="想要过好人生，除了要对每件小事付出真心，还要有收回真心的勇气">
+  <div class="s-head">
+    <div class="s-num">27</div>
+    <div class="s-headmain">
+      <div class="s-kicker">自由发挥</div>
+      <h2 class="s-title">想要过好人生，除了要对每件小事付出真心，还要有收回真心的勇气</h2>
+      <div class="s-meta"><span>633 字</span><span class="core">核心 · 一人行知｜王阳明心学系列（三）：对每件小事付出真心，也要有收回真心的勇气</span><span class="fname">自由发挥</span></div>
+    </div>
+    <button class="copy" type="button">复制全文</button>
+  </div>
+  <div class="s-body">
+<p>让胶泥失去颜色，一共要几步？</p>
+<p>王阳明说，你未看此花时，此花与汝心同归于寂。你来看此花时，则此花颜色一时明白起来。</p>
+<p>很多人听完第一反应就是，不看这个花，花就没有颜色？</p>
+<p>那也太唯心了。</p>
+<p>注意，王阳明并没有说，不看花，花和胶泥就不存在了。</p>
+<p>那我问你，你能看见彩虹的颜色，说明什么？说明要有光。</p>
+<p>所以不去看这朵花的时候，花只是和你的心<strong>同归于寂</strong>，并不是它消失不存在了。</p>
+<p>就像紫外线真实存在，但你眼睛看不见它。</p>
+<p>这个道理放到现实里就是：伤害你的人和事，并不会因为你假装看不见，就真的消失。</p>
+<p>就好比一袋垃圾放在家里，你闭上眼睛不去看它，垃圾依旧还在，臭味依旧会弥漫。</p>
+<p>你不去面对，伤害不会自动归零。</p>
+<p>很多人会说，生活为什么总是欺负我。</p>
+<p>其实生活本身不会欺负你，是构成生活里一件件的人和事会欺负你。</p>
+<p>不管是感情、工作还是社交，现实当中，<strong>故意触碰你底线的人和事，这才叫欺负</strong>。</p>
+<p>但是这类事情，其实只占你生活当中很小的一部分。</p>
+<p>对于这一部分，不要对它们再有一丝希望。</p>
+<p>但是，你依然要对生活抱有希望。</p>
+<p>那到底该怎么对生活抱有希望？</p>
+<p>答案就是：对每一件小事都付出真心。</p>
+<p>说得具体一点：</p>
+<p>这份真心，放在学习上，就叫专注；</p>
+<p>放在事业当中，就叫敬业；</p>
+<p>放在人际交往里面，就叫仁义友善；</p>
+<p>放到感情里面，那便是爱。</p>
+<p>那如果我的真心又被辜负了该怎么办？</p>
+<p>被辜负，不一定是坏事。</p>
+<p>它可以帮你辨别是非，看清什么是真正的美好，让你不再被蒙骗。</p>
+<p>但仅仅看清还不够，你还需要加上<strong>收回真心的勇气</strong>。</p>
+<p>当你敢于收回真心，就可以让那些欺负你的人和事，与你的心同归于寂，不再回头。</p>
+  </div>
+</section>
+  </div>
+
+  <footer class="foot">
+    共 27 篇 · 逐字稿文案合集 · 内容原样提取，仅供拍摄与创作使用
+  </footer>
+</main>
+
+<button id="top" type="button" title="回到顶部">↑</button>
+
+<script>
+(function(){
+  var items = Array.prototype.slice.call(document.querySelectorAll('.nav-item'));
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.script'));
+  var progress = document.getElementById('progress');
+  var topBtn = document.getElementById('top');
+  var side = document.getElementById('side');
+  var curtain = document.getElementById('curtain');
+
+  // 复制按钮文字包 span（保证扫光在文字下方）
+  document.querySelectorAll('.copy').forEach(function(b){
+    b.innerHTML = '<span>' + b.textContent + '</span>';
+  });
+
+  // ---------- 开场幕布 ----------
+  window.addEventListener('load', function(){
+    setTimeout(function(){ curtain.classList.add('up'); }, 1700);
+    setTimeout(function(){ curtain.style.display='none'; }, 3000);
+  });
+
+  // ---------- 进度条 + 回顶 ----------
+  function onScroll(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    progress.style.width = p + '%';
+    if(window.scrollY > 500){ topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  topBtn.addEventListener('click', function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+
+  // ---------- 进入视口：显现 ----------
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); }
+    });
+  }, {rootMargin:'0px 0px -12% 0px', threshold:0.01});
+  sections.forEach(function(s){ obs.observe(s); });
+
+  // ---------- 目录高亮 ----------
+  var activeObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = e.target.id;
+        items.forEach(function(a){ a.classList.toggle('active', a.dataset.target === id); });
+      }
+    });
+  }, {rootMargin:'-20% 0px -70% 0px', threshold:0});
+  sections.forEach(function(s){ activeObs.observe(s); });
+
+  // ---------- 搜索 ----------
+  var search = document.getElementById('search');
+  search.addEventListener('input', function(){
+    var q = this.value.trim().toLowerCase();
+    items.forEach(function(a){
+      var hit = !q || (a.dataset.title||'').toLowerCase().indexOf(q) > -1;
+      a.classList.toggle('hide', !hit);
+    });
+    sections.forEach(function(s){
+      var hit = !q || (s.dataset.title||'').toLowerCase().indexOf(q) > -1;
+      s.classList.toggle('hide', !hit);
+      if(hit){ s.classList.add('in'); }
+    });
+    document.querySelectorAll('.nav-group').forEach(function(g){
+      var visible = g.querySelectorAll('.nav-item:not(.hide)').length;
+      g.classList.toggle('hide', visible === 0);
+    });
+  });
+
+  // ---------- 复制全文 ----------
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var sec = btn.closest('.script');
+      var title = sec.dataset.title || '';
+      var text = title + String.fromCharCode(10,10) + sec.querySelector('.s-body').innerText;
+      var span = btn.querySelector('span');
+      var done = function(){
+        span.textContent = '已复制 ✓';
+        btn.classList.add('done');
+        setTimeout(function(){ span.textContent = '复制全文'; btn.classList.remove('done'); }, 1700);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done, function(){ fallback(text, done); });
+      } else { fallback(text, done); }
+    });
+  });
+  function fallback(text, cb){
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); cb(); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // ---------- 移动端菜单 ----------
+  var scrim = document.getElementById('scrim');
+  function setMenu(open){
+    side.classList.toggle('open', open);
+    scrim.classList.toggle('show', open);
+  }
+  document.getElementById('menubtn').addEventListener('click', function(){
+    setMenu(!side.classList.contains('open'));
+  });
+  scrim.addEventListener('click', function(){ setMenu(false); });
+  items.forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+  // ---------- 自定义光标 ----------
+  if(window.matchMedia('(pointer:fine)').matches){
+    var dot = document.createElement('div');
+    var ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+    var mx=0,my=0,rx=0,ry=0;
+    window.addEventListener('mousemove', function(e){
+      mx=e.clientX; my=e.clientY;
+      dot.style.left=mx+'px'; dot.style.top=my+'px';
+    });
+    function loop(){
+      rx += (mx-rx)*0.18; ry += (my-ry)*0.18;
+      ring.style.left=rx+'px'; ring.style.top=ry+'px';
+      requestAnimationFrame(loop);
+    }
+    loop();
+    document.querySelectorAll('a,button,input,.ov-card,.copy').forEach(function(el){
+      el.addEventListener('mouseenter', function(){ ring.classList.add('hover'); });
+      el.addEventListener('mouseleave', function(){ ring.classList.remove('hover'); });
+    });
+  }
+
+  // ---------- 首屏标题轻微视差 ----------
+  var hero = document.querySelector('.hero');
+  if(hero){
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      if(y < 800){
+        hero.style.transform = 'translateY(' + (y*0.08) + 'px)';
+        hero.style.opacity = Math.max(0, 1 - y/700);
+      }
+    }, {passive:true});
+  }
+
+})();
+</script>
+</body>
+</html>
